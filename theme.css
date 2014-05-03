@@ -2315,7 +2315,7 @@
     }
 
     thead {
-        background: #5787e1;
+        background: #5B92FA;
         color: white;
     }
 
@@ -3186,4 +3186,24 @@
 
     .flair-UCD {
         background-position: 0 -2544px;
+    }
+
+    .sidecontentbox .helplink + .title h1 { font-size: 0 !important }
+
+    .sidecontentbox .helplink + .title h1:before { font-size: 10pt !important; content: "Crew Coaches" }
+
+    .sidebox.submit:hover:before{
+        position:fixed;
+        display:block;
+        top:0;
+        text-align:center;
+        background-color:#5B92FA;
+        color:white;
+        z-index:1000;
+        padding:5px 0;
+        width:100%;
+        left:0;
+        font-size:32px;
+        font-weight:normal;
+        content:"Please read the FAQ before posting."
     }

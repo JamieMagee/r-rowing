@@ -1622,7 +1622,7 @@
 
 				.tagline .submitter {color: #dd4b39!important;}			
 				.tagline .moderator,.green {color: #53a93f!important;}
-					.tagline .moderator:after {content: "oderator - speaking officially.";}
+					.tagline .moderator:after {content: "oderator";}
 					a.author.moderator:after {content: "";}
 				.tagline .moderator:hover {color: #65b354!important;}
 			
@@ -2333,7 +2333,6 @@
         color: #336699;
         margin-right: 5px;
         background: white url(%%flairsheet%%) no-repeat -9999px -9999px;
-        display: inline-block !important
     }
 
     .flair-Abgindon-School {

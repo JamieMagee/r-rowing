@@ -396,19 +396,19 @@
 			font-family: Calibri, Candara, Segoe, "Segoe UI", Optima, Arial, sans-serif;
 		}
 
-			.side:after {
+			/*.side:after {
 				display: block;
 				margin: 10px 0;
 				padding: 10px 0;
 				color: #5b92fa;
-				content: "This subreddit uses /r/naut!"; /* Hey! Please don't remove or change this. */
+				content: "This subreddit uses /r/naut!"; *//* Hey! Please don't remove or change this. *//*
 				text-transform: none;
 				font-size: 16px;
 				font-family: arial, sans-serif;
 				position: absolute;
 				width: 300px;
 				text-align: center;
-			}
+			}*/ /* If you're reading this, don't worry! I will put a link to /r/naut in the sidebar */
 					
 			/* SUBMIT LINK OR POST */
 			.morelink {
@@ -2317,4 +2317,873 @@
     thead {
         background: #5787e1;
         color: white;
+    }
+
+    /* Blades Flair */
+
+    .flair {
+        border: 1px solid;
+        top: 20px;
+        padding-right: 5px;
+        display: inline-block !important;
+        text-indent: 19px;
+        font-size: x-small;
+        height: 12px;
+        vertical-align: middle;
+        color: #336699;
+        margin-right: 5px;
+        background: white url(%%flairsheet%%) no-repeat -9999px -9999px;
+        display: inline-block !important
+    }
+
+    .flair-Abgindon-School {
+        background-position: 0 0;
+    }
+
+    .flair-Adelaide {
+        background-position: 0 -12px;
+    }
+
+    .flair-Agecroft {
+        background-position: 0 -24px;
+    }
+
+    .flair-Argentina {
+        background-position: 0 -36px;
+    }
+
+    .flair-Auriol-Kensington {
+        background-position: 0 -48px;
+    }
+
+    .flair-Australian {
+        background-position: 0 -60px;
+    }
+
+    .flair-Avon-County {
+        background-position: 0 -72px;
+    }
+
+    .flair-Balliol-College {
+        background-position: 0 -84px;
+    }
+
+    .flair-Barnes-Bridge-Ladies {
+        background-position: 0 -96px;
+    }
+
+    .flair-Bath-University {
+        background-position: 0 -108px;
+    }
+
+    .flair-Bedford-Modern-School {
+        background-position: 0 -120px;
+    }
+
+    .flair-Belgium {
+        background-position: 0 -132px;
+    }
+
+    .flair-Berwick-Amateur {
+        background-position: 0 -144px;
+    }
+
+    .flair-Bournemouth-University {
+        background-position: 0 -156px;
+    }
+
+    .flair-Bradford-Amateur {
+        background-position: 0 -168px;
+    }
+
+    .flair-Bristol-Ariel {
+        background-position: 0 -180px;
+    }
+
+    .flair-Brown-University {
+        background-position: 0 -192px;
+    }
+
+    .flair-Bulgaria {
+        background-position: 0 -204px;
+    }
+
+    .flair-Caius {
+        background-position: 0 -216px;
+    }
+
+    .flair-Cambois {
+        background-position: 0 -228px;
+    }
+
+    .flair-Cambridge-University {
+        background-position: 0 -240px;
+    }
+
+    .flair-Canadian {
+        background-position: 0 -252px;
+    }
+
+    .flair-Cardiff-University {
+        background-position: 0 -264px;
+    }
+
+    .flair-Chester-Le-Street-Amateur {
+        background-position: 0 -276px;
+    }
+
+    .flair-Christ27s-College {
+        background-position: 0 -288px;
+    }
+
+    .flair-Christ-Church {
+        background-position: 0 -300px;
+    }
+
+    .flair-Churchill-College {
+        background-position: 0 -312px;
+    }
+
+    .flair-City-of-Cambridge {
+        background-position: 0 -324px;
+    }
+
+    .flair-City-of-Oxford {
+        background-position: 0 -336px;
+    }
+
+    .flair-Clare-Hall {
+        background-position: 0 -348px;
+    }
+
+    .flair-Clydesdale-Amateur {
+        background-position: 0 -360px;
+    }
+
+    .flair-Colgate-University {
+        background-position: 0 -372px;
+    }
+
+    .flair-Collingwood-College {
+        background-position: 0 -384px;
+    }
+
+    .flair-Cornell-University {
+        background-position: 0 -396px;
+    }
+
+    .flair-Corpus-Christi-College {
+        background-position: 0 -408px;
+    }
+
+    .flair-Croatia {
+        background-position: 0 -420px;
+    }
+
+    .flair-Dartmouth-University {
+        background-position: 0 -432px;
+    }
+
+    .flair-Darwin-College {
+        background-position: 0 -444px;
+    }
+
+    .flair-Denmark {
+        background-position: 0 -456px;
+    }
+
+    .flair-Detroit {
+        background-position: 0 -468px;
+    }
+
+    .flair-Downing-College {
+        background-position: 0 -480px;
+    }
+
+    .flair-Dulwich-College {
+        background-position: 0 -492px;
+    }
+
+    .flair-Durham-Amateur {
+        background-position: 0 -504px;
+    }
+
+    .flair-Durham-School {
+        background-position: 0 -516px;
+    }
+
+    .flair-Durham-University {
+        background-position: 0 -528px;
+    }
+
+    .flair-Edinburgh-University {
+        background-position: 0 -540px;
+    }
+
+    .flair-Emanuel-School {
+        background-position: 0 -552px;
+    }
+
+    .flair-Emmanuel {
+        background-position: 0 -564px;
+    }
+
+    .flair-Estonia {
+        background-position: 0 -576px;
+    }
+
+    .flair-Eton-College {
+        background-position: 0 -588px;
+    }
+
+    .flair-Euros-Blad {
+        background-position: 0 -600px;
+    }
+
+    .flair-First-and-Third-Trinity {
+        background-position: 0 -612px;
+    }
+
+    .flair-French {
+        background-position: 0 -624px;
+    }
+
+    .flair-George-Stephenson-College {
+        background-position: 0 -636px;
+    }
+
+    .flair-Georgetown-University {
+        background-position: 0 -648px;
+    }
+
+    .flair-German {
+        background-position: 0 -660px;
+    }
+
+    .flair-Girton-College {
+        background-position: 0 -672px;
+    }
+
+    .flair-Glasgow {
+        background-position: 0 -684px;
+    }
+
+    .flair-Glasgow-University {
+        background-position: 0 -696px;
+    }
+
+    .flair-Great-Britain {
+        background-position: 0 -708px;
+    }
+
+    .flair-Greek {
+        background-position: 0 -720px;
+    }
+
+    .flair-Green-Templeton {
+        background-position: 0 -732px;
+    }
+
+    .flair-Grey-College {
+        background-position: 0 -744px;
+    }
+
+    .flair-Grosvenor {
+        background-position: 0 -756px;
+    }
+
+    .flair-HSBC {
+        background-position: 0 -768px;
+    }
+
+    .flair-Harvard-Kennedy-School {
+        background-position: 0 -780px;
+    }
+
+    .flair-Harvard-Mens {
+        background-position: 0 -792px;
+    }
+
+    .flair-Harvard-Womens {
+        background-position: 0 -804px;
+    }
+
+    .flair-Hatfield-College-28Durham29 {
+        background-position: 0 -816px;
+    }
+
+    .flair-Hatfield-College {
+        background-position: 0 -828px;
+    }
+
+    .flair-Hertford-College {
+        background-position: 0 -840px;
+    }
+
+    .flair-Hexham {
+        background-position: 0 -852px;
+    }
+
+    .flair-Hild-Bede {
+        background-position: 0 -864px;
+    }
+
+    .flair-Homerton-College {
+        background-position: 0 -876px;
+    }
+
+    .flair-Hughes-Hall {
+        background-position: 0 -888px;
+    }
+
+    .flair-Imperial-College {
+        background-position: 0 -900px;
+    }
+
+    .flair-Imperial-College-School-of-Medicine {
+        background-position: 0 -912px;
+    }
+
+    .flair-Irish {
+        background-position: 0 -924px;
+    }
+
+    .flair-Italy {
+        background-position: 0 -936px;
+    }
+
+    .flair-Jesus-College-Cambridge {
+        background-position: 0 -948px;
+    }
+
+    .flair-Jesus-College-Oxford {
+        background-position: 0 -960px;
+    }
+
+    .flair-John-Snow {
+        background-position: 0 -972px;
+    }
+
+    .flair-Josephine-Butler {
+        background-position: 0 -984px;
+    }
+
+    .flair-Josephine-Butler-College {
+        background-position: 0 -996px;
+    }
+
+    .flair-Keble-College {
+        background-position: 0 -1008px;
+    }
+
+    .flair-Kings-College-Cambridge {
+        background-position: 0 -1020px;
+    }
+
+    .flair-Kings-College-School {
+        background-position: 0 -1032px;
+    }
+
+    .flair-Kingston-Grammar-School {
+        background-position: 0 -1044px;
+    }
+
+    .flair-Kingston {
+        background-position: 0 -1056px;
+    }
+
+    .flair-Kingston-University {
+        background-position: 0 -1068px;
+    }
+
+    .flair-LSE {
+        background-position: 0 -1080px;
+    }
+
+    .flair-Lady-Margaret-Hall {
+        background-position: 0 -1092px;
+    }
+
+    .flair-Lady-Margaret {
+        background-position: 0 -1104px;
+    }
+
+    .flair-Lancaster-University {
+        background-position: 0 -1116px;
+    }
+
+    .flair-Leander-Club {
+        background-position: 0 -1128px;
+    }
+
+    .flair-Leeds-University {
+        background-position: 0 -1140px;
+    }
+
+    .flair-Leicester-University {
+        background-position: 0 -1152px;
+    }
+
+    .flair-Lewis-26-Clark-College {
+        background-position: 0 -1164px;
+    }
+
+    .flair-Linacre-College {
+        background-position: 0 -1176px;
+    }
+
+    .flair-Lincoln {
+        background-position: 0 -1188px;
+    }
+
+    .flair-Lincoln-Rowing-Center {
+        background-position: 0 -1200px;
+    }
+
+    .flair-Liverpool-University {
+        background-position: 0 -1212px;
+    }
+
+    .flair-London {
+        background-position: 0 -1224px;
+    }
+
+    .flair-Lopatica-vesla-VeslaC48Dkog-kluba-Arupinuma {
+        background-position: 0 -1236px;
+    }
+
+    .flair-Lopatica-vesla-VeslaC48Dkog-kluba-Istre {
+        background-position: 0 -1248px;
+    }
+
+    .flair-Lopatica-vesla-VeslaC48Dkog-kluba-Medulina {
+        background-position: 0 -1260px;
+    }
+
+    .flair-Los-Gatos {
+        background-position: 0 -1272px;
+    }
+
+    .flair-MIT {
+        background-position: 0 -1284px;
+    }
+
+    .flair-Magdelen-College {
+        background-position: 0 -1296px;
+    }
+
+    .flair-Manchester-University {
+        background-position: 0 -1308px;
+    }
+
+    .flair-Mansfield {
+        background-position: 0 -1320px;
+    }
+
+    .flair-McGill27s {
+        background-position: 0 -1332px;
+    }
+
+    .flair-Merton-College {
+        background-position: 0 -1344px;
+    }
+
+    .flair-NHRC {
+        background-position: 0 -1356px;
+    }
+
+    .flair-Netherlands {
+        background-position: 0 -1368px;
+    }
+
+    .flair-New-College {
+        background-position: 0 -1380px;
+    }
+
+    .flair-New-Zealand {
+        background-position: 0 -1392px;
+    }
+
+    .flair-Newcastle-University {
+        background-position: 0 -1404px;
+    }
+
+    .flair-Newnham-College {
+        background-position: 0 -1416px;
+    }
+
+    .flair-Northumbria-University {
+        background-position: 0 -1428px;
+    }
+
+    .flair-Norway {
+        background-position: 0 -1440px;
+    }
+
+    .flair-Oriel-College {
+        background-position: 0 -1452px;
+    }
+
+    .flair-Oxford-Brookes-University {
+        background-position: 0 -1464px;
+    }
+
+    .flair-Oxford-University {
+        background-position: 0 -1476px;
+    }
+
+    .flair-PLU {
+        background-position: 0 -1488px;
+    }
+
+    .flair-Paignton-Amateur {
+        background-position: 0 -1500px;
+    }
+
+    .flair-Pembroke-College-Cambridge {
+        background-position: 0 -1512px;
+    }
+
+    .flair-Pembroke-College-Oxford {
+        background-position: 0 -1524px;
+    }
+
+    .flair-Peterhouse {
+        background-position: 0 -1536px;
+    }
+
+    .flair-Poland {
+        background-position: 0 -1548px;
+    }
+
+    .flair-Prince-Alfred-College {
+        background-position: 0 -1560px;
+    }
+
+    .flair-Putney-Town {
+        background-position: 0 -1572px;
+    }
+
+    .flair-Queen27s {
+        background-position: 0 -1584px;
+    }
+
+    .flair-Queen-Mary-University-of-London {
+        background-position: 0 -1596px;
+    }
+
+    .flair-Queens-College-28Oxford29 {
+        background-position: 0 -1608px;
+    }
+
+    .flair-Queens-College-Cambridge {
+        background-position: 0 -1620px;
+    }
+
+    .flair-Reading-University {
+        background-position: 0 -1632px;
+    }
+
+    .flair-Regents-Park-College {
+        background-position: 0 -1644px;
+    }
+
+    .flair-Robinson-College {
+        background-position: 0 -1656px;
+    }
+
+    .flair-Romania {
+        background-position: 0 -1668px;
+    }
+
+    .flair-Royal-Holloway-University-of-London {
+        background-position: 0 -1680px;
+    }
+
+    .flair-Royal-Shrewsbury-School {
+        background-position: 0 -1692px;
+    }
+
+    .flair-Selwyn-College {
+        background-position: 0 -1704px;
+    }
+
+    .flair-Sidney-Sussex-College {
+        background-position: 0 -1716px;
+    }
+
+    .flair-Somerville-College {
+        background-position: 0 -1728px;
+    }
+
+    .flair-Sons-of-the-Thames {
+        background-position: 0 -1740px;
+    }
+
+    .flair-South-African {
+        background-position: 0 -1752px;
+    }
+
+    .flair-Southampton-University {
+        background-position: 0 -1764px;
+    }
+
+    .flair-Spanish {
+        background-position: 0 -1776px;
+    }
+
+    .flair-StCatharine27s-College-Cambridge {
+        background-position: 0 -1788px;
+    }
+
+    .flair-St-Aidans-College {
+        background-position: 0 -1800px;
+    }
+
+    .flair-St-Annes-College {
+        background-position: 0 -1812px;
+    }
+
+    .flair-St-Benet27s {
+        background-position: 0 -1824px;
+    }
+
+    .flair-St-Catherines-College-Oxford {
+        background-position: 0 -1836px;
+    }
+
+    .flair-St-Chads-College {
+        background-position: 0 -1848px;
+    }
+
+    .flair-St-Cuthberts-Society {
+        background-position: 0 -1860px;
+    }
+
+    .flair-St-Edmund-Hall {
+        background-position: 0 -1872px;
+    }
+
+    .flair-St-George27s-Hospital {
+        background-position: 0 -1884px;
+    }
+
+    .flair-St-Hilda27s {
+        background-position: 0 -1896px;
+    }
+
+    .flair-St-Hughs {
+        background-position: 0 -1908px;
+    }
+
+    .flair-St-Johns-College {
+        background-position: 0 -1920px;
+    }
+
+    .flair-St-Leonards-School {
+        background-position: 0 -1932px;
+    }
+
+    .flair-St-Marys-College {
+        background-position: 0 -1944px;
+    }
+
+    .flair-St-Neots {
+        background-position: 0 -1956px;
+    }
+
+    .flair-St-Peters-College {
+        background-position: 0 -1968px;
+    }
+
+    .flair-St-Peters-School {
+        background-position: 0 -1980px;
+    }
+
+    .flair-Staines {
+        background-position: 0 -1992px;
+    }
+
+    .flair-Swansea-University {
+        background-position: 0 -2004px;
+    }
+
+    .flair-Swiss {
+        background-position: 0 -2016px;
+    }
+
+    .flair-Syracuse-University {
+        background-position: 0 -2028px;
+    }
+
+    .flair-Talkin-Tarn-Amateur {
+        background-position: 0 -2040px;
+    }
+
+    .flair-Tees {
+        background-position: 0 -2052px;
+    }
+
+    .flair-Thames {
+        background-position: 0 -2064px;
+    }
+
+    .flair-Tideway-Scullers-School {
+        background-position: 0 -2076px;
+    }
+
+    .flair-Tiffin-School {
+        background-position: 0 -2088px;
+    }
+
+    .flair-Trevelyan-College {
+        background-position: 0 -2100px;
+    }
+
+    .flair-Trinity-College {
+        background-position: 0 -2112px;
+    }
+
+    .flair-Trinity-College-Dublin {
+        background-position: 0 -2124px;
+    }
+
+    .flair-Trinity-Hall {
+        background-position: 0 -2136px;
+    }
+
+    .flair-Twickenham {
+        background-position: 0 -2148px;
+    }
+
+    .flair-Tyne {
+        background-position: 0 -2160px;
+    }
+
+    .flair-UMich {
+        background-position: 0 -2172px;
+    }
+
+    .flair-USA {
+        background-position: 0 -2184px;
+    }
+
+    .flair-USC {
+        background-position: 0 -2196px;
+    }
+
+    .flair-University-Barge-Club {
+        background-position: 0 -2208px;
+    }
+
+    .flair-University-College-Durham {
+        background-position: 0 -2220px;
+    }
+
+    .flair-University-College-London {
+        background-position: 0 -2232px;
+    }
+
+    .flair-University-College-Oxford {
+        background-position: 0 -2244px;
+    }
+
+    .flair-University-of-Birmingham {
+        background-position: 0 -2256px;
+    }
+
+    .flair-University-of-Bristol {
+        background-position: 0 -2268px;
+    }
+
+    .flair-University-of-California-Berkley {
+        background-position: 0 -2280px;
+    }
+
+    .flair-University-of-Kwazulu-Natal {
+        background-position: 0 -2292px;
+    }
+
+    .flair-University-of-London {
+        background-position: 0 -2304px;
+    }
+
+    .flair-University-of-Warwick {
+        background-position: 0 -2316px;
+    }
+
+    .flair-University-of-West-England {
+        background-position: 0 -2328px;
+    }
+
+    .flair-Ustinov {
+        background-position: 0 -2340px;
+    }
+
+    .flair-Van-Mildert {
+        background-position: 0 -2352px;
+    }
+
+    .flair-Vesta {
+        background-position: 0 -2364px;
+    }
+
+    .flair-WU {
+        background-position: 0 -2376px;
+    }
+
+    .flair-Wadham-College {
+        background-position: 0 -2388px;
+    }
+
+    .flair-Walbrook {
+        background-position: 0 -2400px;
+    }
+
+    .flair-Wallingford {
+        background-position: 0 -2412px;
+    }
+
+    .flair-Walton {
+        background-position: 0 -2424px;
+    }
+
+    .flair-Westminster-School {
+        background-position: 0 -2436px;
+    }
+
+    .flair-Willamette {
+        background-position: 0 -2448px;
+    }
+
+    .flair-Willem-III {
+        background-position: 0 -2460px;
+    }
+
+    .flair-Wolfson-College {
+        background-position: 0 -2472px;
+    }
+
+    .flair-Wolfson-College {
+        background-position: 0 -2484px;
+    }
+
+    .flair-Worcester-College {
+        background-position: 0 -2496px;
+    }
+
+    .flair-Worcester-College-Women27s {
+        background-position: 0 -2508px;
+    }
+
+    .flair-Yale {
+        background-position: 0 -2520px;
+    }
+
+    .flair-York-City {
+        background-position: 0 -2532px;
+    }
+
+    .flair-UCD {
+        background-position: 0 -2544px;
     }

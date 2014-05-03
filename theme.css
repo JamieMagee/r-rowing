@@ -2301,11 +2301,11 @@
 
 	/* CUSTOM LOGO CSS */
 		.pagename a {
-			top: 84px; /* The length the logo is moved from the top of the page */
+			top: 75px; /* The length the logo is moved from the top of the page */
 			width: 185px; /* TOTAL Image width */
-			height: 43px; /* 50% of the TOTAL height of the image. */
+			height: 55px; /* 50% of the TOTAL height of the image. */
 		}
 	
-			.pagename a:hover {background-position: 0 -43px;} /* Replace the 77 with your height */
+			.pagename a:hover {background-position: 0 -55px;} /* Replace the 77 with your height */
 
 	/* --------------------------- */

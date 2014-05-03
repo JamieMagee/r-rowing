@@ -203,7 +203,7 @@
 				position: absolute;
 				left: 8px;
 				z-index: 99;
-                background: url(%%logo%%) no-repeat 0px 0px;
+                background: url(%%logo%%) no-repeat 0 0;
                 text-indent: -9999px;
 			}
 
@@ -227,7 +227,7 @@
 			list-style-type: none;
 			vertical-align: bottom;
 			text-align: left;
-            padding: 0px 0px 0px 55px;
+            padding: 0 0 0 55px;
             white-space: nowrap;
 			font-weight: normal;
 			font-size: 15px;
@@ -491,7 +491,7 @@
 			.titlebox h1 a {
 				position: absolute;
 				top: 211px;
-                margin: 0px 0px 5px 5px;
+                margin: 0 0 5px 5px;
                 font-weight: lighter;
 				color: #707070;
 				text-transform: capitalize;
@@ -665,7 +665,7 @@
 					margin: 17px 0 0 0;
 					padding: 5px 0 5px 40px;
 					width: 258px;
-                    background: url(%%spritesheet%%) no-repeat -129px 0px;
+                    background: url(%%spritesheet%%) no-repeat -129px 0;
                     border: none;
 					border-top: 1px solid #d5d5d5;
 					border-bottom: 1px solid #d5d5d5;
@@ -757,7 +757,7 @@
 			/* Mod icons */
 			.icon-menu a {background-color: transparent;}
 			.icon-menu .reddit-edit:before{
-                background: url(%%spritesheet%%) 0px -33px;
+                background: url(%%spritesheet%%) 0 -33px;
             }
 			.icon-menu .moderator-mail:before{margin-top:-1px;height:16px;
                 background: url(%%spritesheet%%) -16px -32px;
@@ -883,7 +883,7 @@
 							top:0;
 							height: 35px;
 							width: 35px;
-                            background: #ff0 url(%%spritesheet%%) 0px -49px;
+                            background: #ff0 url(%%spritesheet%%) 0 -49px;
                             border-bottom: 0;
 							text-indent: -9999px;
 							padding: 0;
@@ -951,7 +951,7 @@
 					.link .score.dislikes {color: #6f85bf;}
 			
 				.arrow {
-                    margin: 2px auto 0px;
+                    margin: 2px auto 0;
                     width: 16px;
 					height: 16px;
 					background-image: url(%%spritesheet%%) !important;
@@ -1323,7 +1323,7 @@
 		.linkflairlabel {
 			padding: 0 6px 1px 10px;
 			height: auto;
-            border-radius: 16px 0px 0px 16px;
+            border-radius: 16px 0 0 16px;
             border: 0 solid;
 			color: #333;
 			font-weight: bold;
@@ -2278,7 +2278,7 @@
 
 		/* My subreddit mainly uses SELF posts */
 
-			.sidebox.submit.submit-link {display: none;} 
+			/*.sidebox.submit.submit-link {display: none;}*/
 	
 		/* My subreddit mainly uses LINK posts */
 			/* Then add to the line above and remove  from
@@ -2295,7 +2295,7 @@
 		}
 
 	/* Subscriber Name */
-		div.titlebox span.number:after {content: " readers";} /* Leave the space before the name! */
+		div.titlebox span.number:after {content: " rowers";} /* Leave the space before the name! */
 
 	/* --------------------------- */
 
@@ -2309,3 +2309,12 @@
 			.pagename a:hover {background-position: 0 -55px;} /* Replace the 77 with your height */
 
 	/* --------------------------- */
+
+    table {
+        width: 92.5%
+    }
+
+    thead {
+        background: #5787e1;
+        color: white;
+    }

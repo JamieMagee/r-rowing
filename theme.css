@@ -979,15 +979,15 @@
                     cursor: pointer;
 				}
 		
-		/*  +  */	.content .expando-button.selftext.collapsed {background-position:0 -17px;}				
-		/*  +  */	.content .expando-button.selftext.collapsed:hover {background-position:-16px -17px;}
-		/*  -  */	.content .expando-button.selftext.expanded {background-position:-32px -17px;}				
-		/*  -  */	.content .expando-button.selftext.expanded:hover {background-position:-48px -17px;}	
+		/*  +  */	.content .expando-button.selftext.collapsed {background-position:0 -17px!important;}
+		/*  +  */	.content .expando-button.selftext.collapsed:hover {background-position:-16px -17px!important;}
+		/*  -  */	.content .expando-button.selftext.expanded {background-position:-32px -17px!important;}
+		/*  -  */	.content .expando-button.selftext.expanded:hover {background-position:-48px -17px!important;}
 
-					.expando-button.video.collapsed {background-position: -64px -17px;}
-					.expando-button.video.collapsed:hover, .eb-vch {background-position: -80px -17px;}
-					.expando-button.video.expanded, .eb-ve {background-position: -64px -17px;}
-					.expando-button.video.expanded:hover, .eb-veh {background-position: -80px -17px;}
+					.expando-button.video.collapsed {background-position: -64px -17px!important;}
+					.expando-button.video.collapsed:hover, .eb-vch {background-position: -80px -17px!important;}
+					.expando-button.video.expanded, .eb-ve {background-position: -64px -17px!important;}
+					.expando-button.video.expanded:hover, .eb-veh {background-position: -80px -17px!important;}
 
 					.res .expando-button.image.collapsed,.expando-button.image.gallery.collapsedExpando, .expando-button.image.collapsedExpando {background-position: -96px -17px!important;}
 					.res .expando-button.image.collapsed:hover, .expando-button.image.collapsedExpando:hover, .expando-button.image.gallery.collapsedExpando:hover {background-position: -112px -17px!important;}
@@ -3193,7 +3193,7 @@
 
     .sidecontentbox .helplink + .title h1 { font-size: 0 !important }
 
-    .sidecontentbox .helplink + .title h1:before { font-size: 10pt !important; content: "Crew Coaches" }
+    .sidecontentbox .helplink + .title h1:before { font-size: 10pt !important; content: "Coaches" }
 
     .sidebox.submit:hover:before{
         position:fixed;

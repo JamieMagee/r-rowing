@@ -192,10 +192,13 @@
 				z-index: 99;
 				width: 44px;
 				height: 44px;
-                background: url(%%spritesheet%%) no-repeat 0 -226px;
+                background: #5b92fa url(%%spritesheet%%) no-repeat 0 -226px;
+                transition: all 0.3s ease 0s;
             }
 
-				#header-img:hover {background-position: -44px -226px;}
+				#header-img:hover {
+                    transform: scale(1.1);
+                }
 			
 			.pagename a {
 				display: block;
@@ -883,15 +886,16 @@
 							top:0;
 							height: 35px;
 							width: 35px;
-                            background: #ff0 url(%%spritesheet%%) 0 -49px;
+                            background: #5b92fa url(%%spritesheet%%) 0 -49px;
                             border-bottom: 0;
 							text-indent: -9999px;
 							padding: 0;
 							margin: 0;
-						}
+                            transition: all 0.3s ease 0s;
+                        }
 
 							.titlebox h6 a[href*="http://www.reddit.com#top"]:hover {
-								background-position: -35px -49px;
+								transform: scale(1.1);
 								border-bottom: 0 solid;
 							}
 

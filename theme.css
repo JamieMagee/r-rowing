@@ -13,6 +13,7 @@
 		V1.7 - Update 3 - A whole lot of UI tweaks and fixes.
 		V2.0 - Update 4 - Naut is now on GitHub, added nightmode and some fixes.
 		V2.1 - Update 5 - Initial CSS3 update - Added transitions and minor responsive tweaks.
+		V2.2 - Update 6 - Bugfixes and the return of the suggest-title button.
 		-------------------------------------------------------------------------- */
 			
 	body {
@@ -22,7 +23,7 @@
 	}
 
 		/* Custom browser CSS */
-		:focus {outline: 0;}
+		:focus {outline: 0px;}
 			
 		::-webkit-scrollbar {
 			width: 12px;
@@ -73,7 +74,7 @@
 		/* General Button*/
 		button, #search input[type='submit'], .wiki-page .wiki-page-content .wiki_button {
 			margin: 3px 3px 3px 3px;
-			padding: 0 8px 1px 8px;
+			padding: 0px 8px 1px 8px;
 			background-color: #ffffff;
 			border: 1px solid #d4d4d4;
 			border-radius: 2px;
@@ -82,19 +83,20 @@
 			color: #737373 !important;
 			text-transform: capitalize;
 			font-weight: bold;
-			line-height: 26px;
+			line-height: 27px;
 			cursor: default;
+			transition: all 0.2s ease;
 		}
 
 			button:hover, #search input[type='submit']:hover, .wiki-page .wiki-page-content .wiki_button:hover {
-				padding-bottom: 0;
+				padding-bottom: 0px;
 				border-color: #bababa;
 				border-bottom-width: 2px;
 				color: #333 !important;
 			}
 
 				button:active, #search input[type='submit']:active, .wiki-page .wiki-page-content .wiki_button:active {
-					padding-bottom: 0;
+					padding-bottom: 0px;
 					background-color: #e5e5e5;
 					border-color: #a7a7a7;
 					border-top-width: 2px;
@@ -109,7 +111,7 @@
 		/* Header Area */
 		/* Top Most header */
 		#sr-header-area {
-			opacity: 0.4;
+			opacity: 0.25;
 			height: 18px;
 			background-color: #333;
 			border-bottom: 1px solid #333;
@@ -164,8 +166,8 @@
 		/* Header Image */
 		#header {
 			height: 167px;
-			background: #2a2b2e url(%%headerimg%%) no-repeat fixed 50% 0;
-			border-bottom: 0 solid;
+			background: #2a2b2e url(%%headerimg%%) no-repeat fixed 50% 0%;
+			border-bottom: 0px solid;
 			overflow: visible !important;
 
 			
@@ -175,12 +177,12 @@
 			#header:after {
 				position: absolute;
 				top: 132px;
-				left: 0;
+				left: 0px;
 				z-index: -1;
 				width: 100%;
 				height: 44px;
 				background: #fff;
-				border-bottom: 0 solid;
+				border-bottom: 0px solid;
 				content: " ";
 				text-indent: -999px;
 			}
@@ -188,17 +190,16 @@
 			#header-img {
 				position: absolute;
 				top: 130px;
-				left: 0;
+				left: 0px;
 				z-index: 99;
 				width: 44px;
 				height: 44px;
-                background: #5b92fa url(%%spritesheet%%) no-repeat 0 -226px;
-                transition: all 0.3s ease 0s;
-            }
+				background-image: url(%%spritesheet%%);
+				background-position: 0px -226px;
+				background-repeat: no-repeat;
+			} 
 
-				#header-img:hover {
-                    transform: scale(1.1);
-                }
+				#header-img:hover {background-position: -44px -226px;}
 			
 			.pagename a {
 				display: block;
@@ -206,11 +207,13 @@
 				position: absolute;
 				left: 8px;
 				z-index: 99;
-                background: url(%%logo%%) no-repeat 0 0;
-                text-indent: -9999px;
+				background-image: url(%%logo%%);
+				background-position: 0px 0px;
+				background-repeat: no-repeat;
+				text-indent: -9999px;
 			}
 
-				.pagename a:hover {background-position: 0 -77px;}
+				.pagename a:hover {background-position: 0px -77px;}
 
 
 				.pagename {visibility: hidden;}
@@ -220,18 +223,19 @@
 			display: block;
 			position: absolute;
 			top: 132px;
-			margin: 0;
-			right:0;
-			left: 0;
-            height: 44px;
+			margin: 0px;
+			right:0px;
+			left: 0px;
+			padding: 0px;
+			height: 44px;
 			background-color: transparent;
-			border-bottom: 0 solid;
+			border-bottom: 0px solid;
 			color: #999;
 			list-style-type: none;
 			vertical-align: bottom;
 			text-align: left;
-            padding: 0 0 0 55px;
-            white-space: nowrap;
+			padding-left: 55px;
+			white-space: nowrap;
 			font-weight: normal;
 			font-size: 15px;
 			font-family: Calibri, Candara, Segoe, "Segoe UI", Optima, Arial, sans-serif;
@@ -240,14 +244,14 @@
 
 			.tabmenu li {
 				display: inline-block;
-				margin:7px 0 0 0;
+				margin:7px 0px 0px 0px;
 			}
 			
 				.tabmenu li a {
-					margin: 0 17px 0 17px;
-					padding: 8px 0 8px 0;
+					margin: 0px 17px 0px 17px;
+					padding: 8px 0px 8px 0px;
 					background-color: transparent;
-					border: 0 solid;
+					border: 0px solid;
 					border-bottom: 2px solid transparent;
 					color: #999;
 					font-weight: normal;
@@ -260,7 +264,7 @@
 				.tabmenu li.selected a {
 					z-index: 100;
 					background-color: transparent;
-					border: 0 solid;
+					border: 0px solid;
 					border-bottom: 2px solid #5b92fa;
 					color: #262626;
 					font-size: 22px;
@@ -270,23 +274,17 @@
 						border-color: #719ff2;
 					}
 
-				.res #header .tabmenu {
-					text-align: left;
-					margin-left: 55px;
-				}
-
-		.listing-page .tabmenu li:nth-of-type(3),	/* Rising */
-		.listing-page .tabmenu li:nth-of-type(4),	/* Controversial */
-		.listing-page .tabmenu li a[href*="/promoted"], /* Self-serve advertising */
-		.listing-page .tabmenu li a[href*="/gilded"]	/* gilded */
-		{display:none;}
+		/* Rising, Controversial, Self-serve advertising, Gilded */
+		.listing-page .tabmenu li:nth-of-type(3), .listing-page .tabmenu li:nth-of-type(4), .listing-page .tabmenu li a[href*="/promoted"], .listing-page .tabmenu li a[href*="/gilded"] {
+			display: none;
+		}
 
 
 		/* User bar */
 		#header-bottom-right {
 			position: absolute;
 			top: 141px;
-			right: 0;
+			right: 0px;
 			padding: 8px 15px 7px 15px;
 			width: auto;
 			height: 12px;
@@ -309,7 +307,7 @@
 
 			/* Mail / Modmail icons */
 			#mail {
-				top: 0;
+				top: 0px;
 				overflow: visible;
 				width: 16px;
 				height: 16px;
@@ -317,26 +315,11 @@
 			}
 
 				#mail:hover, #modmail:hover {
-					border-bottom: 0 solid !important;
+					border-bottom: 0px solid !important;
 				}
 			
-				#mail.nohavemail {background-position: -64px 0;}
-				#mail.havemail   {background-position:-80px 0;}
-
-					#mail.havemail:before, #modmail.havemail:before  {
-						display: block;
-						visibility: visible !important;
-						position: fixed;
-						top: 4px;
-						right: 10px;
-						z-index: 2;
-						z-index: 0;
-						width: 25px;
-						height: 25px;
-                        background: #fff url(%%spritesheet%%) -126px -50px;
-                        border-radius: 50%;
-						content: " ";
-					}
+				#mail.nohavemail {background-position: -64px 0px;}
+				#mail.havemail   {background-position:-80px 0px;}
 
 			
 			#modmail {
@@ -348,19 +331,19 @@
 			}
 			
 
-				#modmail.havemail   {background-position:-112px 0;}
-				#modmail.nohavemail {background-position:-96px 0;}
-				#modmail.havemail:before {background-position: -151px -50px; margin-right: 40px;}
+				#modmail.havemail   {background-position:-112px 0px;}
+				#modmail.nohavemail {background-position:-96px 0px;}
 
 
 			/* Preferences & Logout Icons */
 			#header-bottom-right a.pref-lang, .loggedin .logout a{
-                background: url(%%spritesheet%%) -96px -49px;
-                width: 16px;
+				background-position: -96px -49px;
+				background-image: url(%%spritesheet%%);
+				width: 16px;
 				height: 16px;
 				display: inline-block;
 				text-indent: -9999px;
-				margin: 0;
+				margin: 0px;
 				position: relative;
 				top: -2px;
 			}
@@ -368,8 +351,9 @@
 				.loggedin .logout a {background-position: -80px -49px;}
 
 			.gearIcon {
-                background: url(%%spritesheet%%) -80px -65px !important;
-                height: 16px!important;
+				background-image: url(%%spritesheet%%)!important;
+				background-position: -80px -65px!important;
+				height: 16px!important;
 				width: 17px!important;
 			}
 
@@ -384,14 +368,14 @@
 				.loggedin .logout a:hover, .gearIcon:hover {
 					opacity: 1;
 					text-decoration: none !important;
-					border-bottom: 0 solid !important;
+					border-bottom: 0px solid !important;
 				}
 
 
 		/* Sidebar */
 		.side {
 			float: right;
-			margin: 34px 10px 0 0;
+			margin: 34px 10px 0px 0px;
 			border-radius: 2px;
 			padding-top: 25px;
 			width: 300px;
@@ -399,59 +383,48 @@
 			font-family: Calibri, Candara, Segoe, "Segoe UI", Optima, Arial, sans-serif;
 		}
 
-			/*.side:after {
+			.side:after {
 				display: block;
-				margin: 10px 0;
-				padding: 10px 0;
+				margin: 10px 0px;
+				padding: 10px 0px;
 				color: #5b92fa;
-				content: "This subreddit uses /r/naut!"; *//* Hey! Please don't remove or change this. *//*
+				content: "This subreddit uses /r/naut!"; /* Hey! Please don't remove or change this. */
 				text-transform: none;
 				font-size: 16px;
 				font-family: arial, sans-serif;
 				position: absolute;
 				width: 300px;
 				text-align: center;
-			}*/ /* If you're reading this, don't worry! I will put a link to /r/naut in the sidebar */
+			}
 					
 			/* SUBMIT LINK OR POST */
 			.morelink {
 				z-index: 97;
 				width: 270px;
-				height: 28px;
+				height: 32px;
 				background-color: #5B92FA;
 				background-image: none!important;
 				border: none;
-				border-top: 2px solid #5B92FA;
-				border-bottom: 3px solid #5B92FA;
-				border-radius: 1px;
-				-webkit-box-shadow: 0 1px 2px #CECECE;
-				box-shadow: 0 1px 2px #CECECE;
+				border-radius: 2px;
 				margin-left: 15px;
+				transition: all 0.15s ease;
 			}
 
 				.morelink:hover {
 					background-color: #7BA8FF;
-					border-top: 2px solid #7BA8FF;
-					border-bottom: 3px solid #3863B6;
 				}
 
 					.morelink:active {
 						background-color: #3863B6;
-						border-top: 2px solid #21365F;
-						border-bottom: 3px solid #3863B6;
-						-webkit-box-shadow: none;
-						box-shadow: none;
 					}
 
 				.morelink a {
 					color: #fff !important;
-					text-shadow: 0 1px 0 #5787e1;
-					letter-spacing: 0;
+					letter-spacing: 0px;
 					font-weight: bold;
 					font-size: 15px;
 					font-family: arial, sans-serif;
-					cursor: default;
-					line-height: 30px;
+					line-height: 32px;
 				}
 
 					.morelink a:hover {text-decoration: none;}
@@ -465,27 +438,28 @@
 						background-color: #5B92FA;
 						color: #FFF;
 						content: "Submit Content";
-						padding: 0 12px;
+						padding: 0px 12px;
 					}
 			
 				.disabled .morelink,.disabled .morelink:hover {
-                    border: 0 solid;
+					background-image: none;
+					border: 0px solid;
 					color: white;
-					font-size: 0;
-                    background: #c8c8c8 none;
-                    margin-top: 3px;
+					font-size: 0px;
+					background-color: #c8c8c8;
+					margin-top: 3px;
 					text-shadow: none;
 					box-shadow:none;
 				}
 
 					.disabled .morelink a {
 						color: #fff;
-						letter-spacing: 0;
+						letter-spacing: 0px;
 						font-weight: 600;
 						font-size: 14px;
 						font-family: sans-serif;
 						cursor: default;
-						text-indent: 0;
+						text-indent: 0px;
 						text-shadow: none;
 					}
 
@@ -494,8 +468,10 @@
 			.titlebox h1 a {
 				position: absolute;
 				top: 211px;
-                margin: 0 0 5px 5px;
-                font-weight: lighter;
+				margin: 0px;
+				margin-bottom: 5px;
+				margin-left: 5px;
+				font-weight: lighter;
 				color: #707070;
 				text-transform: capitalize;
 				font-size: 25px;
@@ -508,10 +484,10 @@
 		
 			/* Sub / Unsub button */
 			.fancy-toggle-button .active {
-				padding: 1px 8px;
+				padding: 3px 8px;
 				background-image: none !important;
 				outline: none !important;
-				border: 0;
+				border: 0px;
 				border-radius: 2px;
 				color: #fff !important;
 				text-transform: capitalize;
@@ -519,33 +495,21 @@
 				font-size: 12px;
 				font-family: arial, sans-serif!important;
 				line-height: 26px;
-				cursor: default;
+				transition: all 0.2s ease;
 			}	
 
 				/* Sub */
 				.fancy-toggle-button .add {
-					background-color: #5b92fa;
-					border-top: 2px solid #5b92fa;
-					border-bottom: 2px solid #5b92fa;
-					-webkit-box-shadow: 0 1px 0 #e2e0e0;
-					box-shadow: 0 1px 0 #e2e0e0;					
+					background-color: #5b92fa;				
 				}
 
 					.fancy-toggle-button .add:hover {
 						background-color: #6599fa;
-						border-top: 2px solid #6599fa;
-						border-bottom: 2px solid #3863b6;
-						-webkit-box-shadow: none;
-						box-shadow: none;
 						text-decoration: none;
 					}
 
 						.fancy-toggle-button .add:active {
 							background-color: #3863b6;
-							border-top: 2px solid #21407a;
-							border-bottom: 2px solid #3863b6;
-							-webkit-box-shadow: none;
-							box-shadow: none;
 						}
 
 				/* Unsub */
@@ -560,6 +524,7 @@
 					line-height: 16px;
 					color: #737373 !important;
 					cursor: pointer;
+					transition: all 0.2s ease;
 				}
 
 					.fancy-toggle-button .remove:hover {
@@ -578,24 +543,6 @@
 						}
 
 
-				/* Sub notice */
-				.fancy-toggle-button .add:after {
-					position: fixed;
-					top: 4px;
-					right: 25px;
-					z-index: 98;
-					background-color: #5B92FA;
-					color: #FFF;
-					content: "Subscribe Now";
-					padding: 0 16px;
-				}
-					.fancy-toggle-button .add:hover:after {
-						background-color: #7BA8FF;
-						border-bottom: 3px solid #3863B6 ;
-						height: 23px;
-					}
-
-
 			
 			/*Replace readers.. */
 				div.titlebox span.word {display: none;}
@@ -610,7 +557,7 @@
 
 			/* Subreddit description */
 			.titlebox {
-				padding: 0 15px 15px 15px;
+				padding: 0px 15px 15px 15px;
 				color: #404040;
 		
 			}
@@ -665,11 +612,13 @@
 			}
 			
 				#search input[type=text] {
-					margin: 17px 0 0 0;
-					padding: 5px 0 5px 40px;
+					margin: 17px 0px 0px 0px;
+					padding: 5px 0px 5px 40px;
 					width: 258px;
-                    background: url(%%spritesheet%%) no-repeat -129px 0;
-                    border: none;
+					background-image: url(%%spritesheet%%);
+					background-position: -129px 0px;
+					background-repeat: no-repeat;
+					border: none;
 					border-top: 1px solid #d5d5d5;
 					border-bottom: 1px solid #d5d5d5;
 					border-left: 2px solid #fff;
@@ -680,7 +629,7 @@
 				}
 
 						#search input[type=text]:focus {
-							padding: 5px 0 5px 40px;
+							padding: 5px 0px 5px 40px;
 							width: 258px;
 							outline: none !important;
 							border: none;
@@ -691,13 +640,13 @@
 						}
 
 								#searchexpando {
-								margin: 0 0 5px 0;
-								padding: 5px 5px 0 15px;
+								margin: 0px 0px 5px 0px;
+								padding: 5px 5px 0px 15px;
 								height: 25px;
 								background-color: #f5f5f5;
-								border: 0 solid;
+								border: 0px solid;
 								border-bottom: 1px solid #DFDFDF;
-								border-radius: 0;
+								border-radius: 0px;
 								color: #3b3b3b;
 								font-size: 150%;
 								}
@@ -712,7 +661,7 @@
 
 			/* Sidebar mod box */
 			.sidecontentbox {
-				padding: 0 5px 0 15px;
+				padding: 0px 5px 0px 15px;
 			}
 
 			.sidecontentbox .title {
@@ -733,16 +682,16 @@
 			
 				.sidecontentbox .collapse-button {
 					background: transparent;
-					border: 0;
-					border-radius: 0;
+					border: 0px;
+					border-radius: 0px;
 					color: #262626;
 					font-size: 15px;
 				}
 			
 			.sidecontentbox .content {
-				padding: 3px 0 5px 0;
+				padding: 3px 0px 5px 0px;
 				background-color: transparent;
-				border: 0 solid;
+				border: 0px solid;
 				text-align: left;
 			}
 			
@@ -759,39 +708,17 @@
 
 			/* Mod icons */
 			.icon-menu a {background-color: transparent;}
-			.icon-menu .reddit-edit:before{
-                background: url(%%spritesheet%%) 0 -33px;
-            }
-			.icon-menu .moderator-mail:before{margin-top:-1px;height:16px;
-                background: url(%%spritesheet%%) -16px -32px;
-            }
-			.icon-menu .reddit-moderators:before{
-                background: url(%%spritesheet%%) -32px -33px;
-            }
-			.icon-menu .reddit-contributors:before{
-                background: url(%%spritesheet%%) -48px -33px;
-            }
-			.icon-menu .reddit-traffic:before{
-                background: url(%%spritesheet%%) -64px -32px;
-            }
-			.icon-menu .reddit-modqueue:before{
-                background: url(%%spritesheet%%) -80px -32px;
-            }
-			.icon-menu .reddit-reported:before{
-                background: url(%%spritesheet%%) -96px -32px;
-            }
-			.icon-menu .reddit-spam:before{
-                background: url(%%spritesheet%%) -112px -32px;
-            }
-			.icon-menu .reddit-ban:before{
-                background: url(%%spritesheet%%) -128px -32px;
-            }
-			.icon-menu .reddit-flair:before{
-                background: url(%%spritesheet%%) -144px -32px;
-            }
-			.icon-menu .reddit-moderationlog:before{
-                background: url(%%spritesheet%%) -160px -33px;
-            }
+			.icon-menu .reddit-edit:before{background-image:url(%%spritesheet%%);background-position: 0px  -33px;}
+			.icon-menu .moderator-mail:before{margin-top:-1px;height:16px;background-image:url(%%spritesheet%%);background-position: -16px -32px;}
+			.icon-menu .reddit-moderators:before{background-image:url(%%spritesheet%%);background-position: -32px -33px;}
+			.icon-menu .reddit-contributors:before{background-image:url(%%spritesheet%%);background-position: -48px -33px;}
+			.icon-menu .reddit-traffic:before{background-image:url(%%spritesheet%%);background-position: -64px -32px;}
+			.icon-menu .reddit-modqueue:before{background-image:url(%%spritesheet%%);background-position: -80px -32px;}
+			.icon-menu .reddit-reported:before{background-image:url(%%spritesheet%%);background-position: -96px -32px;}
+			.icon-menu .reddit-spam:before{background-image:url(%%spritesheet%%);background-position: -112px -32px;}
+			.icon-menu .reddit-ban:before{background-image:url(%%spritesheet%%);background-position: -128px -32px;}
+			.icon-menu .reddit-flair:before{background-image:url(%%spritesheet%%);background-position: -144px -32px;}
+			.icon-menu .reddit-moderationlog:before{background-image:url(%%spritesheet%%);background-position: -160px -33px;}
 			.icon-menu a.reddit-unmoderated {display: none;}
 
 			/* Message the mods */
@@ -810,8 +737,8 @@
 					color: #fff !important;
 					text-align: center;
 					text-transform: capitalize;
-					text-shadow: 0 1px 0 #5787e1;
-					letter-spacing: 0;
+					text-shadow: 0px 1px 0px #5787e1;
+					letter-spacing: 0px;
 					font-weight: bold;
 					font-size: 13px;
 					font-family: Arial, sans-serif;
@@ -848,9 +775,9 @@
 				/* Fixed Scroll Banner */
 				.titlebox h6 {
 					position: fixed;
-					top:0;
-					right: 0;
-					left: 0;
+					top:0px;
+					right: 0px;
+					left: 0px;
 					z-index: 97;
 					height: 35px;
 					background-color: #fff;
@@ -864,9 +791,9 @@
 				}
 
 					.titlebox h6 a {
-						margin: 0 17px 0 17px;
-						padding: 2px 0 2px 0;
-						border: 0 solid;
+						margin: 0px 17px 0px 17px;
+						padding: 2px 0px 2px 0px;
+						border: 0px solid;
 						color: #999;
 						font-weight: normal;
 						font-size: 22px;
@@ -882,21 +809,22 @@
 						/* reddit icon */
 						.titlebox h6 a[href*="http://www.reddit.com#top"] {
 							position: fixed;
-							left:0;
-							top:0;
+							left:0px;
+							top:0px;
 							height: 35px;
 							width: 35px;
-                            background: #5b92fa url(%%spritesheet%%) 0 -49px;
-                            border-bottom: 0;
+							background-color: #ff0;
+							background-image: url(%%spritesheet%%);
+							background-position: 0px -49px;
+							border-bottom: 0px;
 							text-indent: -9999px;
-							padding: 0;
-							margin: 0;
-                            transition: all 0.3s ease 0s;
-                        }
+							padding: 0px;
+							margin: 0px;
+						}
 
 							.titlebox h6 a[href*="http://www.reddit.com#top"]:hover {
-								transform: scale(1.1);
-								border-bottom: 0 solid;
+								background-position: -35px -49px;
+								border-bottom: 0px solid;
 							}
 
 						.new-page .titlebox h6 a[href*="/new"], .top-page .titlebox h6 a[href*="/top"], .hot-page .titlebox h6 a[href*="/hot"]  {border-bottom:2px solid #5b92fa; color: #262626;}
@@ -912,7 +840,7 @@
 				.link, .side, .submit-page .infobar, .roundfield, .submit-page .content button,
 				.content.submit .info-notice, .stylesheet-customize-container .pretty-form, #images, .search-page .raisedbox, 
 				.search-page .searchfacets, .linefield, .search-page .searchpane, .nextprev {
-					border: 0;
+					border: 0px;
 					border-bottom: 3px solid #e5e5e5 !important;
 					background-color: #fff;
 				}
@@ -927,12 +855,12 @@
 					margin-right: 320px;
 					border: 1px solid #D0D6DD;
 					border-bottom-width: 3px;
-					border-top-width: 0;
+					border-top-width: 0px;
 				}
 
 					.link.promotedlink.promoted {
-					border-bottom: 0 !important;
-					margin-right: 0;
+					border-bottom: 0px !important;
+					margin-right: 0px;
 					}
 	
 					.link.promotedlink.promoted .thumbnail {max-height:70px !important;}
@@ -940,6 +868,7 @@
 					.link .title {
 						font-weight: bold;
 						font-family: Arial, sans-serif;
+						overflow: visible;
 					}
 
 					.link .title:hover {color: #5b92fa !important;}
@@ -955,8 +884,10 @@
 					.link .score.dislikes {color: #6f85bf;}
 			
 				.arrow {
-                    margin: 2px auto 0;
-                    width: 16px;
+					margin: 2px 0px 0px 0px;
+					margin-right: auto;
+					margin-left: auto;
+					width: 16px;
 					height: 16px;
 					background-image: url(%%spritesheet%%) !important;
 					background-position: center center;
@@ -964,30 +895,31 @@
 					border: none !important;
 				}
 				
-					.arrow.up {background-position: -32px 0;}
-					.arrow.upmod {background-position: -48px 0;}
-					.arrow.down {background-position: 0 0;}
-					.arrow.downmod {background-position: -16px 0;}
+					.arrow.up {background-position: -32px 0px;}
+					.arrow.upmod {background-position: -48px 0px;}
+					.arrow.down {background-position: 0px 0px;}
+					.arrow.downmod {background-position: -16px 0px;}
 
 
 				/* Expand post */
 				.expando-button {
-					margin: 0 5px 0 0 !important;
+					margin: -1px 5px 0px 0px !important;
 					width: 16px !important;
 					height: 16px !important;
-                    background: transparent url(%%spritesheet%%) !important;
-                    cursor: pointer;
+					background-color: transparent !important;
+					background-image: url(%%spritesheet%%) !important;
+					cursor: pointer;
 				}
 		
-		/*  +  */	.content .expando-button.selftext.collapsed {background-position:0 -17px!important;}
-		/*  +  */	.content .expando-button.selftext.collapsed:hover {background-position:-16px -17px!important;}
-		/*  -  */	.content .expando-button.selftext.expanded {background-position:-32px -17px!important;}
-		/*  -  */	.content .expando-button.selftext.expanded:hover {background-position:-48px -17px!important;}
+		/*  +  */	.content .expando-button.selftext.collapsed {background-position:0 -17px;}				
+		/*  +  */	.content .expando-button.selftext.collapsed:hover {background-position:-16px -17px;}
+		/*  -  */	.content .expando-button.selftext.expanded {background-position:-32px -17px;}				
+		/*  -  */	.content .expando-button.selftext.expanded:hover {background-position:-48px -17px;}	
 
-					.expando-button.video.collapsed {background-position: -64px -17px!important;}
-					.expando-button.video.collapsed:hover, .eb-vch {background-position: -80px -17px!important;}
-					.expando-button.video.expanded, .eb-ve {background-position: -64px -17px!important;}
-					.expando-button.video.expanded:hover, .eb-veh {background-position: -80px -17px!important;}
+					.expando-button.video.collapsed {background-position: -64px -17px;}
+					.expando-button.video.collapsed:hover, .eb-vch {background-position: -80px -17px;}
+					.expando-button.video.expanded, .eb-ve {background-position: -64px -17px;}
+					.expando-button.video.expanded:hover, .eb-veh {background-position: -80px -17px;}
 
 					.res .expando-button.image.collapsed,.expando-button.image.gallery.collapsedExpando, .expando-button.image.collapsedExpando {background-position: -96px -17px!important;}
 					.res .expando-button.image.collapsed:hover, .expando-button.image.collapsedExpando:hover, .expando-button.image.gallery.collapsedExpando:hover {background-position: -112px -17px!important;}
@@ -998,9 +930,9 @@
 					.link .usertext .md {
 						padding: 0 5px;
 						background-color: transparent;
-						border: 0 solid;
+						border: 0px solid;
 						border-top: 1px solid #e5e5e5;
-						border-radius: 0;
+						border-radius: 0px;
 						color: #404040;
 						font-weight: normal;
 						font-size: 14px;
@@ -1023,18 +955,24 @@
 			}
 
 				.thumbnail.self {
-                    background: url(%%spritesheet%%) no-repeat -102px -92px;
-                }
+					background-image: url(%%spritesheet%%);
+					background-position: -102px -92px;
+					background-repeat: no-repeat;
+				}
 
 				.thumbnail.default {
-                    background: url(%%spritesheet%%) no-repeat -102px -154px;
-                }
+					background-image: url(%%spritesheet%%);
+					background-position: -102px -154px;
+					background-repeat: no-repeat;
+				}
 
 				.thumbnail.nsfw {
 					width: 80px;
 					height: 50px;
-                    background: url(%%spritesheet%%) no-repeat -22px -150px;
-                }
+					background-image: url(%%spritesheet%%);
+					background-position: -22px -150px;
+					background-repeat: no-repeat;
+				}
 
 			.entry {
 				padding-left: 5px;
@@ -1051,8 +989,10 @@
 						color: #5b92fa;
 					}
 
-					.link .entry li a {opacity: 0;}
-					.link:hover .entry li a {opacity: 100;}
+						.redditSingleClick {transition: opacity 0.15s ease-in-out;}
+
+					/*.link .entry li a, .redditSingleClick {opacity: 0;}*/		/* Currently causing issues. Needs investigating - https://github.com/Axel--/Naut-for-reddit/issues/9 */
+					.link:hover .entry li a, .link .entry p a, .link:hover .entry .redditSingleClick {opacity: 100;}
 
 
 					.link .entry li .comments {
@@ -1062,7 +1002,7 @@
 						font-size: 13px;
 					}
 
-					.nsfw-stamp acronym {opacity: 100;background-color: #e82e63;border-radius:0;color:#fff;cursor: help;border-color: #e82e63;}
+					.nsfw-stamp acronym {opacity: 100;background-color: #e82e63;border-radius:0px;color:#fff;cursor: help;border-color: #e82e63;}
 
 					.entry .buttons a[onclick*="reply"] {
 						color: #5b92fa !important;
@@ -1080,41 +1020,45 @@
 						.link.last-clicked {
 							overflow: hidden;
 							background-color: #f8f8f8;
-							border: 0 solid #d8d8d8;
+							border: 0px solid #d8d8d8;
 							border-bottom: 3px solid #e5e5e5;
 						}
 			/* Mod Report buttons */
 			.entry .buttons li.reported-stamp {
-                border-radius: 2px;
+				background-color: #f5b400;
+				border-radius: 2px;
 				border: 1px solid #e2a600 !important;
 				color: #fff;
 				font-weight: bold;
-                background: #f5b400 none;
-            }
+				background-image: none;
+			}
 
 			a.pretty-button.negative {
 				border-radius: 2px;
-                color: #fff;
+				background-color: #dc4437;
+				color: #fff;
 				font-weight: bold;
 				border: 1px solid #c4362a;
-                background: #dc4437 none;
-            }
+				background-image: none;
+			}
 
 			a.pretty-button.neutral {
 				border-radius: 2px;
 				font-weight: bold;
 				color: #fff;
-                border: 1px solid #4d4d4d;
-                background: #666666 none;
-            }
+				background-color: #666666;
+				border: 1px solid #4d4d4d;
+				background-image: none;
+			}
 
 			a.pretty-button.positive {
 				border-radius: 2px;
 				font-weight: bold;
 				color: #fff;
-                border: 1px solid #0a8a4c;
-                background: #109d59 none;
-            }
+				background-color: #109d59;
+				border: 1px solid #0a8a4c;
+				background-image: none;
+			}
 
 			.menuarea {
 				margin-right: 320px;
@@ -1169,30 +1113,30 @@
 
 
 			.submit-page .infobar {
-				margin-top: 0;
+				margin-top: 0px;
 				margin-bottom: 8px;
 				padding: 10px 10px 10px 10px;
 				color: #3b3b3b;
 				text-align: center;
 				text-indent: -9999px;
-				font-size: 0;
+				font-size: 0px;
 			}
 
 				.formtabs-content .infobar:before {
 					display: block;
-					text-indent: 0;
+					text-indent: 0px;
 					font-size: 16px;
 				}
 			
-			.submit-page .tabmenu li a {margin:0;}
-			.submit-page ul.tabmenu.formtab {padding-left: 0;width: 500px;text-align:center; }
-			.formtabs-content {padding-top: 0;border-top: 4px solid #5b92fa;}
+			.submit-page .tabmenu li a {margin:0px;}
+			.submit-page ul.tabmenu.formtab {padding-left: 0px;width: 500px;text-align:center; }
+			.formtabs-content {padding-top: 0px;border-top: 4px solid #5b92fa;}	
 		
 				.submit-page .tabmenu.formtab a {
-					padding: 5px 55px 0 55px;
+					padding: 5px 55px 0px 55px;
 					width: 100px;
 					background-color: white;
-					border: 0 solid;
+					border: 0px solid;
 					color: #5b92fa;
 					text-align: center;
 					font-weight:normal;
@@ -1203,7 +1147,7 @@
 					.submit-page .tabmenu li a:hover {color: #333;}
 				
 					.submit-page .tabmenu.formtab .selected a {
-						padding: 5px 60px 0 60px;
+						padding: 5px 60px 0px 60px;
 						background-color: #5b92fa;
 						color: #fff;
 						font-size: 18px;
@@ -1239,13 +1183,13 @@
 
 			.submit-page .content button {
 				margin-bottom: 30px;
-				margin-left: 0;
+				margin-left: 0px;
 				padding: 10px 10px 10px 10px;
 				width: 522px;
 				color: #707070 !important;
 				text-align: center;
 				cursor: pointer;
-				border: 0;
+				border: 0px;
 				border-bottom: 3px solid #E5E5E5;
 			}
 
@@ -1257,18 +1201,18 @@
 
 					.submit-page button:active {
 						background-color: #315fb2;
-						border-bottom-color: #315fb2;
+						border-bottom-color: #315fb2 !important;
 					}
 
 				.submit-page h1 {display: none;}
 					.submit-page .side h1 {display: inherit;}
 
 		.content.submit .info-notice {
-			margin: 0 0 4px 0;
+			margin: 0px 0px 4px 0px;
 			padding: 20px 10px 20px 10px;
 			color: #707070;
 			text-align: center;
-			border: 0;
+			border: 0px;
 			border-bottom: 3px solid #E5E5E5;
 		}
 
@@ -1280,8 +1224,62 @@
 				.content.submit .info-notice a:hover {text-decoration: underline;}
 				.thing.spam {border-color: #F3B9B9; background-color: #fff;margin-right: 320px;}			
 				#file {margin: 10px;}		
-				.submit-page .gray, #url-field button, #suggested-reddits {display: none;}
-				.submit-page form .spacer+.spacer {margin: 8px 0;}
+				.submit-page .gray, #suggested-reddits {display: none;}
+				.submit-page form .spacer+.spacer {margin: 8px 0px;}
+
+
+				/* Suggest Title Button */
+				#url-field button {
+				margin: 10px 0 0 5px;
+				height: 31px;
+				width: 32px;
+				position: relative;
+				top: -42px;
+				left: -1px;
+				border-radius: 0px;
+				background-color: #F4F4F4;
+				border-bottom: 0px solid !important;
+				box-shadow: none;
+				border-left: 1px solid #D8D8D8;
+				font-size: 0px;
+				background-image: url(%%spritesheet%%);
+				background-position: -112px -49px;
+				}
+
+					#url-field #suggest-title {height: 0px;}
+					#url-field button:hover {background-color: #DEDEDE;}
+
+					#url-field button:before {
+						font-size: 12px;
+						content: "Automatically generate a title.";
+						background-color: rgba(0, 0, 0, 0.0);
+						position: absolute;
+						width: 175px;
+						cursor: default;
+						padding: 0.25em 3em;
+						top: -60px;
+						left: -100px;
+						border-radius: 100px;
+						text-transform: none;
+						color: #FFF;
+						transition: all 0.2s ease;
+						line-height: 2em;
+						visibility: hidden;
+						opacity: 0;
+					}
+
+						#url-field .error.NO_URL.field-url {
+							position: absolute;
+							left: 550px;
+							margin-top: -20px;
+						}
+
+						#url-field button:hover:before {
+							top: -40px;
+							opacity: 100;
+							visibility: visible;
+							background-color: rgba(0, 0, 0, 0.7);
+						}
 
 		/* Flair Selector */
 		.flairselector.drop-choices.active {
@@ -1307,7 +1305,7 @@
 				.flairoptionpane ul a.title {font-size: 100% !important;}
 
 				.flairselector li {
-					padding: 3px 0 3px 0;
+					padding: 3px 0px 3px 0px;
 					width: 182px;
 				}
 
@@ -1325,10 +1323,12 @@
 
 		/* LINKFLAIRS */
 		.linkflairlabel {
-			padding: 0 6px 1px 10px;
+			padding: 0px 6px 1px 10px;
 			height: auto;
-            border-radius: 16px 0 0 16px;
-            border: 0 solid;
+			border-radius: 0px;
+			border-top-left-radius: 16px;
+			border-bottom-left-radius: 16px;
+			border: 0px solid;
 			color: #333;
 			font-weight: bold;
 			font-style: normal;
@@ -1338,7 +1338,7 @@
 			cursor: default;
 			vertical-align: middle;
 			position: relative;
-			top: -2px;
+			top: -1px;
 
 		}
 
@@ -1376,10 +1376,9 @@
 			background-color: transparent;
 			border: none;
 			color: #555;
-			font-size: small !important;
 			font-family: Calibri,Candara,Segoe,"Segoe UI",Optima,Arial,sans-serif;
 			border: 1px solid #DADADA;
-			padding: 0 3px 2px 3px;
+			padding: 0px 3px 2px 3px;
 			cursor: help;
 		}
 
@@ -1387,7 +1386,7 @@
 		/* Flair-page  */
 		div.tabpane-content {
 			padding: 4px 4px 4px 4px;
-			border: 0 solid #e5e5e5;
+			border: 0px solid #e5e5e5;
 			border-bottom-width: 3px;
 			background-color: #fff;
 			width: 1080px;
@@ -1443,14 +1442,14 @@
 					} 
 
 					.tabmenu li#tab-grant.selected, .tabmenu li#tab-templates.selected, 
-					.tabmenu li#tab-link_templates.selected {margin: 7px 0 4px 0;}
+					.tabmenu li#tab-link_templates.selected {margin: 7px 0px 4px 0px;}
 
 					.tabmenu li#tab-grant.selected a, .tabmenu li#tab-grant a:hover,
 					.tabmenu li#tab-templates.selected a, .tabmenu li#tab-templates a:hover, 
 					.tabmenu li#tab-link_templates.selected a, .tabmenu li#tab-link_templates a:hover {color: #333;}
 		/* WIKI Page */
 		.wiki-page .wiki-page-content {
-		 	margin: 5px 320px 10px 0;
+		 	margin: 5px 320px 10px 0px;
 		 	padding: 5px 10px 5px 10px;
 			background-color: #fff;
 		 	border: 1px solid #d8d8d8;
@@ -1483,7 +1482,7 @@
 
 			.wiki-page .pageactions {
 				border: none;
-				border-radius: 0;
+				border-radius: 0px;
 			}
 
 				.wiki-page .pageactions .wikiaction {
@@ -1497,7 +1496,7 @@
 
 					.wiki-page .pageactions .wikiaction-current {
 						background-color: #5b92fa;
-						border-radius: 0;
+						border-radius: 0px;
 						color: #fff;
 					}
 
@@ -1524,7 +1523,7 @@
 			}
 
 				.wiki-page .wiki-page-content .discussionlink a {
-					padding-left: 0;
+					padding-left: 0px;
 				}
 
 				.wiki-page .nextprev {display: none;}
@@ -1540,11 +1539,27 @@
 		}
 
 			.pretty-form textarea {-webkit-box-shadow: none;box-shadow: none;}
+
+			/* Let me help you read the manual */
+			.pretty-form:after {
+				color: #666;
+				display: block;
+				font-size: 0.8rem;
+				content: "If your reddit alien looks 'glitched', check that you upload the headerbypass.png image on the /about/edit page!";
+				margin: 1em 0 0 0;
+				position: absolute;
+				top: 119px;
+				z-index: 99;
+				line-height: 47px;
+				left: 139px;
+				padding: 0 1em;
+				height: 44px;
+			}
 		
 		.stylesheet-customize-container textarea {
 			margin: 0;
-			padding: 0;
-			border: 0;
+			padding: 0px;
+			border: 0px;
 			border: 1px solid #d8d8d8;
 			border-bottom: 1px solid #d8d8d8;
 			border-radius: 3px;
@@ -1552,11 +1567,10 @@
 			font-family: Calibri, Candara, Segoe, "Segoe UI", Optima, Arial, sans-serif;
 		}
 		
-			.sheets .btn.right {display: none;}
 			.sheets .col textarea {width: 100%;background-color: #fff;}
 				.sheets .col textarea:hover {border-color: #B1B1B1;}
 					.sheets .col textarea:focus {border-color: #5b92fa;}
-			.sheets {margin-right: 0;}
+			.sheets {margin-right: 0px;}
 		
 		#images {
 			margin-right: 320px;
@@ -1567,7 +1581,7 @@
 		}
 		
 			ul#image-preview-list {
-				margin: 15px 0 0 0;
+				margin: 15px 0px 0px 0px;
 				padding-bottom: 80px;
 				font-size: 14px;
 			}
@@ -1596,8 +1610,8 @@
 
 			.commentarea>.usertext {
 				overflow:visible;
-				margin: 0 0 10px 0;
-				padding: 0 0 0 0;
+				margin: 0px 0px 10px 0px;
+				padding: 0px 0px 0px 0px;
 			}
 			
 			a.author {
@@ -1626,7 +1640,7 @@
 
 				.tagline .submitter {color: #dd4b39!important;}			
 				.tagline .moderator,.green {color: #53a93f!important;}
-					.tagline .moderator:after {content: "oderator";}
+					.tagline .moderator:after {content: "oderator - speaking officially.";}
 					a.author.moderator:after {content: "";}
 				.tagline .moderator:hover {color: #65b354!important;}
 			
@@ -1636,7 +1650,7 @@
 			/* Comments */
 			.commentarea .menuarea {
 				display: inline;
-				margin: 0 0 10px -320px;
+				margin: 0 0px 10px -320px;
 				padding: 0;
 				color: #c0c0c0;
 				font-weight: normal;
@@ -1656,7 +1670,7 @@
 				.menuarea .spacer .drop-choices.lightdrop {
 					padding: 5px;
 					border-color: #DFDDDD;
-					box-shadow: 0 1px 1px #C9C9C9;
+					box-shadow: 0px 1px 1px #C9C9C9;
 					font-family: arial, sans-serif;
 				}
 
@@ -1699,8 +1713,10 @@
 			}
 
 				hr {
-                    border: 1px solid #e5e5e5;
-                }
+					border-width: 1px;
+					border-style: solid;
+					border-color: #e5e5e5;
+				}
 				
 			.comments-page textarea {
 				background-color: #fff;
@@ -1736,7 +1752,7 @@
 				.comment .child,.comment .showreplies {
 					margin-top: 10px;
 					margin-left: 15px;
-					border-left: 0 solid;
+					border-left: 0px solid;
 				}
 		
 		/* H2 3 4 5 markup */
@@ -1760,7 +1776,7 @@
 		/* Footer */
 		.footer-parent {
 			margin-top: 120px;
-			padding-top: 0;
+			padding-top: 0px;
 			background-color: transparent;
 		}
 
@@ -1786,14 +1802,14 @@
 
 		/* Some login stuff */
 		.login-form-side {
-			border: 0;
+			border: 0px;
 			border-bottom: 1px solid #d8d8d8;
 			font-size: 120%;
 			margin: 10px;
 		}
 
 		.login-form-side input[type=text], .login-form-side input[type=password] {
-			margin: 10px 0;
+			margin: 10px 0px;
 			width: 265px;
 		}
 		
@@ -1803,7 +1819,7 @@
 				margin-bottom: 30px;
 				padding: 10px 10px 10px 10px;
 				background-color: white;
-				border: 0 solid;
+				border: 0px solid;
 				border-radius: 2px;
 				color: #3b3b3b;
 				font-size: 16px;
@@ -1812,8 +1828,8 @@
 		
 				.cover {
 					position: fixed;
-					top: 0;
-					left: 0;
+					top: 0px;
+					left: 0px;
 					z-index: 1000;
 					width: 100%;
 					height: 100%;
@@ -1824,8 +1840,8 @@
 		/* Search page */
 		.search-page #search {
 			position: relative;
-			top: 0;
-			margin: 0 150px 0 80px;
+			top: 0px;
+			margin: 0px 150px 0px 80px;
 			height: 50px;
 			background: none !important;
 			background-color: transparent;
@@ -1833,18 +1849,18 @@
 		}	
 
 			.search-page .searchpane {
-				margin: 5px 320px 5px 0;
+				margin: 5px 320px 5px 0px;
 				padding-left: 96px;
 				height: 120px;
 			}
 			
 				.search-page .raisedbox {
 					padding: 5px;
-					border: 0 solid;
+					border: 0px solid;
 				}
 
 				.search-page #search input[type=text] {
-					padding: 5px 0 5px 40px;
+					padding: 5px 0px 5px 40px;
 					font-size: 150%;
 				}
 
@@ -1855,7 +1871,7 @@
 				padding: 10px;
 				box-shadow:none;
 				color: #3b3b3b;
-				border: 0 solid;
+				border: 0px solid;
 				border-bottom: 3px solid #E5E5E5;
 			}
 
@@ -1867,30 +1883,44 @@
 		/* Fuckin' Reddit Enhancement Suite (RES) */
 		.res .keyHighlight {
 			background-color: transparent;
-			outline: 0 solid;
+			outline: 0px solid;
 		}
 
 			.res .RES-keyNav-activeElement, .res .commentarea .RES-keyNav-activeElement .md, .res .commentarea .RES-keyNav-activeElement.entry .noncollapsed {
 				background-color: transparent !important;
 			}
 
-				.res .RES-keyNav-activeElement {outline: 1px dashed #C5C5C5 !important; border-radius: 0 !important;}
+				.res .RES-keyNav-activeElement {outline: 1px dashed #C5C5C5 !important; border-radius: 0px !important;}
+
+				.res #searchexpando {
+					padding: 10px 5px 10px 25px;
+					height: inherit;
+				}
+
+				.res .content .RESBigEditorPop {
+					border-bottom: 0px solid !important;
+					border: 1px solid #d8d8d8 !important;
+					width: 150px !important;
+					text-align: left !important;
+					padding: 2px;
+					margin: 0px 12px 0px 12px;
+				}
 
 		/* Res Live Preview */
 		.RESDialogSmall {
 			border: 1px solid #DFDFDF!important;
-			border-radius: 0 !important;
+			border-radius: 0px!important;
 		}
 
 		.RESDialogSmall > h3 {
 			background-color: #f4f4f4!important;
 			border-bottom: 1px solid #DFDFDF!important;
-			border-radius: 0 !important;
+			border-radius: 0px!important;
 			color: #333!important;
 		}
 
 		.res .comment {
-			margin-top:0 !important;
+			margin-top:0px !important;
 			margin-bottom: 3px !important;
 			border: 1px solid #f8f8f8 !important;
 		}
@@ -1908,12 +1938,12 @@
 			.comments-page .comment .comment .comment .comment .comment .comment .comment .comment .comment .comment {background-color: #FCFCFC !important;}
 		
 		.RESshortcutside {
-			padding: 0 0 !important;
+			padding: 0px 0px !important;
 			background: none repeat-x scroll center left !important;
 			background-color: white !important;
 			background-image: none !important;
-			border: 0 solid !important;
-			border-radius: 0 !important;
+			border: 0px solid !important;
+			border-radius: 0px !important;
 			color: #5b92fa !important;
 			text-transform: capitalize !important;
 			font-weight: 500 !important;
@@ -1922,20 +1952,21 @@
 		}
 		
 			.RESshortcutside.remove {
-				padding: 0 3px 0 0 !important;
-                background: white none !important;
-                border: 0 solid !important;
+				padding: 0px 3px 0px 0px !important;
+				background-color: white !important;
+				background-image: none !important;
+				border: 0px solid !important;
 				color: #3b3b3b !important;
 				font-weight: lighter !important;
 			}
 		
 			.RESDashboardToggle {
-				padding: 0 0 !important;
+				padding: 0px 0px !important;
 				background: none repeat-x scroll center left !important;
 				background-color: white !important;
 				background-image: none !important;
-				border: 0 solid !important;
-				border-radius: 0 !important;
+				border: 0px solid !important;
+				border-radius: 0px !important;
 				color: #5b92fa !important;
 				text-transform: capitalize !important;
 				font-weight: 500 !important;
@@ -1944,9 +1975,10 @@
 			}
 		
 			.RESDashboardToggle.remove {
-				padding: 2px 6px 2px 0 !important;
-                background: white none !important;
-                border: 0 solid !important;
+				padding: 2px 6px 2px 0px !important;
+				background-color: white !important;
+				background-image: none !important;
+				border: 0px solid !important;
 				color: #3b3b3b !important;
 				font-weight: lighter !important;
 			}
@@ -1977,7 +2009,7 @@
 			width: inherit !important;
 			background-color: white !important;
 			border: 1px solid #d8d8d8 !important;
-			border-top: 0 solid !important;
+			border-top: 0px solid !important;
 			border-bottom: 3px solid #d8d8d8 !important;
 			border-radius: 2px !important;
 		}
@@ -1993,8 +2025,8 @@
 
 		.RESSubscriptionButton {
 			background-color: white !important;
-			border: 0 solid !important;
-			border-radius: 0 !important;
+			border: 0px solid !important;
+			border-radius: 0px !important;
 			color: #5b92fa !important;
 		}
 		
@@ -2002,7 +2034,7 @@
 			right: 10px;
 			top: 141px !important;
 			padding: 4px 10px 5px 2px !important;
-			border-radius: 0 !important;
+			border-radius: 0px !important;
 		}
 
 			
@@ -2014,7 +2046,7 @@
 			.res .author.submitter {
 				padding: 2px 5px !important;
 				background-color: #DD4B39!important;
-				border-radius: 0 !important;
+				border-radius: 0px !important;
 				color: #fff !important;
 			}
 
@@ -2023,7 +2055,7 @@
 			.res .author.moderator {
 				padding: 2px 5px !important;
 				background-color: #53a93f !important;
-				border-radius: 0 !important;
+				border-radius: 0px !important;
 				color: #fff !important;
 			}
 
@@ -2036,7 +2068,7 @@
 				padding: 2px 3px !important;
 				background-color: #53a93f !important;
 				border: none !important;
-				border-radius: 0 !important;
+				border-radius: 0px !important;
 
 			}
 
@@ -2087,7 +2119,7 @@
 			transition: border-color 0.25s;
 		}
 
-		.link .entry li a, .link:hover .entry li a {transition: opacity 0.15s ease-in-out;}
+		/*.link .entry li a, .link:hover .entry li a {transition: opacity 0.15s ease-in-out;}*/		/* Currently causing issues. Needs investigating - https://github.com/Axel--/Naut-for-reddit/issues/9 */
 
 
 	/*  NIGHTMODE - Work in progress */
@@ -2098,7 +2130,7 @@
 	content.submit .info-notice:lang(nt), .stylesheet-customize-container .pretty-form:lang(nt), #images:lang(nt), 
 	.search-page .raisedbox:lang(nt), .search-page .searchfacets:lang(nt), .linefield:lang(nt), 
 	.search-page .searchpane:lang(nt), .nextprev:lang(nt), .commentarea:lang(nt), .link.last-clicked:lang(nt),
-	.res-nightmode .side, .res-nightmode .flairselector, .res-nightmode .linefield, .res-nightmode .icon-menu a,
+	res-nightmode .side, .res-nightmode .flairselector, .res-nightmode .linefield, .res-nightmode .icon-menu a, 
 	.res-nightmode .side .leavemoderator, .res-nightmode .side .leavecontributor-button, .res-nightmode .side .titlebox, 
 	.res-nightmode .side .spacer .titlebox .redditname, .res-nightmode .side .titlebox .flairtoggle, 
 	.res-nightmode .side .usertext-body .md ol, .res-nightmode .side .usertext-body .md ol ol, 
@@ -2179,7 +2211,7 @@
 
 	/* fucking nightmode  */
 	.morelink:lang(nt), .fancy-toggle-button .add:lang(nt), .sidecontentbox a.helplink:lang(nt) {box-shadow: none;-webkit-box-shadow:none;}
-	.res-nightmode .tabmenu li {margin: 8px 0 0 0;}
+	.res-nightmode .tabmenu li {margin: 8px 0px 0px 0px;}
 
 	/* I swear to god who thinks pink backgrounds are a good idea */
 	.res-nightmode #header-bottom-left, .res-nightmode ul.tabmenu li.selected a, .res-nightmode .redditname a.active, 
@@ -2209,10 +2241,10 @@
 
 	/* Button */
 	button:lang(nt), #search input[type='submit']:lang(nt), .wiki-page .wiki-page-content .wiki_button:lang(nt) {
-		padding: 0 8px 0 8px;
+		padding: 0px 8px 0px 8px;
 		background-color: transparent;
 		border: 1px solid #414955;
-		border-radius: 0;
+		border-radius: 0px;
 		-webkit-box-shadow: none;
 		box-shadow: none;
 		color: #e5e5e5 !important;
@@ -2220,18 +2252,20 @@
 	}
 
 		button:lang(nt):hover, #search input[type='submit']:lang(nt):hover, .wiki-page .wiki-page-content .wiki_button:lang(nt):hover {
-			padding-bottom: 0;
-            border: 1px #414955;
-            color: #fff !important;
+			padding-bottom: 0px;
+			border-color: #414955;
+			border-width: 1px;
+			color: #fff !important;
 			line-height: 28px;
 			background-color: #1C1F26;
 		}
 
 			button:lang(nt):active, #search input[type='submit']:lang(nt):active, .wiki-page .wiki-page-content .wiki_button:lang(nt):active {
-				padding-bottom: 0;
+				padding-bottom: 0px;
 				background-color: #1C1F26;
-                border: 1px #414955;
-                -webkit-box-shadow: none;
+				border-color: #414955;
+				border-width: 1px;
+				-webkit-box-shadow: none;
 				box-shadow: none;
 				color: #fff !important;
 				line-height: 28px;
@@ -2276,21 +2310,6 @@
 				color: #fff; /* Text color - alternatively use #333 when white is too light */
 				}
 
-
-
-	/* --------------------------- */
-
-		/* My subreddit mainly uses SELF posts */
-
-			/*.sidebox.submit.submit-link {display: none;}*/
-	
-		/* My subreddit mainly uses LINK posts */
-			/* Then add to the line above and remove  from
-			the line below the asterix and slahes */
-
-
-			/*.sidebox.submit.submit-text {display: none;}*/
-
 	/* --------------------------- */
 
 	/* Submit page message */
@@ -2299,914 +2318,253 @@
 		}
 
 	/* Subscriber Name */
-		div.titlebox span.number:after {content: " rowers";} /* Leave the space before the name! */
+		div.titlebox span.number:after {content: " readers";} /* Leave the space before the name! */
 
 	/* --------------------------- */
 
 	/* CUSTOM LOGO CSS */
 		.pagename a {
 			top: 75px; /* The length the logo is moved from the top of the page */
-			width: 185px; /* TOTAL Image width */
-			height: 55px; /* 50% of the TOTAL height of the image. */
+			width: 232px; /* TOTAL Image width */
+			height: 54px; /* 50% of the TOTAL height of the image. */
 		}
 	
-			.pagename a:hover {background-position: 0 -55px;} /* Replace the 77 with your height */
+			.pagename a:hover {background-position: 0px -55px;} /* Replace the 77 with your height */
 
 	/* --------------------------- */
 
-    table {
-        width: 92.5%
-    }
-
-    thead {
-        background: #5B92FA;
-        color: white;
-    }
-
-    /* Blades Flair */
-
-    .flair {
-        border: 1px solid;
-        top: 20px;
-        padding-right: 5px;
-        display: inline-block !important;
-        text-indent: 19px;
-        font-size: x-small;
-        height: 12px;
-        vertical-align: middle;
-        color: #336699;
-        margin-right: 5px;
-        background: white url(%%flairsheet%%) no-repeat -9999px -9999px;
-    }
-
-    .flair-Abgindon-School {
-        background-position: 0 0;
-    }
-
-    .flair-Adelaide {
-        background-position: 0 -12px;
-    }
-
-    .flair-Agecroft {
-        background-position: 0 -24px;
-    }
-
-    .flair-Argentina {
-        background-position: 0 -36px;
-    }
-
-    .flair-Auriol-Kensington {
-        background-position: 0 -48px;
-    }
-
-    .flair-Australian {
-        background-position: 0 -60px;
-    }
-
-    .flair-Avon-County {
-        background-position: 0 -72px;
-    }
-
-    .flair-Balliol-College {
-        background-position: 0 -84px;
-    }
-
-    .flair-Barnes-Bridge-Ladies {
-        background-position: 0 -96px;
-    }
-
-    .flair-Bath-University {
-        background-position: 0 -108px;
-    }
-
-    .flair-Bedford-Modern-School {
-        background-position: 0 -120px;
-    }
-
-    .flair-Belgium {
-        background-position: 0 -132px;
-    }
-
-    .flair-Berwick-Amateur {
-        background-position: 0 -144px;
-    }
-
-    .flair-Bournemouth-University {
-        background-position: 0 -156px;
-    }
-
-    .flair-Bradford-Amateur {
-        background-position: 0 -168px;
-    }
-
-    .flair-Bristol-Ariel {
-        background-position: 0 -180px;
-    }
-
-    .flair-Brown-University {
-        background-position: 0 -192px;
-    }
-
-    .flair-Bulgaria {
-        background-position: 0 -204px;
-    }
-
-    .flair-Caius {
-        background-position: 0 -216px;
-    }
-
-    .flair-Cambois {
-        background-position: 0 -228px;
-    }
-
-    .flair-Cambridge-University {
-        background-position: 0 -240px;
-    }
-
-    .flair-Canadian {
-        background-position: 0 -252px;
-    }
-
-    .flair-Cardiff-University {
-        background-position: 0 -264px;
-    }
-
-    .flair-Chester-Le-Street-Amateur {
-        background-position: 0 -276px;
-    }
-
-    .flair-Christ27s-College {
-        background-position: 0 -288px;
-    }
-
-    .flair-Christ-Church {
-        background-position: 0 -300px;
-    }
-
-    .flair-Churchill-College {
-        background-position: 0 -312px;
-    }
-
-    .flair-City-of-Cambridge {
-        background-position: 0 -324px;
-    }
-
-    .flair-City-of-Oxford {
-        background-position: 0 -336px;
-    }
-
-    .flair-Clare-Hall {
-        background-position: 0 -348px;
-    }
-
-    .flair-Clydesdale-Amateur {
-        background-position: 0 -360px;
-    }
-
-    .flair-Colgate-University {
-        background-position: 0 -372px;
-    }
-
-    .flair-Collingwood-College {
-        background-position: 0 -384px;
-    }
-
-    .flair-Cornell-University {
-        background-position: 0 -396px;
-    }
-
-    .flair-Corpus-Christi-College {
-        background-position: 0 -408px;
-    }
-
-    .flair-Croatia {
-        background-position: 0 -420px;
-    }
-
-    .flair-Dartmouth-University {
-        background-position: 0 -432px;
-    }
-
-    .flair-Darwin-College {
-        background-position: 0 -444px;
-    }
-
-    .flair-Denmark {
-        background-position: 0 -456px;
-    }
-
-    .flair-Detroit {
-        background-position: 0 -468px;
-    }
-
-    .flair-Downing-College {
-        background-position: 0 -480px;
-    }
-
-    .flair-Dulwich-College {
-        background-position: 0 -492px;
-    }
-
-    .flair-Durham-Amateur {
-        background-position: 0 -504px;
-    }
-
-    .flair-Durham-School {
-        background-position: 0 -516px;
-    }
-
-    .flair-Durham-University {
-        background-position: 0 -528px;
-    }
-
-    .flair-Edinburgh-University {
-        background-position: 0 -540px;
-    }
-
-    .flair-Emanuel-School {
-        background-position: 0 -552px;
-    }
-
-    .flair-Emmanuel {
-        background-position: 0 -564px;
-    }
-
-    .flair-Estonia {
-        background-position: 0 -576px;
-    }
-
-    .flair-Eton-College {
-        background-position: 0 -588px;
-    }
-
-    .flair-Euros-Blad {
-        background-position: 0 -600px;
-    }
-
-    .flair-First-and-Third-Trinity {
-        background-position: 0 -612px;
-    }
-
-    .flair-French {
-        background-position: 0 -624px;
-    }
-
-    .flair-George-Stephenson-College {
-        background-position: 0 -636px;
-    }
-
-    .flair-Georgetown-University {
-        background-position: 0 -648px;
-    }
-
-    .flair-German {
-        background-position: 0 -660px;
-    }
-
-    .flair-Girton-College {
-        background-position: 0 -672px;
-    }
-
-    .flair-Glasgow {
-        background-position: 0 -684px;
-    }
-
-    .flair-Glasgow-University {
-        background-position: 0 -696px;
-    }
-
-    .flair-Great-Britain {
-        background-position: 0 -708px;
-    }
-
-    .flair-Greek {
-        background-position: 0 -720px;
-    }
-
-    .flair-Green-Templeton {
-        background-position: 0 -732px;
-    }
-
-    .flair-Grey-College {
-        background-position: 0 -744px;
-    }
-
-    .flair-Grosvenor {
-        background-position: 0 -756px;
-    }
-
-    .flair-HSBC {
-        background-position: 0 -768px;
-    }
-
-    .flair-Harvard-Kennedy-School {
-        background-position: 0 -780px;
-    }
-
-    .flair-Harvard-Mens {
-        background-position: 0 -792px;
-    }
-
-    .flair-Harvard-Womens {
-        background-position: 0 -804px;
-    }
-
-    .flair-Hatfield-College-28Durham29 {
-        background-position: 0 -816px;
-    }
-
-    .flair-Hatfield-College {
-        background-position: 0 -828px;
-    }
-
-    .flair-Hertford-College {
-        background-position: 0 -840px;
-    }
-
-    .flair-Hexham {
-        background-position: 0 -852px;
-    }
-
-    .flair-Hild-Bede {
-        background-position: 0 -864px;
-    }
-
-    .flair-Homerton-College {
-        background-position: 0 -876px;
-    }
-
-    .flair-Hughes-Hall {
-        background-position: 0 -888px;
-    }
-
-    .flair-Imperial-College {
-        background-position: 0 -900px;
-    }
-
-    .flair-Imperial-College-School-of-Medicine {
-        background-position: 0 -912px;
-    }
-
-    .flair-Irish {
-        background-position: 0 -924px;
-    }
-
-    .flair-Italy {
-        background-position: 0 -936px;
-    }
-
-    .flair-Jesus-College-Cambridge {
-        background-position: 0 -948px;
-    }
-
-    .flair-Jesus-College-Oxford {
-        background-position: 0 -960px;
-    }
-
-    .flair-John-Snow {
-        background-position: 0 -972px;
-    }
-
-    .flair-Josephine-Butler {
-        background-position: 0 -984px;
-    }
-
-    .flair-Josephine-Butler-College {
-        background-position: 0 -996px;
-    }
-
-    .flair-Keble-College {
-        background-position: 0 -1008px;
-    }
-
-    .flair-Kings-College-Cambridge {
-        background-position: 0 -1020px;
-    }
-
-    .flair-Kings-College-School {
-        background-position: 0 -1032px;
-    }
-
-    .flair-Kingston-Grammar-School {
-        background-position: 0 -1044px;
-    }
-
-    .flair-Kingston {
-        background-position: 0 -1056px;
-    }
-
-    .flair-Kingston-University {
-        background-position: 0 -1068px;
-    }
-
-    .flair-LSE {
-        background-position: 0 -1080px;
-    }
-
-    .flair-Lady-Margaret-Hall {
-        background-position: 0 -1092px;
-    }
-
-    .flair-Lady-Margaret {
-        background-position: 0 -1104px;
-    }
-
-    .flair-Lancaster-University {
-        background-position: 0 -1116px;
-    }
-
-    .flair-Leander-Club {
-        background-position: 0 -1128px;
-    }
-
-    .flair-Leeds-University {
-        background-position: 0 -1140px;
-    }
-
-    .flair-Leicester-University {
-        background-position: 0 -1152px;
-    }
-
-    .flair-Lewis-26-Clark-College {
-        background-position: 0 -1164px;
-    }
-
-    .flair-Linacre-College {
-        background-position: 0 -1176px;
-    }
-
-    .flair-Lincoln {
-        background-position: 0 -1188px;
-    }
-
-    .flair-Lincoln-Rowing-Center {
-        background-position: 0 -1200px;
-    }
-
-    .flair-Liverpool-University {
-        background-position: 0 -1212px;
-    }
-
-    .flair-London {
-        background-position: 0 -1224px;
-    }
-
-    .flair-Lopatica-vesla-VeslaC48Dkog-kluba-Arupinuma {
-        background-position: 0 -1236px;
-    }
-
-    .flair-Lopatica-vesla-VeslaC48Dkog-kluba-Istre {
-        background-position: 0 -1248px;
-    }
-
-    .flair-Lopatica-vesla-VeslaC48Dkog-kluba-Medulina {
-        background-position: 0 -1260px;
-    }
-
-    .flair-Los-Gatos {
-        background-position: 0 -1272px;
-    }
-
-    .flair-MIT {
-        background-position: 0 -1284px;
-    }
-
-    .flair-Magdelen-College {
-        background-position: 0 -1296px;
-    }
-
-    .flair-Manchester-University {
-        background-position: 0 -1308px;
-    }
-
-    .flair-Mansfield {
-        background-position: 0 -1320px;
-    }
-
-    .flair-McGill27s {
-        background-position: 0 -1332px;
-    }
-
-    .flair-Merton-College {
-        background-position: 0 -1344px;
-    }
-
-    .flair-NHRC {
-        background-position: 0 -1356px;
-    }
-
-    .flair-Netherlands {
-        background-position: 0 -1368px;
-    }
-
-    .flair-New-College {
-        background-position: 0 -1380px;
-    }
-
-    .flair-New-Zealand {
-        background-position: 0 -1392px;
-    }
-
-    .flair-Newcastle-University {
-        background-position: 0 -1404px;
-    }
-
-    .flair-Newnham-College {
-        background-position: 0 -1416px;
-    }
-
-    .flair-Northumbria-University {
-        background-position: 0 -1428px;
-    }
-
-    .flair-Norway {
-        background-position: 0 -1440px;
-    }
-
-    .flair-Oriel-College {
-        background-position: 0 -1452px;
-    }
-
-    .flair-Oxford-Brookes-University {
-        background-position: 0 -1464px;
-    }
-
-    .flair-Oxford-University {
-        background-position: 0 -1476px;
-    }
-
-    .flair-PLU {
-        background-position: 0 -1488px;
-    }
-
-    .flair-Paignton-Amateur {
-        background-position: 0 -1500px;
-    }
-
-    .flair-Pembroke-College-Cambridge {
-        background-position: 0 -1512px;
-    }
-
-    .flair-Pembroke-College-Oxford {
-        background-position: 0 -1524px;
-    }
-
-    .flair-Peterhouse {
-        background-position: 0 -1536px;
-    }
-
-    .flair-Poland {
-        background-position: 0 -1548px;
-    }
-
-    .flair-Prince-Alfred-College {
-        background-position: 0 -1560px;
-    }
-
-    .flair-Putney-Town {
-        background-position: 0 -1572px;
-    }
-
-    .flair-Queen27s {
-        background-position: 0 -1584px;
-    }
-
-    .flair-Queen-Mary-University-of-London {
-        background-position: 0 -1596px;
-    }
-
-    .flair-Queens-College-28Oxford29 {
-        background-position: 0 -1608px;
-    }
-
-    .flair-Queens-College-Cambridge {
-        background-position: 0 -1620px;
-    }
-
-    .flair-Reading-University {
-        background-position: 0 -1632px;
-    }
-
-    .flair-Regents-Park-College {
-        background-position: 0 -1644px;
-    }
-
-    .flair-Robinson-College {
-        background-position: 0 -1656px;
-    }
-
-    .flair-Romania {
-        background-position: 0 -1668px;
-    }
-
-    .flair-Royal-Holloway-University-of-London {
-        background-position: 0 -1680px;
-    }
-
-    .flair-Royal-Shrewsbury-School {
-        background-position: 0 -1692px;
-    }
-
-    .flair-Selwyn-College {
-        background-position: 0 -1704px;
-    }
-
-    .flair-Sidney-Sussex-College {
-        background-position: 0 -1716px;
-    }
-
-    .flair-Somerville-College {
-        background-position: 0 -1728px;
-    }
-
-    .flair-Sons-of-the-Thames {
-        background-position: 0 -1740px;
-    }
-
-    .flair-South-African {
-        background-position: 0 -1752px;
-    }
-
-    .flair-Southampton-University {
-        background-position: 0 -1764px;
-    }
-
-    .flair-Spanish {
-        background-position: 0 -1776px;
-    }
-
-    .flair-StCatharine27s-College-Cambridge {
-        background-position: 0 -1788px;
-    }
-
-    .flair-St-Aidans-College {
-        background-position: 0 -1800px;
-    }
-
-    .flair-St-Annes-College {
-        background-position: 0 -1812px;
-    }
-
-    .flair-St-Benet27s {
-        background-position: 0 -1824px;
-    }
-
-    .flair-St-Catherines-College-Oxford {
-        background-position: 0 -1836px;
-    }
-
-    .flair-St-Chads-College {
-        background-position: 0 -1848px;
-    }
-
-    .flair-St-Cuthberts-Society {
-        background-position: 0 -1860px;
-    }
-
-    .flair-St-Edmund-Hall {
-        background-position: 0 -1872px;
-    }
-
-    .flair-St-George27s-Hospital {
-        background-position: 0 -1884px;
-    }
-
-    .flair-St-Hilda27s {
-        background-position: 0 -1896px;
-    }
-
-    .flair-St-Hughs {
-        background-position: 0 -1908px;
-    }
-
-    .flair-St-Johns-College {
-        background-position: 0 -1920px;
-    }
-
-    .flair-St-Leonards-School {
-        background-position: 0 -1932px;
-    }
-
-    .flair-St-Marys-College {
-        background-position: 0 -1944px;
-    }
-
-    .flair-St-Neots {
-        background-position: 0 -1956px;
-    }
-
-    .flair-St-Peters-College {
-        background-position: 0 -1968px;
-    }
-
-    .flair-St-Peters-School {
-        background-position: 0 -1980px;
-    }
-
-    .flair-Staines {
-        background-position: 0 -1992px;
-    }
-
-    .flair-Swansea-University {
-        background-position: 0 -2004px;
-    }
-
-    .flair-Swiss {
-        background-position: 0 -2016px;
-    }
-
-    .flair-Syracuse-University {
-        background-position: 0 -2028px;
-    }
-
-    .flair-Talkin-Tarn-Amateur {
-        background-position: 0 -2040px;
-    }
-
-    .flair-Tees {
-        background-position: 0 -2052px;
-    }
-
-    .flair-Thames {
-        background-position: 0 -2064px;
-    }
-
-    .flair-Tideway-Scullers-School {
-        background-position: 0 -2076px;
-    }
-
-    .flair-Tiffin-School {
-        background-position: 0 -2088px;
-    }
-
-    .flair-Trevelyan-College {
-        background-position: 0 -2100px;
-    }
-
-    .flair-Trinity-College {
-        background-position: 0 -2112px;
-    }
-
-    .flair-Trinity-College-Dublin {
-        background-position: 0 -2124px;
-    }
-
-    .flair-Trinity-Hall {
-        background-position: 0 -2136px;
-    }
-
-    .flair-Twickenham {
-        background-position: 0 -2148px;
-    }
-
-    .flair-Tyne {
-        background-position: 0 -2160px;
-    }
-
-    .flair-UMich {
-        background-position: 0 -2172px;
-    }
-
-    .flair-USA {
-        background-position: 0 -2184px;
-    }
-
-    .flair-USC {
-        background-position: 0 -2196px;
-    }
-
-    .flair-University-Barge-Club {
-        background-position: 0 -2208px;
-    }
-
-    .flair-University-College-Durham {
-        background-position: 0 -2220px;
-    }
-
-    .flair-University-College-London {
-        background-position: 0 -2232px;
-    }
-
-    .flair-University-College-Oxford {
-        background-position: 0 -2244px;
-    }
-
-    .flair-University-of-Birmingham {
-        background-position: 0 -2256px;
-    }
-
-    .flair-University-of-Bristol {
-        background-position: 0 -2268px;
-    }
-
-    .flair-University-of-California-Berkley {
-        background-position: 0 -2280px;
-    }
-
-    .flair-University-of-Kwazulu-Natal {
-        background-position: 0 -2292px;
-    }
-
-    .flair-University-of-London {
-        background-position: 0 -2304px;
-    }
-
-    .flair-University-of-Warwick {
-        background-position: 0 -2316px;
-    }
-
-    .flair-University-of-West-England {
-        background-position: 0 -2328px;
-    }
-
-    .flair-Ustinov {
-        background-position: 0 -2340px;
-    }
-
-    .flair-Van-Mildert {
-        background-position: 0 -2352px;
-    }
-
-    .flair-Vesta {
-        background-position: 0 -2364px;
-    }
-
-    .flair-WU {
-        background-position: 0 -2376px;
-    }
-
-    .flair-Wadham-College {
-        background-position: 0 -2388px;
-    }
-
-    .flair-Walbrook {
-        background-position: 0 -2400px;
-    }
-
-    .flair-Wallingford {
-        background-position: 0 -2412px;
-    }
-
-    .flair-Walton {
-        background-position: 0 -2424px;
-    }
-
-    .flair-Westminster-School {
-        background-position: 0 -2436px;
-    }
-
-    .flair-Willamette {
-        background-position: 0 -2448px;
-    }
-
-    .flair-Willem-III {
-        background-position: 0 -2460px;
-    }
-
-    .flair-Wolfson-College {
-        background-position: 0 -2472px;
-    }
-
-    .flair-Wolfson-College {
-        background-position: 0 -2484px;
-    }
-
-    .flair-Worcester-College {
-        background-position: 0 -2496px;
-    }
-
-    .flair-Worcester-College-Women27s {
-        background-position: 0 -2508px;
-    }
-
-    .flair-Yale {
-        background-position: 0 -2520px;
-    }
-
-    .flair-York-City {
-        background-position: 0 -2532px;
-    }
-
-    .flair-UCD {
-        background-position: 0 -2544px;
-    }
-
-    .sidecontentbox .helplink + .title h1 { font-size: 0 !important }
-
-    .sidecontentbox .helplink + .title h1:before { font-size: 10pt !important; content: "Coaches" }
-
-    .sidebox.submit:hover:before{
-        position:fixed;
-        display:block;
-        top:0;
-        text-align:center;
-        background-color:#5B92FA;
-        color:white;
-        z-index:1000;
-        padding:5px 0;
-        width:100%;
-        left:0;
-        font-size:32px;
-        font-weight:normal;
-        content:"Please read the FAQ before posting."
-    }
+.flair{background:no-repeat -9999px -9999px white;border:1px solid;top:20px;padding-right:5px;display:inline-block!important;text-indent:19px;font-size:x-small;height:12px;vertical-align:middle;color:#336699;margin-right:5px;background-image:url(%%flairsheet%%);display:inline-block!important}
+.flair-Abgindon-School{background-position:0 0;}
+.flair-Adelaide{background-position:0 -12px;}
+.flair-Agecroft{background-position:0 -24px;}
+.flair-Argentina{background-position:0 -36px;}
+.flair-Auriol-Kensington{background-position:0 -48px;}
+.flair-Australian{background-position:0 -60px;}
+.flair-Avon-County{background-position:0 -72px;}
+.flair-Balliol-College{background-position:0 -84px;}
+.flair-Barnes-Bridge-Ladies{background-position:0 -96px;}
+.flair-Bath-University{background-position:0 -108px;}
+.flair-Bedford-Modern-School{background-position:0 -120px;}
+.flair-Belgium{background-position:0 -132px;}
+.flair-Berwick-Amateur{background-position:0 -144px;}
+.flair-Bournemouth-University{background-position:0 -156px;}
+.flair-Bradford-Amateur{background-position:0 -168px;}
+.flair-Bristol-Ariel{background-position:0 -180px;}
+.flair-Brown-University{background-position:0 -192px;}
+.flair-Bulgaria{background-position:0 -204px;}
+.flair-Caius{background-position:0 -216px;}
+.flair-Cambois{background-position:0 -228px;}
+.flair-Cambridge-University{background-position:0 -240px;}
+.flair-Canadian{background-position:0 -252px;}
+.flair-Cardiff-University{background-position:0 -264px;}
+.flair-Chester-Le-Street-Amateur{background-position:0 -276px;}
+.flair-Christ27s-College{background-position:0 -288px;}
+.flair-Christ-Church{background-position:0 -300px;}
+.flair-Churchill-College{background-position:0 -312px;}
+.flair-City-of-Cambridge{background-position:0 -324px;}
+.flair-City-of-Oxford{background-position:0 -336px;}
+.flair-Clare-Hall{background-position:0 -348px;}
+.flair-Clydesdale-Amateur{background-position:0 -360px;}
+.flair-Colgate-University{background-position:0 -372px;}
+.flair-Collingwood-College{background-position:0 -384px;}
+.flair-Cornell-University{background-position:0 -396px;}
+.flair-Corpus-Christi-College{background-position:0 -408px;}
+.flair-Croatia{background-position:0 -420px;}
+.flair-Dartmouth-University{background-position:0 -432px;}
+.flair-Darwin-College{background-position:0 -444px;}
+.flair-Denmark{background-position:0 -456px;}
+.flair-Detroit{background-position:0 -468px;}
+.flair-Downing-College{background-position:0 -480px;}
+.flair-Dulwich-College{background-position:0 -492px;}
+.flair-Durham-Amateur{background-position:0 -504px;}
+.flair-Durham-School{background-position:0 -516px;}
+.flair-Durham-University{background-position:0 -528px;}
+.flair-Edinburgh-University{background-position:0 -540px;}
+.flair-Emanuel-School{background-position:0 -552px;}
+.flair-Emmanuel{background-position:0 -564px;}
+.flair-Estonia{background-position:0 -576px;}
+.flair-Eton-College{background-position:0 -588px;}
+.flair-Euros-Blad{background-position:0 -600px;}
+.flair-First-and-Third-Trinity{background-position:0 -612px;}
+.flair-French{background-position:0 -624px;}
+.flair-George-Stephenson-College{background-position:0 -636px;}
+.flair-Georgetown-University{background-position:0 -648px;}
+.flair-German{background-position:0 -660px;}
+.flair-Girton-College{background-position:0 -672px;}
+.flair-Glasgow{background-position:0 -684px;}
+.flair-Glasgow-University{background-position:0 -696px;}
+.flair-Great-Britain{background-position:0 -708px;}
+.flair-Greek{background-position:0 -720px;}
+.flair-Green-Templeton{background-position:0 -732px;}
+.flair-Grey-College{background-position:0 -744px;}
+.flair-Grosvenor{background-position:0 -756px;}
+.flair-HSBC{background-position:0 -768px;}
+.flair-Harvard-Kennedy-School{background-position:0 -780px;}
+.flair-Harvard-Mens{background-position:0 -792px;}
+.flair-Harvard-Womens{background-position:0 -804px;}
+.flair-Hatfield-College-28Durham29{background-position:0 -816px;}
+.flair-Hatfield-College{background-position:0 -828px;}
+.flair-Hertford-College{background-position:0 -840px;}
+.flair-Hexham{background-position:0 -852px;}
+.flair-Hild-Bede{background-position:0 -864px;}
+.flair-Homerton-College{background-position:0 -876px;}
+.flair-Hughes-Hall{background-position:0 -888px;}
+.flair-Imperial-College{background-position:0 -900px;}
+.flair-Imperial-College-School-of-Medicine{background-position:0 -912px;}
+.flair-Irish{background-position:0 -924px;}
+.flair-Italy{background-position:0 -936px;}
+.flair-Jesus-College-Cambridge{background-position:0 -948px;}
+.flair-Jesus-College-Oxford{background-position:0 -960px;}
+.flair-John-Snow{background-position:0 -972px;}
+.flair-Josephine-Butler{background-position:0 -984px;}
+.flair-Josephine-Butler-College{background-position:0 -996px;}
+.flair-Keble-College{background-position:0 -1008px;}
+.flair-Kings-College-Cambridge{background-position:0 -1020px;}
+.flair-Kings-College-School{background-position:0 -1032px;}
+.flair-Kingston-Grammar-School{background-position:0 -1044px;}
+.flair-Kingston{background-position:0 -1056px;}
+.flair-Kingston-University{background-position:0 -1068px;}
+.flair-LSE{background-position:0 -1080px;}
+.flair-Lady-Margaret-Hall{background-position:0 -1092px;}
+.flair-Lady-Margaret{background-position:0 -1104px;}
+.flair-Lancaster-University{background-position:0 -1116px;}
+.flair-Leander-Club{background-position:0 -1128px;}
+.flair-Leeds-University{background-position:0 -1140px;}
+.flair-Leicester-University{background-position:0 -1152px;}
+.flair-Lewis-26-Clark-College{background-position:0 -1164px;}
+.flair-Linacre-College{background-position:0 -1176px;}
+.flair-Lincoln{background-position:0 -1188px;}
+.flair-Lincoln-Rowing-Center{background-position:0 -1200px;}
+.flair-Liverpool-University{background-position:0 -1212px;}
+.flair-London{background-position:0 -1224px;}
+.flair-Lopatica-vesla-VeslaC48Dkog-kluba-Arupinuma{background-position:0 -1236px;}
+.flair-Lopatica-vesla-VeslaC48Dkog-kluba-Istre{background-position:0 -1248px;}
+.flair-Lopatica-vesla-VeslaC48Dkog-kluba-Medulina{background-position:0 -1260px;}
+.flair-Los-Gatos{background-position:0 -1272px;}
+.flair-MIT{background-position:0 -1284px;}
+.flair-Magdelen-College{background-position:0 -1296px;}
+.flair-Manchester-University{background-position:0 -1308px;}
+.flair-Mansfield{background-position:0 -1320px;}
+.flair-McGill27s{background-position:0 -1332px;}
+.flair-Merton-College{background-position:0 -1344px;}
+.flair-Minnesota-Boat-Club{background-position:0 -2556px;}
+.flair-NHRC{background-position:0 -1356px;}
+.flair-Netherlands{background-position:0 -1368px;}
+.flair-New-College{background-position:0 -1380px;}
+.flair-New-Zealand{background-position:0 -1392px;}
+.flair-Newcastle-University{background-position:0 -1404px;}
+.flair-Newnham-College{background-position:0 -1416px;}
+.flair-Northumbria-University{background-position:0 -1428px;}
+.flair-Norway{background-position:0 -1440px;}
+.flair-Oriel-College{background-position:0 -1452px;}
+.flair-Oxford-Brookes-University{background-position:0 -1464px;}
+.flair-Oxford-University{background-position:0 -1476px;}
+.flair-PLU{background-position:0 -1488px;}
+.flair-Paignton-Amateur{background-position:0 -1500px;}
+.flair-Pembroke-College-Cambridge{background-position:0 -1512px;}
+.flair-Pembroke-College-Oxford{background-position:0 -1524px;}
+.flair-Peterhouse{background-position:0 -1536px;}
+.flair-Poland{background-position:0 -1548px;}
+.flair-Prince-Alfred-College{background-position:0 -1560px;}
+.flair-Putney-Town{background-position:0 -1572px;}
+.flair-Queen27s{background-position:0 -1584px;}
+.flair-Queen-Mary-University-of-London{background-position:0 -1596px;}
+.flair-Queens-College-28Oxford29{background-position:0 -1608px;}
+.flair-Queens-College-Cambridge{background-position:0 -1620px;}
+.flair-Reading-University{background-position:0 -1632px;}
+.flair-Regents-Park-College{background-position:0 -1644px;}
+.flair-Robinson-College{background-position:0 -1656px;}
+.flair-Romania{background-position:0 -1668px;}
+.flair-Royal-Holloway-University-of-London{background-position:0 -1680px;}
+.flair-Royal-Shrewsbury-School{background-position:0 -1692px;}
+.flair-Selwyn-College{background-position:0 -1704px;}
+.flair-Sidney-Sussex-College{background-position:0 -1716px;}
+.flair-Somerville-College{background-position:0 -1728px;}
+.flair-Sons-of-the-Thames{background-position:0 -1740px;}
+.flair-South-African{background-position:0 -1752px;}
+.flair-Southampton-University{background-position:0 -1764px;}
+.flair-Spanish{background-position:0 -1776px;}
+.flair-StCatharine27s-College-Cambridge{background-position:0 -1788px;}
+.flair-St-Aidans-College{background-position:0 -1800px;}
+.flair-St-Annes-College{background-position:0 -1812px;}
+.flair-St-Benet27s{background-position:0 -1824px;}
+.flair-St-Catherines-College-Oxford{background-position:0 -1836px;}
+.flair-St-Chads-College{background-position:0 -1848px;}
+.flair-St-Cuthberts-Society{background-position:0 -1860px;}
+.flair-St-Edmund-Hall{background-position:0 -1872px;}
+.flair-St-George27s-Hospital{background-position:0 -1884px;}
+.flair-St-Hilda27s{background-position:0 -1896px;}
+.flair-St-Hughs{background-position:0 -1908px;}
+.flair-St-Johns-College{background-position:0 -1920px;}
+.flair-St-Leonards-School{background-position:0 -1932px;}
+.flair-St-Marys-College{background-position:0 -1944px;}
+.flair-St-Neots{background-position:0 -1956px;}
+.flair-St-Peters-College{background-position:0 -1968px;}
+.flair-St-Peters-School{background-position:0 -1980px;}
+.flair-Staines{background-position:0 -1992px;}
+.flair-Swansea-University{background-position: 0 -2004px;}
+.flair-Swiss{background-position: 0 -2016px;}
+.flair-Syracuse-University{background-position: 0 -2028px;}
+.flair-Talkin-Tarn-Amateur{background-position: 0 -2040px;}
+.flair-Tees{background-position: 0 -2052px;}
+.flair-Thames{background-position: 0 -2064px;}
+.flair-Tideway-Scullers-School{background-position: 0 -2076px;}
+.flair-Tiffin-School{background-position: 0 -2088px;}
+.flair-Trevelyan-College{background-position: 0 -2100px;}
+.flair-Trinity-College{background-position: 0 -2112px;}
+.flair-Trinity-College-Dublin{background-position: 0 -2124px;}
+.flair-Trinity-Hall{background-position: 0 -2136px;}
+.flair-Twickenham{background-position: 0 -2148px;}
+.flair-Tyne{background-position: 0 -2160px;}
+.flair-UMich{background-position: 0 -2172px;}
+.flair-USA{background-position: 0 -2184px;}
+.flair-USC{background-position: 0 -2196px;}
+.flair-University-Barge-Club{background-position: 0 -2208px;}
+.flair-University-College-Durham{background-position: 0 -2220px;}
+.flair-University-College-London{background-position: 0 -2232px;}
+.flair-University-College-Oxford{background-position: 0 -2244px;}
+.flair-University-of-Birmingham{background-position: 0 -2256px;}
+.flair-University-of-Bristol{background-position: 0 -2268px;}
+.flair-University-of-California-Berkley{background-position: 0 -2280px;}
+.flair-University-of-Kwazulu-Natal{background-position: 0 -2292px;}
+.flair-University-of-London{background-position: 0 -2304px;}
+.flair-University-of-Warwick{background-position: 0 -2316px;}
+.flair-University-of-West-England{background-position: 0 -2328px;}
+.flair-Ustinov{background-position: 0 -2340px;}
+.flair-Van-Mildert{background-position: 0 -2352px;}
+.flair-Vesta{background-position: 0 -2364px;}
+.flair-WU{background-position: 0 -2376px;}
+.flair-Wadham-College{background-position: 0 -2388px;}
+.flair-Walbrook{background-position: 0 -2400px;}
+.flair-Wallingford{background-position: 0 -2412px;}
+.flair-Walton{background-position: 0 -2424px;}
+.flair-Westminster-School{background-position: 0 -2436px;}
+.flair-Willamette{background-position: 0 -2448px;}
+.flair-Willem-III{background-position: 0 -2460px;}
+.flair-Wolfson-College{background-position: 0 -2472px;}
+.flair-Wolfson-College{background-position: 0 -2484px;}
+.flair-Worcester-College{background-position: 0 -2496px;}
+.flair-Worcester-College-Women27s{background-position: 0 -2508px;}
+.flair-Yale{background-position: 0 -2520px;}
+.flair-York-City{background-position: 0 -2532px;}
+.flair-UCD{background-position: 0 -2544px;}
+
+.sidecontentbox .helplink + .title h1 { font-size: 0 !important }
+
+.sidecontentbox .helplink + .title h1:before { font-size: 10pt !important; content: "Crew Coaches" }  
+
+.sidebox.submit:hover:before{
+  position:fixed;
+  display:block;
+  top:0;
+  text-align:center;
+  background-color:#5b92fa; /*Edit to your liking*/
+  color:white; /*Font color*/
+  z-index:1000;
+  padding:5px 0;
+  width:100%;
+  left:0;
+  font-size:32px;
+  font-weight:normal;
+  content:"Please read the FAQ before posting."
+}

@@ -2823,12 +2823,12 @@ div.titlebox span.number:after {
 /* CUSTOM LOGO CSS */
 .pagename a {
     top: 75px; /* The length the logo is moved from the top of the page */
-    width: 232px; /* TOTAL Image width */
+    width: 282px; /* TOTAL Image width */
     height: 54px; /* 50% of the TOTAL height of the image. */
 }
 
 .pagename a:hover {
-    background-position: 0 -55px;
+    background-position: 0 -54px;
 }
 
 /* Replace the 77 with your height */

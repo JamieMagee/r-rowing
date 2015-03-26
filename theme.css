@@ -1,4 +1,4 @@
-/*
+﻿/*
         Version 3.0
         Stylesheet by Cryptonaut
         Last modified: 20 FEB 2015
@@ -2915,6 +2915,7 @@ div.commentarea div.RES-keyNav-activeElement .md {
     color: #B3B3B3;
     padding-left: 0;
     margin-right: inherit;
+    margin-left: 5px;
 }
 
 .link .flair {

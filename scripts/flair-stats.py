@@ -9,7 +9,7 @@ from azure.storage import CloudStorageAccount
 
 
 def replace_all(text, dic):
-    text = re.sub(r'((?<=[a-z])[A-Z]|(?<!\A)[A-Z](?=[a-z]))', r' \1', text.strip('\r\n\t\s'))
+    text = re.sub(r'((?<=[a-z])[A-Z]|(?<!\A)[A-Z](?=[a-z]))', r' \1', text)
     for i, j in dic.items():
         text = text.replace(i, j)
     return text
@@ -60,9 +60,9 @@ while True:
 
     out = ''
     for rowing_club in flair_users:
-        out += '* ' + rowing_club[0] + '\n'
+        out += '*  ' + rowing_club[0] + '\n'
         for user in rowing_club[1]:
-            out += '  - [' + user + '](/u/' + user + ')\n'
+            out += '  -  [' + user + '](/u/' + user + ')\n'
     
     print(out)
     

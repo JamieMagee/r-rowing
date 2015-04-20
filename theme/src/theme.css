@@ -1,7 +1,7 @@
 ﻿/*
-        Version 3.0
+        Version 3.1
         Stylesheet by Cryptonaut
-        Last modified: 20 FEB 2015
+        Last modified: 26 MAR 2015
         Details: This is a custom template made by /u/Cryptonaut.
         Find out more on /r/Naut.
 
@@ -20,6 +20,7 @@
                           much more.
 
         V3.0 - Update 9 - Complete UI revamp. See /r/Naut for more.
+        V3.1 - Update 9 - Many bugfixes and some changes for easier customization
 
         -------------------------------------------------------------------------- */
 
@@ -32,7 +33,7 @@
 body {
     overflow-x: hidden;
     background-color: #eeeeee;
-    min-width: 640px;
+    min-width: 420px;
 }
 
 /* General Styles - Links / Buttons / Inputs */
@@ -41,9 +42,14 @@ a {
     transition: color 0.15s ease;
 }
 
+::focus {
+    outline: none !important;
+}
+
 input:not([type="submit"]), textarea, .roundfield textarea, .roundfield input[type=text], .roundfield input[type=url], .roundfield input[type=password], .roundfield input[type=number],
 .linefield textarea, .linefield input[type=text], .linefield input[type=password],
-.pretty-form input[type=text], .pretty-form textarea, .pretty-form input[type=password], .pretty-form input[type=number] {
+.pretty-form input[type=text], .pretty-form textarea, .pretty-form input[type=password], .pretty-form input[type=number]
+.login-form-side input[type=text], .login-form-side input[type=password] {
     box-shadow: none !important;
     background-color: #fff;
     border: 1px solid #e5e5e5;
@@ -51,50 +57,46 @@ input:not([type="submit"]), textarea, .roundfield textarea, .roundfield input[ty
     transition: all 0.15s ease !important;
 }
 
-input:hover, textarea:hover {
+input:hover, textarea:hover, .roundfield textarea:hover, .roundfield input[type=text]:hover, .roundfield input[type=url]:hover, .roundfield input[type=password]:hover, .roundfield input[type=number]:hover,
+.linefield textarea:hover, .linefield input[type=text]:hover, .linefield input[type=password]:hover,
+.pretty-form input[type=text]:hover, .pretty-form textarea:hover, .pretty-form input[type=password]:hover, .pretty-form input[type=number]:hover,
+.login-form-side input[type=text]:hover, .login-form-side input[type=password]:hover {
     border-color: #C5C5C5;
 }
 
-input:focus, textarea:focus {
+input:active, textarea:active, .roundfield textarea:active, .roundfield input[type=text]:active, .roundfield input[type=url]:active, .roundfield input[type=password]:active, .roundfield input[type=number]:active,
+.linefield textarea:active, .linefield input[type=text]:active, .linefield input[type=password]:active,
+.pretty-form input[type=text]:active, .pretty-form textarea:active, .pretty-form input[type=password]:active, .pretty-form input[type=number]:active,
+.login-form-side input[type=text]:active, .login-form-side input[type=password]:active {
     outline: none !important;
     border-color: #4F8EF7;
     color: #4D5763;
 }
 
 .btn, button {
-    margin: 4px 8px 4px 0;
-    padding: 1px 12px 2px 12px;
-    background-color: #fff;
-    border: 1px solid #d4d4d4;
+    margin: 4px 16px 4px 0px;
+    padding: 2px 18px;
+    background-color: #516AE8;
+    border: none;
     border-radius: 2px;
-    -moz-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.05);
-    -ms-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.05);
-    -webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.05);
-    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.05);
-    color: #737373;
-    text-transform: capitalize;
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.24);
+    color: #fff !important;
+    text-transform: uppercase;
     font-weight: bold;
-    line-height: 26px;
     cursor: default;
-    transition: all 0.15s ease;
-    height: 29px;
+    transition: all 0.25s ease;
+    height: 32px;
+    font-size: 12px;
 }
 
 .btn:hover, button:hover {
-    -moz-box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.27);
-    -ms-box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.27);
-    -webkit-box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.27);
-    box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.27);
-    color: #4D5763;
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.34);
+    background-color: #5A72EE;
 }
 
 .btn:active, button:active {
-    -moz-box-shadow: inset 0 2px 0 #d6d6d6;
-    -ms-box-shadow: inset 0 2px 0 #d6d6d6;
-    -webkit-box-shadow: inset 0 2px 0 #D6D6D6;
-    box-shadow: inset 0 2px 0 #D6D6D6;
-    background-color: #E5E5E5;
-    color: #999;
+    box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.16);
+    background-color: #4059DB;
 }
 
 .btn:focus, button:focus {
@@ -193,7 +195,7 @@ a.random.choice {
     width: 0;
     padding-left: 48px;
     height: 48px;
-    background-image: url(%%spritesheet%%);
+    background-image: url("%%spritesheet%%");
     background-position: -208px -48px;
     position: relative;
     top: 0;
@@ -280,7 +282,7 @@ a.random.choice {
     background-color: transparent;
     border: 0;
     border-bottom: 2px solid #fff;
-    color: rgba(255, 255, 255, 100);
+    color: rgba(255, 255, 255, 1);
     font-weight: bold;
 }
 
@@ -291,8 +293,8 @@ a.random.choice {
 .listing-page .tabmenu li:nth-of-type(3), .wiki-page .tabmenu li:nth-of-type(3), /* Rising */
 .listing-page .tabmenu li:nth-of-type(4), .wiki-page .tabmenu li:nth-of-type(4), /* Controversial */
 .listing-page .tabmenu li:nth-of-type(6), .wiki-page .tabmenu li:nth-of-type(6), /* Self-serve advertising */
-.listing-page .tabmenu li:nth-of-type(9), .wiki-page .tabmenu li:nth-of-type(9)	/* gilded */
-						   {
+.listing-page .tabmenu li:nth-of-type(9), .wiki-page .tabmenu li:nth-of-type(9) /* gilded */
+{
     display: none;
 }
 
@@ -347,7 +349,7 @@ body:not(.loggedin) #header-bottom-right {
 #mail, #modmail {
     width: 16px;
     height: 14px;
-    background-image: url(%%spritesheet%%) !important;
+    background-image: url("%%spritesheet%%") !important;
     background-repeat: no-repeat !important;
     background-color: transparent;
     transition: all 0.25s ease;
@@ -393,7 +395,7 @@ body:not(.loggedin) #header-bottom-right {
     -webkit-transform: translateY(112px);
     transform: translateY(112px);
     transition: background-color 0.25s ease, box-shadow 0.25s ease;
-    background-image: url(%%spritesheet%%);
+    background-image: url("%%spritesheet%%");
     background-position: 269px -32px;
     background-repeat: no-repeat;
 }
@@ -424,7 +426,7 @@ body:not(.loggedin) #header-bottom-right {
 /* preferences & logout icons */
 #header-bottom-right a.pref-lang, .loggedin .logout a {
     background-position: -0px -16px;
-    background-image: url(%%spritesheet%%);
+    background-image: url("%%spritesheet%%");
     width: 16px;
     height: 14px;
     display: inline-block;
@@ -481,6 +483,7 @@ body:not(.loggedin) #header-bottom-right {
 
 #search input[type=text]:focus {
     border-radius: 2px 2px 0 0;
+    outline: none;
 }
 
 #search input[type=text]:focus:hover {
@@ -540,7 +543,7 @@ body:not(.loggedin) #header-bottom-right {
     height: 32px;
     width: 32px;
     margin-left: -38px;
-    background-image: url(%%spritesheet%%);
+    background-image: url("%%spritesheet%%");
     background-position: -215px -231px;
     background-repeat: no-repeat;
     border: none !important;
@@ -550,7 +553,7 @@ body:not(.loggedin) #header-bottom-right {
 }
 
 #search input[type=submit]:hover {
-    background-image: url(%%spritesheet%%);
+    background-image: url("%%spritesheet%%");
     background-position: -215px -231px;
     background-repeat: no-repeat;
     background-color: rgba(0, 0, 0, 0.05);
@@ -593,7 +596,7 @@ body:not(.loggedin) #header-bottom-right {
     top: 148px;
     box-shadow: 0 1px 5px rgba(0, 0, 0, 0.24);
     background-color: #516ae8;
-    background-image: url(%%spritesheet%%) !important;
+    background-image: url("%%spritesheet%%") !important;
     background-position: 268px -214px !important;
     background-repeat: no-repeat !important;
     right: 16px;
@@ -683,6 +686,10 @@ body:not(.loggedin) #header-bottom-right {
 
 .login-form-side input[type=text], .login-form-side input[type=password] {
     width: 128px;
+}
+
+.login-form-side button.btn {
+    margin-right: -3px;
 }
 
 /* Redditname + Subscibers & Here right now */
@@ -781,7 +788,7 @@ div.titlebox span.number:after {
     background-color: #51A3E8;
     border: 0 solid;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.24);
-    background-image: url(%%spritesheet%%);
+    background-image: url("%%spritesheet%%");
     transition: all 0.25s ease, background-position 0.25s ease, background-color 0.5s ease;
     outline: none !important;
 }
@@ -871,8 +878,7 @@ div.titlebox span.number:after {
 
 /* Hover Bubble */
 .hover-bubble.multi-selector {
-    margin-top: -76px;
-    margin-right: -200px;
+    margin-top: -60px;
 }
 
 /* Text */
@@ -1010,7 +1016,7 @@ div.titlebox span.number:after {
     left: 0;
     right: 0;
     background-color: #3A3D4D;
-    background-image: url(%%headerimg%%);
+    background-image: url("%%headerimg%%");
     background-repeat: no-repeat;
     background-position: 50% 0;
     content: "";
@@ -1032,6 +1038,7 @@ div.titlebox span.number:after {
 
 .link {
     margin: 0;
+    padding: 0;
     background-color: #fff;
 }
 
@@ -1064,7 +1071,7 @@ body > .content .link .rank, .rank-spacer {
 
 .arrow {
     margin: 0 0 0 2px;
-    background-image: url(%%spritesheet%%) !important;
+    background-image: url("%%spritesheet%%") !important;
     background-color: transparent;
     width: 33px;
     border-radius: 2px;
@@ -1157,15 +1164,15 @@ body > .content .link .rank, .rank-spacer {
 }
 
 .thumbnail.self {
-    background: url(%%spritesheet%%) -073px -80px;
+    background: url("%%spritesheet%%") -73px -80px;
 }
 
 .thumbnail.default {
-    background: url(%%spritesheet%%) -143px -80px;
+    background: url("%%spritesheet%%") -143px -80px;
 }
 
 .thumbnail.nsfw {
-    background: url(%%spritesheet%%) -003px -140px;
+    background: url("%%spritesheet%%") -3px -140px;
 }
 
 /* Linkflairs */
@@ -1193,7 +1200,7 @@ body > .content .link .rank, .rank-spacer {
 }
 
 .linkflair-inspiration .thumbnail.self {
-    background: url(%%spritesheet%%) -143px -140px;
+    background: url("%%spritesheet%%") -143px -140px;
 }
 
 .linkflair-waywo .linkflairlabel {
@@ -1202,7 +1209,7 @@ body > .content .link .rank, .rank-spacer {
 }
 
 .linkflair-waywo .thumbnail.self {
-    background: url(%%spritesheet%%) -73px -140px;
+    background: url("%%spritesheet%%") -73px -140px;
 }
 
 .linkflair-mod .linkflairlabel {
@@ -1215,7 +1222,7 @@ body > .content .link .rank, .rank-spacer {
 }
 
 .linkflair-mod .thumbnail.default, .linkflair-mod .thumbnail.self {
-    background: url(%%spritesheet%%) -3px -80px !important;
+    background: url("%%spritesheet%%") -3px -80px !important;
 }
 
 /* Submission Title */
@@ -1282,7 +1289,7 @@ body .content .sitetable .link .title a:hover {
     height: 16px;
     border-radius: 2px;
     background-color: transparent;
-    background-image: url(%%spritesheet%%) !important;
+    background-image: url("%%spritesheet%%") !important;
     border: 1px solid #e9e9e9;
     cursor: pointer;
 }
@@ -1293,23 +1300,23 @@ body .content .sitetable .link .title a:hover {
 }
 
 .expando-button.selftext.collapsed {
-    background-position: -032px -32px;
+    background-position: -32px -32px;
 }
 
 .expando-button.selftext.collapsed:hover {
-    background-position: -048px -32px;
+    background-position: -48px -32px;
 }
 
 .expando-button.selftext.expanded {
-    background-position: -064px -32px;
+    background-position: -64px -32px;
 }
 
 .expando-button.selftext.expanded:hover {
-    background-position: -080px -32px;
+    background-position: -80px -32px;
 }
 
 .expando-button.video.collapsed {
-    background-position: -096px -32px;
+    background-position: -96px -32px;
 }
 
 .expando-button.video.collapsed:hover {
@@ -1317,11 +1324,11 @@ body .content .sitetable .link .title a:hover {
 }
 
 .expando-button.video.expanded {
-    background-position: -064px -32px;
+    background-position: -64px -32px;
 }
 
 .expando-button.video.expanded:hover {
-    background-position: -080px -32px;
+    background-position: -80px -32px;
 }
 
 .expando-button.image.collapsedExpando {
@@ -1333,11 +1340,11 @@ body .content .sitetable .link .title a:hover {
 }
 
 .expando-button.image.expanded {
-    background-position: -064px -32px;
+    background-position: -64px -32px;
 }
 
 .expando-button.image.expanded:hover {
-    background-position: -080px -32px;
+    background-position: -80px -32px;
 }
 
 .expando-button.image.gallery.collapsedExpando {
@@ -1349,11 +1356,11 @@ body .content .sitetable .link .title a:hover {
 }
 
 .expando-button.image.gallery.expanded {
-    background-position: -064px -32px;
+    background-position: -64px -32px;
 }
 
 .expando-button.image.gallery.expanded:hover {
-    background-position: -080px -32px;
+    background-position: -80px -32px;
 }
 
 .expando-button.video-muted.collapsed {
@@ -1365,11 +1372,11 @@ body .content .sitetable .link .title a:hover {
 }
 
 .expando-button.video-muted.expanded {
-    background-position: -064px -32px;
+    background-position: -64px -32px;
 }
 
 .expando-button.video-muted.expanded:hover {
-    background-position: -080px -32px;
+    background-position: -80px -32px;
 }
 
 /* Expando Text */
@@ -1385,7 +1392,7 @@ body .content .sitetable .link .title a:hover {
 }
 
 /* Submitted X ago by.. */
-.link .entry .tagline {
+.entry .tagline {
     margin-top: 4px;
     color: #b3b3b3;
     font-size: 12px;
@@ -1438,7 +1445,7 @@ body .content .sitetable .link .title a:hover {
 
 .RESUserTagImage {
     height: 10px !important;
-    background-image: url(%%spritesheet%%) !important;
+    background-image: url("%%spritesheet%%") !important;
     background-position: -192px -34px !important;
     opacity: 0.25 !important;
     margin-left: 2px !important;
@@ -1455,7 +1462,7 @@ body .content .sitetable .link .title a:hover {
     margin-top: 3px;
 }
 
-.link .entry .buttons li a {
+.entry .buttons li a {
     padding: 0 1px;
     color: #b3b3b3;
     font-weight: normal;
@@ -1496,8 +1503,7 @@ body .content .sitetable .link .title a:hover {
 .action-form {
     position: fixed;
     top: 35%;
-    left: 50%;
-    margin-left: -150px;
+    left: 40%;
     margin: 0;
     padding: 24px;
     background-color: #fff;
@@ -1645,10 +1651,26 @@ a.pretty-button.positive.pressed, a.pretty-button.neutral.pressed, a.pretty-butt
 }
 
 /* Ad */
+.content .spacer {
+    margin: 0;
+}
+
 .link.promotedlink.promoted {
     margin-right: 0;
     background-color: #EFF7FF;
     border: none;
+    padding: 0;
+}
+
+.organic-listing .link, .organic-listing .link.compressed, .organic-listing .link.promotedlink {
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.link.promotedlink.promoted .thumbnail {
+    max-height: inherit;
+    max-width: inherit;
+    margin-top: 8px;
 }
 
 .organic-listing {
@@ -1660,6 +1682,17 @@ a.pretty-button.positive.pressed, a.pretty-button.neutral.pressed, a.pretty-butt
     margin-right: 316px;
     border: none;
     border-radius: 2px 2px 0 0;
+}
+
+.organic-listing .help {
+    margin-bottom: 16px;
+    margin-right: 16px;
+}
+
+.organic-listing .sponsored-tagline {
+    margin-bottom: 16px;
+    margin-right: 16px;
+    color: #B3B3B3;
 }
 
 /* Compressed post */
@@ -1810,7 +1843,7 @@ body > .content .link.compressed .midcol {
 
 .flairselector li.selected {
     border: none;
-    background-color:#F5F8F9;
+    background-color: #F5F8F9;
 }
 
 .flairselector .flairoptionpane ul li.flairsample-right {
@@ -1999,7 +2032,7 @@ div.commentarea div.RES-keyNav-activeElement .md {
     transition: all 0.25s ease;
 }
 
-.top-page .content .menuarea .drop-choices.lightdrop a.choice:[href*="/?t=all"] {
+.top-page .content .menuarea .drop-choices.lightdrop a.choice[href*="/?t=all"] {
     border-right: 0 solid;
 }
 
@@ -2098,7 +2131,7 @@ div.commentarea div.RES-keyNav-activeElement .md {
     top: 72px;
     width: 100%;
     height: 312px;
-    background: transparent url(%%noresults%%) no-repeat 50% 50%;
+    background: transparent url("%%noresults%%") no-repeat 50% 50%;
     text-indent: -9999px;
     font-size: 0;
     display: block;
@@ -2225,6 +2258,10 @@ div.commentarea div.RES-keyNav-activeElement .md {
     padding: 64px 16px 16px 16px;
     box-shadow: 0 1px 5px rgba(0, 0, 0, 0.16);
     overflow: visible;
+}
+
+.usertext button {
+    margin: 4px 16px 8px 0px;
 }
 
 .commentarea .usertext-edit {
@@ -2415,6 +2452,7 @@ div.commentarea div.RES-keyNav-activeElement .md {
 .comment .flat-list li a {
     color: #b3b3b3;
     font-weight: normal;
+    font-size: 10px;
 }
 
 .comment .flat-list li a:hover {
@@ -2555,6 +2593,7 @@ div.commentarea div.RES-keyNav-activeElement .md {
 .submit-page .infobar:before {
     font-size: 14px;
     content: "Please submit insightful content that allows for discussion!";
+    display: inline-block;
 }
 
 .content.submit .info-notice {
@@ -3095,7 +3134,8 @@ html.res-commentBoxes .comment {
 }
 
 .res #search #searchexpando label {
-    padding: 13px 0;
+    padding-top: 13px;
+    padding-bottom: 13px;
 }
 
 .res #searchexpando .searchexpando-submit {
@@ -3125,7 +3165,7 @@ html.res-commentBoxes .comment {
 
 /* Gear dropdown */
 .gearIcon {
-    background: url(%%spritesheet%%) -0px -0px !important;
+    background: url("%%spritesheet%%") -0px -0px !important;
     position: relative;
     top: 2px;
     transition: all 0.25s ease;
@@ -3204,8 +3244,73 @@ html.res-commentBoxes .comment {
     border-radius: 2px;
 }
 
+/* Sidebar on low-res screens */
+@media (max-device-width: 640px), (max-width: 640px) {
+
+    .content {
+        margin-top: 144px;
+    }
+
+    .link, .commentarea, .stylesheet-customize-container .pretty-form, .sitetable, #images, .organic-listing {
+        margin-right: 0px;
+    }
+
+    .subscriber .morelink a:after {
+        display: none;
+    }
+
+    .side {
+        -webkit-transition: all 0.5s ease-in-out;
+        transition: all 0.5s ease-in-out;
+        position: fixed;
+        padding-top: 0;
+        z-index: 5000;
+        right: -350px;
+        margin: 0;
+        overflow-y: scroll;
+        width: 345px;
+        height: 100%;
+    }
+
+    .side .usertext {
+        margin-top: 114px;
+    }
+
+    .side .content:before {
+        display: none;
+    }
+
+    .side:after {
+        transition: all 0.15s ease;
+        background-color: #FFF;
+        content: "≡";
+        border-radius: 1px;
+        box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.3);
+        position: fixed;
+        padding: 0px 12px;
+        display: block;
+        right: 0px;
+        color: #1F2225;
+        z-index: 98;
+        width: 36px;
+        font-size: 24px;
+        height: 36px;
+        line-height: 36px;
+        top: 24px;
+    }
+
+    .side:hover {
+        right: 0px;
+    }
+
+    .side:hover:after {
+        opacity: 0;
+    }
+
+}
+
 /* Experimental fadein CSS */
-.listing-page .sitetable, .search-page .sitetable, .top-page .menuarea .spacer {
+.listing-page .sitetable, .search-page .sitetable, .top-page .menuarea .spacer, .organic-listing {
     animation-name: fadein;
     animation-duration: 0.75s;
     animation-iteration-count: 1;
@@ -3609,866 +3714,11 @@ div.titlebox span.number:after {
 }
 
 .flair {
-    background-image: url(%%flairsheet%%);
+    background-image: url("%%flairsheet%%");
     background-repeat: no-repeat;
-    text-indent: 20px;
-    height: 12px;
-}
-
-.flair-Abgindon-School {
-    background-position: 0 0;
-}
-
-.flair-Adelaide {
-    background-position: 0 -12px;
-}
-
-.flair-Agecroft {
-    background-position: 0 -24px;
-}
-
-.flair-Argentina {
-    background-position: 0 -36px;
-}
-
-.flair-Auriol-Kensington {
-    background-position: 0 -48px;
-}
-
-.flair-Australian {
-    background-position: 0 -60px;
-}
-
-.flair-Avon-County {
-    background-position: 0 -72px;
-}
-
-.flair-Balliol-College {
-    background-position: 0 -84px;
-}
-
-.flair-Barnes-Bridge-Ladies {
-    background-position: 0 -96px;
-}
-
-.flair-Bath-University {
-    background-position: 0 -108px;
-}
-
-.flair-Bedford-Modern-School {
-    background-position: 0 -120px;
-}
-
-.flair-Belgium {
-    background-position: 0 -132px;
-}
-
-.flair-Berwick-Amateur {
-    background-position: 0 -144px;
-}
-
-.flair-Bournemouth-University {
-    background-position: 0 -156px;
-}
-
-.flair-Bradford-Amateur {
-    background-position: 0 -168px;
-}
-
-.flair-Bristol-Ariel {
-    background-position: 0 -180px;
-}
-
-.flair-Brown-University {
-    background-position: 0 -192px;
-}
-
-.flair-Bulgaria {
-    background-position: 0 -204px;
-}
-
-.flair-Caius {
-    background-position: 0 -216px;
-}
-
-.flair-Cambois {
-    background-position: 0 -228px;
-}
-
-.flair-Cambridge-University {
-    background-position: 0 -240px;
-}
-
-.flair-Canadian {
-    background-position: 0 -252px;
-}
-
-.flair-Cardiff-University {
-    background-position: 0 -264px;
-}
-
-.flair-Chester-Le-Street-Amateur {
-    background-position: 0 -276px;
-}
-
-.flair-Christ27s-College {
-    background-position: 0 -288px;
-}
-
-.flair-Christ-Church {
-    background-position: 0 -300px;
-}
-
-.flair-Churchill-College {
-    background-position: 0 -312px;
-}
-
-.flair-City-of-Cambridge {
-    background-position: 0 -324px;
-}
-
-.flair-City-of-Oxford {
-    background-position: 0 -336px;
-}
-
-.flair-Clare-Hall {
-    background-position: 0 -348px;
-}
-
-.flair-Clydesdale-Amateur {
-    background-position: 0 -360px;
-}
-
-.flair-Colgate-University {
-    background-position: 0 -372px;
-}
-
-.flair-Collingwood-College {
-    background-position: 0 -384px;
-}
-
-.flair-Cornell-University {
-    background-position: 0 -396px;
-}
-
-.flair-Corpus-Christi-College {
-    background-position: 0 -408px;
-}
-
-.flair-Croatia {
-    background-position: 0 -420px;
-}
-
-.flair-Dartmouth-University {
-    background-position: 0 -432px;
-}
-
-.flair-Darwin-College {
-    background-position: 0 -444px;
-}
-
-.flair-Denmark {
-    background-position: 0 -456px;
-}
-
-.flair-Detroit {
-    background-position: 0 -468px;
-}
-
-.flair-Downing-College {
-    background-position: 0 -480px;
-}
-
-.flair-Dulwich-College {
-    background-position: 0 -492px;
-}
-
-.flair-Durham-Amateur {
-    background-position: 0 -504px;
-}
-
-.flair-Durham-School {
-    background-position: 0 -516px;
-}
-
-.flair-Durham-University {
-    background-position: 0 -528px;
-}
-
-.flair-Edinburgh-University {
-    background-position: 0 -540px;
-}
-
-.flair-Emanuel-School {
-    background-position: 0 -552px;
-}
-
-.flair-Emmanuel {
-    background-position: 0 -564px;
-}
-
-.flair-Estonia {
-    background-position: 0 -576px;
-}
-
-.flair-Eton-College {
-    background-position: 0 -588px;
-}
-
-.flair-Euros-Blad {
-    background-position: 0 -600px;
-}
-
-.flair-First-and-Third-Trinity {
-    background-position: 0 -612px;
-}
-
-.flair-French {
-    background-position: 0 -624px;
-}
-
-.flair-George-Stephenson-College {
-    background-position: 0 -636px;
-}
-
-.flair-Georgetown-University {
-    background-position: 0 -648px;
-}
-
-.flair-German {
-    background-position: 0 -660px;
-}
-
-.flair-Girton-College {
-    background-position: 0 -672px;
-}
-
-.flair-Glasgow {
-    background-position: 0 -684px;
-}
-
-.flair-Glasgow-University {
-    background-position: 0 -696px;
-}
-
-.flair-Great-Britain {
-    background-position: 0 -708px;
-}
-
-.flair-Greek {
-    background-position: 0 -720px;
-}
-
-.flair-Green-Templeton {
-    background-position: 0 -732px;
-}
-
-.flair-Grey-College {
-    background-position: 0 -744px;
-}
-
-.flair-Grosvenor {
-    background-position: 0 -756px;
-}
-
-.flair-HSBC {
-    background-position: 0 -768px;
-}
-
-.flair-Harvard-Kennedy-School {
-    background-position: 0 -780px;
-}
-
-.flair-Harvard-Mens {
-    background-position: 0 -792px;
-}
-
-.flair-Harvard-Womens {
-    background-position: 0 -804px;
-}
-
-.flair-Hatfield-College-28Durham29 {
-    background-position: 0 -816px;
-}
-
-.flair-Hatfield-College {
-    background-position: 0 -828px;
-}
-
-.flair-Hertford-College {
-    background-position: 0 -840px;
-}
-
-.flair-Hexham {
-    background-position: 0 -852px;
-}
-
-.flair-Hild-Bede {
-    background-position: 0 -864px;
-}
-
-.flair-Homerton-College {
-    background-position: 0 -876px;
-}
-
-.flair-Hughes-Hall {
-    background-position: 0 -888px;
-}
-
-.flair-Imperial-College {
-    background-position: 0 -900px;
-}
-
-.flair-Imperial-College-School-of-Medicine {
-    background-position: 0 -912px;
-}
-
-.flair-Irish {
-    background-position: 0 -924px;
-}
-
-.flair-Italy {
-    background-position: 0 -936px;
-}
-
-.flair-Jesus-College-Cambridge {
-    background-position: 0 -948px;
-}
-
-.flair-Jesus-College-Oxford {
-    background-position: 0 -960px;
-}
-
-.flair-John-Snow {
-    background-position: 0 -972px;
-}
-
-.flair-Josephine-Butler {
-    background-position: 0 -984px;
-}
-
-.flair-Josephine-Butler-College {
-    background-position: 0 -996px;
-}
-
-.flair-Keble-College {
-    background-position: 0 -1008px;
-}
-
-.flair-Kings-College-Cambridge {
-    background-position: 0 -1020px;
-}
-
-.flair-Kings-College-School {
-    background-position: 0 -1032px;
-}
-
-.flair-Kingston-Grammar-School {
-    background-position: 0 -1044px;
-}
-
-.flair-Kingston {
-    background-position: 0 -1056px;
-}
-
-.flair-Kingston-University {
-    background-position: 0 -1068px;
-}
-
-.flair-LSE {
-    background-position: 0 -1080px;
-}
-
-.flair-Lady-Margaret-Hall {
-    background-position: 0 -1092px;
-}
-
-.flair-Lady-Margaret {
-    background-position: 0 -1104px;
-}
-
-.flair-Lancaster-University {
-    background-position: 0 -1116px;
-}
-
-.flair-Leander-Club {
-    background-position: 0 -1128px;
-}
-
-.flair-Leeds-University {
-    background-position: 0 -1140px;
-}
-
-.flair-Leicester-University {
-    background-position: 0 -1152px;
-}
-
-.flair-Lewis-26-Clark-College {
-    background-position: 0 -1164px;
-}
-
-.flair-Linacre-College {
-    background-position: 0 -1176px;
-}
-
-.flair-Lincoln {
-    background-position: 0 -1188px;
-}
-
-.flair-Lincoln-Rowing-Center {
-    background-position: 0 -1200px;
-}
-
-.flair-Liverpool-University {
-    background-position: 0 -1212px;
-}
-
-.flair-London {
-    background-position: 0 -1224px;
-}
-
-.flair-Lopatica-vesla-VeslaC48Dkog-kluba-Arupinuma {
-    background-position: 0 -1236px;
-}
-
-.flair-Lopatica-vesla-VeslaC48Dkog-kluba-Istre {
-    background-position: 0 -1248px;
-}
-
-.flair-Lopatica-vesla-VeslaC48Dkog-kluba-Medulina {
-    background-position: 0 -1260px;
-}
-
-.flair-Los-Gatos {
-    background-position: 0 -1272px;
-}
-
-.flair-MIT {
-    background-position: 0 -1284px;
-}
-
-.flair-Magdelen-College {
-    background-position: 0 -1296px;
-}
-
-.flair-Manchester-University {
-    background-position: 0 -1308px;
-}
-
-.flair-Mansfield {
-    background-position: 0 -1320px;
-}
-
-.flair-McGill27s {
-    background-position: 0 -1332px;
-}
-
-.flair-Merton-College {
-    background-position: 0 -1344px;
-}
-
-.flair-Minnesota-Boat-Club {
-    background-position: 0 -2556px;
-}
-
-.flair-NHRC {
-    background-position: 0 -1356px;
-}
-
-.flair-Netherlands {
-    background-position: 0 -1368px;
-}
-
-.flair-New-College {
-    background-position: 0 -1380px;
-}
-
-.flair-New-Zealand {
-    background-position: 0 -1392px;
-}
-
-.flair-Newcastle-University {
-    background-position: 0 -1404px;
-}
-
-.flair-Newnham-College {
-    background-position: 0 -1416px;
-}
-
-.flair-Northumbria-University {
-    background-position: 0 -1428px;
-}
-
-.flair-Norway {
-    background-position: 0 -1440px;
-}
-
-.flair-Oriel-College {
-    background-position: 0 -1452px;
-}
-
-.flair-Oxford-Brookes-University {
-    background-position: 0 -1464px;
-}
-
-.flair-Oxford-University {
-    background-position: 0 -1476px;
-}
-
-.flair-PLU {
-    background-position: 0 -1488px;
-}
-
-.flair-Paignton-Amateur {
-    background-position: 0 -1500px;
-}
-
-.flair-Pembroke-College-Cambridge {
-    background-position: 0 -1512px;
-}
-
-.flair-Pembroke-College-Oxford {
-    background-position: 0 -1524px;
-}
-
-.flair-Peterhouse {
-    background-position: 0 -1536px;
-}
-
-.flair-Poland {
-    background-position: 0 -1548px;
-}
-
-.flair-Prince-Alfred-College {
-    background-position: 0 -1560px;
-}
-
-.flair-Putney-Town {
-    background-position: 0 -1572px;
-}
-
-.flair-Queen27s {
-    background-position: 0 -1584px;
-}
-
-.flair-Queen-Mary-University-of-London {
-    background-position: 0 -1596px;
-}
-
-.flair-Queens-College-28Oxford29 {
-    background-position: 0 -1608px;
-}
-
-.flair-Queens-College-Cambridge {
-    background-position: 0 -1620px;
-}
-
-.flair-Reading-University {
-    background-position: 0 -1632px;
-}
-
-.flair-Regents-Park-College {
-    background-position: 0 -1644px;
-}
-
-.flair-Robinson-College {
-    background-position: 0 -1656px;
-}
-
-.flair-Romania {
-    background-position: 0 -1668px;
-}
-
-.flair-Royal-Holloway-University-of-London {
-    background-position: 0 -1680px;
-}
-
-.flair-Royal-Shrewsbury-School {
-    background-position: 0 -1692px;
-}
-
-.flair-Selwyn-College {
-    background-position: 0 -1704px;
-}
-
-.flair-Sidney-Sussex-College {
-    background-position: 0 -1716px;
-}
-
-.flair-Somerville-College {
-    background-position: 0 -1728px;
-}
-
-.flair-Sons-of-the-Thames {
-    background-position: 0 -1740px;
-}
-
-.flair-South-African {
-    background-position: 0 -1752px;
-}
-
-.flair-Southampton-University {
-    background-position: 0 -1764px;
-}
-
-.flair-Spanish {
-    background-position: 0 -1776px;
-}
-
-.flair-StCatharine27s-College-Cambridge {
-    background-position: 0 -1788px;
-}
-
-.flair-St-Aidans-College {
-    background-position: 0 -1800px;
-}
-
-.flair-St-Annes-College {
-    background-position: 0 -1812px;
-}
-
-.flair-St-Benet27s {
-    background-position: 0 -1824px;
-}
-
-.flair-St-Catherines-College-Oxford {
-    background-position: 0 -1836px;
-}
-
-.flair-St-Chads-College {
-    background-position: 0 -1848px;
-}
-
-.flair-St-Cuthberts-Society {
-    background-position: 0 -1860px;
-}
-
-.flair-St-Edmund-Hall {
-    background-position: 0 -1872px;
-}
-
-.flair-St-George27s-Hospital {
-    background-position: 0 -1884px;
-}
-
-.flair-St-Hilda27s {
-    background-position: 0 -1896px;
-}
-
-.flair-St-Hughs {
-    background-position: 0 -1908px;
-}
-
-.flair-St-Johns-College {
-    background-position: 0 -1920px;
-}
-
-.flair-St-Leonards-School {
-    background-position: 0 -1932px;
-}
-
-.flair-St-Marys-College {
-    background-position: 0 -1944px;
-}
-
-.flair-St-Neots {
-    background-position: 0 -1956px;
-}
-
-.flair-St-Peters-College {
-    background-position: 0 -1968px;
-}
-
-.flair-St-Peters-School {
-    background-position: 0 -1980px;
-}
-
-.flair-Staines {
-    background-position: 0 -1992px;
-}
-
-.flair-Swansea-University {
-    background-position: 0 -2004px;
-}
-
-.flair-Swiss {
-    background-position: 0 -2016px;
-}
-
-.flair-Syracuse-University {
-    background-position: 0 -2028px;
-}
-
-.flair-Talkin-Tarn-Amateur {
-    background-position: 0 -2040px;
-}
-
-.flair-Tees {
-    background-position: 0 -2052px;
-}
-
-.flair-Thames {
-    background-position: 0 -2064px;
-}
-
-.flair-Tideway-Scullers-School {
-    background-position: 0 -2076px;
-}
-
-.flair-Tiffin-School {
-    background-position: 0 -2088px;
-}
-
-.flair-Trevelyan-College {
-    background-position: 0 -2100px;
-}
-
-.flair-Trinity-College {
-    background-position: 0 -2112px;
-}
-
-.flair-Trinity-College-Dublin {
-    background-position: 0 -2124px;
-}
-
-.flair-Trinity-Hall {
-    background-position: 0 -2136px;
-}
-
-.flair-Twickenham {
-    background-position: 0 -2148px;
-}
-
-.flair-Tyne {
-    background-position: 0 -2160px;
-}
-
-.flair-UMich {
-    background-position: 0 -2172px;
-}
-
-.flair-USA {
-    background-position: 0 -2184px;
-}
-
-.flair-USC {
-    background-position: 0 -2196px;
-}
-
-.flair-University-Barge-Club {
-    background-position: 0 -2208px;
-}
-
-.flair-University-College-Durham {
-    background-position: 0 -2220px;
-}
-
-.flair-University-College-London {
-    background-position: 0 -2232px;
-}
-
-.flair-University-College-Oxford {
-    background-position: 0 -2244px;
-}
-
-.flair-University-of-Birmingham {
-    background-position: 0 -2256px;
-}
-
-.flair-University-of-Bristol {
-    background-position: 0 -2268px;
-}
-
-.flair-University-of-California-Berkley {
-    background-position: 0 -2280px;
-}
-
-.flair-University-of-Kwazulu-Natal {
-    background-position: 0 -2292px;
-}
-
-.flair-University-of-London {
-    background-position: 0 -2304px;
-}
-
-.flair-University-of-Warwick {
-    background-position: 0 -2316px;
-}
-
-.flair-University-of-West-England {
-    background-position: 0 -2328px;
-}
-
-.flair-Ustinov {
-    background-position: 0 -2340px;
-}
-
-.flair-Van-Mildert {
-    background-position: 0 -2352px;
-}
-
-.flair-Vesta {
-    background-position: 0 -2364px;
-}
-
-.flair-WU {
-    background-position: 0 -2376px;
-}
-
-.flair-Wadham-College {
-    background-position: 0 -2388px;
-}
-
-.flair-Walbrook {
-    background-position: 0 -2400px;
-}
-
-.flair-Wallingford {
-    background-position: 0 -2412px;
-}
-
-.flair-Walton {
-    background-position: 0 -2424px;
-}
-
-.flair-Westminster-School {
-    background-position: 0 -2436px;
-}
-
-.flair-Willamette {
-    background-position: 0 -2448px;
-}
-
-.flair-Willem-III {
-    background-position: 0 -2460px;
-}
-
-.flair-Wolfson-College {
-    background-position: 0 -2472px;
-}
-
-.flair-Wolfson-College {
-    background-position: 0 -2484px;
-}
-
-.flair-Worcester-College {
-    background-position: 0 -2496px;
-}
-
-.flair-Worcester-College-Women27s {
-    background-position: 0 -2508px;
-}
-
-.flair-Yale {
-    background-position: 0 -2520px;
-}
-
-.flair-York-City {
-    background-position: 0 -2532px;
-}
-
-.flair-UCD {
-    background-position: 0 -2544px;
+    text-indent: 30px;
+    height: 14px;
+    min-width: 30px;
 }
 
 .sidecontentbox .helplink + .title h1 {

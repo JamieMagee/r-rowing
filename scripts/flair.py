@@ -81,9 +81,9 @@ else:
 storage_account = CloudStorageAccount(storage_account_name, storage_account_key)
 
 table_service = storage_account.create_table_service()
-blob_service = storage_account.create_blob_service()
+blob_service = storage_account.create_block_blob_service()
 
-blob_service.create_container('images', x_ms_blob_public_access='container')
+blob_service.create_container('images', public_access='container')
 table_service.create_table('flair')
 table_service.create_table('logs')
 

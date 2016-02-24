@@ -9,6 +9,7 @@ from urllib import parse, request
 import praw
 from PIL import Image
 from azure.storage import CloudStorageAccount
+from azure.storage.blob.models import ContentSettings
 from bs4 import BeautifulSoup
 
 
@@ -35,7 +36,7 @@ def download_images(url, level):
     except:
         return
 
-    soup = BeautifulSoup(''.join(urlcontent))
+    soup = BeautifulSoup(''.join(urlcontent), 'lxml')
     img_tags = soup.findAll('img')
     for img_tag in img_tags:
         img_url = img_tag['src']
@@ -64,7 +65,7 @@ def resize_image(fp, name):
     im.thumbnail([100, 14], Image.LANCZOS)
     blob = BytesIO()
     im.save(blob, 'png')
-    blob_service.put_block_blob_from_bytes('images', name, blob.getvalue(), x_ms_blob_content_type='image/png')
+    blob_service.create_blob_from_bytes('images', name, blob.getvalue(), content_settings=ContentSettings(content_type='image/png'))
     log('resized ' + name[:-4:])
 
 
@@ -103,9 +104,9 @@ else:
 storage_account = CloudStorageAccount(storage_account_name, storage_account_key)
 
 table_service = storage_account.create_table_service()
-blob_service = storage_account.create_blob_service()
+blob_service = storage_account.create_block_blob_service()
 
-blob_service.create_container('images', x_ms_blob_public_access='container')
+blob_service.create_container('images', public_access='container')
 table_service.create_table('logs')
 
 rooturl = 'http://www.oarspotter.com'

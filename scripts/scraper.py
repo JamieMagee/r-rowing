@@ -1,20 +1,22 @@
-import re
-from urllib import parse, request
-import os
 import datetime
+import os
+import re
 import time
-from io import BytesIO
 from configparser import ConfigParser
+from io import BytesIO
+from urllib import parse, request
 
+import praw
 from PIL import Image
 from azure.storage import CloudStorageAccount
 from bs4 import BeautifulSoup
-import praw
+
 
 def log(message):
     table_service.insert_entity('logs',
-                                    {'PartitionKey': 'scraper', 'RowKey': str(datetime.datetime.now()), 'text': message})
+                                {'PartitionKey': 'scraper', 'RowKey': str(datetime.datetime.now()), 'text': message})
     print('[*] ' + message)
+
 
 def download_images(url, level):
     global website
@@ -63,7 +65,7 @@ def resize_image(fp, name):
     blob = BytesIO()
     im.save(blob, 'png')
     blob_service.put_block_blob_from_bytes('images', name, blob.getvalue(), x_ms_blob_content_type='image/png')
-    log('resized ' + file[:-4:])
+    log('resized ' + name[:-4:])
 
 
 def replace_all(text, dic):
@@ -81,15 +83,15 @@ def crop(im):
 
 
 if os.path.isfile(os.path.join(os.path.dirname(__file__), 'settings.cfg')):
-	config = ConfigParser()
-	config.read(os.path.join(os.path.dirname(__file__), 'settings.cfg'))
-	
-	subreddit = config.get('reddit', 'subreddit')
-	username = config.get('reddit', 'username')
-	password = config.get('reddit', 'password')
-	
-	storage_account_name = config.get('azure', 'name')
-	storage_account_key = config.get('azure', 'key')
+    config = ConfigParser()
+    config.read(os.path.join(os.path.dirname(__file__), 'settings.cfg'))
+
+    subreddit = config.get('reddit', 'subreddit')
+    username = config.get('reddit', 'username')
+    password = config.get('reddit', 'password')
+
+    storage_account_name = config.get('azure', 'name')
+    storage_account_key = config.get('azure', 'key')
 else:
     subreddit = os.getenv('SUBREDDIT')
     username = os.getenv('USERNAME')
@@ -126,7 +128,8 @@ while True:
     for file in blob_service.list_blobs('images'):
         value = replace_all(file.name[:-4:], replacements)
         value = re.sub(r'((?<=[a-z])[A-Z]|(?<!\A)[A-Z](?=[a-z]))', r' \1', value)
-        content += '* [' + value + '](//reddit.com/message/compose/?to=RowingFlairBot&subject=f&message={"' + file.name[:-4:] + '":"YourTextHere"})\n'
+        content += '* [' + value + '](//reddit.com/message/compose/?to=RowingFlairBot&subject=f&message={"' + file.name[
+                                                                                                              :-4:] + '":"YourTextHere"})\n'
 
     r = praw.Reddit('RowingFlair by /u/Jammie1')
     r.login(username, password)

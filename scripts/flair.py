@@ -1,14 +1,15 @@
-import os
-import time
 import datetime
 import json
-from urllib import request
-from io import BytesIO
+import os
+import time
 from configparser import ConfigParser
+from io import BytesIO
+from urllib import request
 
+import praw
 from PIL import Image
 from azure.storage import CloudStorageAccount
-import praw
+
 
 def get_flair_info(message):
     info = json.loads(message.body)
@@ -58,16 +59,17 @@ def log(message):
                                          'text': message})
     print('[*] ' + message)
 
+
 if os.path.isfile(os.path.join(os.path.dirname(__file__), 'settings.cfg')):
-	config = ConfigParser()
-	config.read(os.path.join(os.path.dirname(__file__), 'settings.cfg'))
-	
-	subreddit = config.get('reddit', 'subreddit')
-	username = config.get('reddit', 'username')
-	password = config.get('reddit', 'password')
-	
-	storage_account_name = config.get('azure', 'name')
-	storage_account_key = config.get('azure', 'key')
+    config = ConfigParser()
+    config.read(os.path.join(os.path.dirname(__file__), 'settings.cfg'))
+
+    subreddit = config.get('reddit', 'subreddit')
+    username = config.get('reddit', 'username')
+    password = config.get('reddit', 'password')
+
+    storage_account_name = config.get('azure', 'name')
+    storage_account_key = config.get('azure', 'key')
 else:
     subreddit = os.getenv('SUBREDDIT')
     username = os.getenv('USERNAME')

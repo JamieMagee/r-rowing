@@ -1,0 +1,8 @@
+azure
+beautifulsoup4
+Pillow
+praw
+python-dateutil
+requests
+six
+update-checker

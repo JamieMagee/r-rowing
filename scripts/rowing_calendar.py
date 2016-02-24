@@ -1,9 +1,9 @@
-import re
 import os
-from configparser import ConfigParser
-import urllib.request as request
-from datetime import datetime
+import re
 import time
+import urllib.request as request
+from configparser import ConfigParser
+from datetime import datetime
 
 import praw
 from lxml import html
@@ -15,8 +15,9 @@ def parse_british_rowing(webpage):
     dates.append([datetime.strptime(date, '%d/%m/%Y') for date in
                   tree.xpath('//*[@id="britishrowing-calendar"]/tbody/tr[*]/td[2]/span[*]/small/text()')])
     events.append(tree.xpath('//*[@id="britishrowing-calendar"]/tbody/tr[*]/td[2]/span[*]/a/text()'))
-    web.append(['http://www.britishrowing.org' + site for site in tree.xpath('//*[@id="britishrowing-calendar"]/tbody/tr[*]/td[2]/span[*]/a/@href')])
-    locations.append(['']*len(tree.xpath('//*[@id="britishrowing-calendar"]/tbody/tr[*]/td[2]/span[*]/a/text()')))
+    web.append(['http://www.britishrowing.org' + site for site in
+                tree.xpath('//*[@id="britishrowing-calendar"]/tbody/tr[*]/td[2]/span[*]/a/@href')])
+    locations.append([''] * len(tree.xpath('//*[@id="britishrowing-calendar"]/tbody/tr[*]/td[2]/span[*]/a/text()')))
 
 
 def parse_regatta_central(webpage):
@@ -24,10 +25,10 @@ def parse_regatta_central(webpage):
     tree = html.fromstring(webpage)
     try:
         dates.append([datetime.strptime(date.replace(' \r\n      ', ''), '%A%m/%d/%y') for date in
-                  tree.xpath('//*[@id="tableResults"]/tbody/tr[*]/td[2]/text()')])
+                      tree.xpath('//*[@id="tableResults"]/tbody/tr[*]/td[2]/text()')])
     except:
         dates.append([datetime.strptime(date.replace(' \n      ', ''), '%A%m/%d/%y') for date in
-                  tree.xpath('//*[@id="tableResults"]/tbody/tr[*]/td[2]/text()')])
+                      tree.xpath('//*[@id="tableResults"]/tbody/tr[*]/td[2]/text()')])
     events.append(tree.xpath('//*[@id="tableResults"]/tbody/tr[*]/td[4]/a/text()'))
     web.append(['https://www.regattacentral.com' + site for site in
                 tree.xpath('//*[@id="tableResults"]/tbody/tr[*]/td[4]/a/@href')])
@@ -108,6 +109,6 @@ while True:
         set_sidebar(out)
     else:
         print('[*] Table too large')
-    
+
     print('[*] Sleeping...')
     time.sleep(43200)

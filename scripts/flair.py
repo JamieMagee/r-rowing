@@ -36,7 +36,7 @@ def upload_image(r, image, subreddit):
 
 def make_new_flairsheet(flairsheet, new_flair):
     flairsheet = Image.open(BytesIO(request.urlopen(flairsheet).read()))
-    new_flair = Image.open(BytesIO(blob_service.get_blob_to_bytes('images', new_flair + '.png')))
+    new_flair = Image.open(BytesIO(blob_service.get_blob_to_bytes('images', new_flair + '.png').content))
 
     new_flairsheet = Image.new("RGBA", [flairsheet.size[0], flairsheet.size[1] + new_flair.size[1]])
     new_flairsheet.paste(flairsheet, (0, 0))
@@ -97,7 +97,7 @@ while True:
         try:
             file, text = get_flair_info(message)
             if blob_service.list_blobs('images', file + '.png'):
-                if table_service.query_entities('flair', "RowKey eq '" + file + "'"):
+                if len(table_service.query_entities('flair', "RowKey eq '" + file + "'").items) > 0:
                     flair = table_service.get_entity('flair', 'flair', file)
                     assign_flair(r, message, text, flair.position.value)
                     r.send_message(message.author, 'Rowing flair success',
@@ -133,6 +133,7 @@ while True:
                 log('Couldn\'t find flair with name:' + file)
 
         except Exception as e:
+            print(e)
             message.mark_as_read()
             r.send_message(message.author, 'Rowing flair error', 'Sorry, I couldn\'t find a flair with that filename')
             log('Error reading user message')

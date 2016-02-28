@@ -88,7 +88,7 @@ table_service.create_table('flair')
 table_service.create_table('logs')
 
 r = praw.Reddit('RowingFlair by /u/Jammie1')
-r.login(username, password)
+r.login(username, password, disable_warning=True)
 r.config.decode_html_entities = True
 
 while True:
@@ -99,7 +99,7 @@ while True:
             if blob_service.list_blobs('images', file + '.png'):
                 if table_service.query_entities('flair', "RowKey eq '" + file + "'"):
                     flair = table_service.get_entity('flair', 'flair', file)
-                    assign_flair(r, message, text, flair.position)
+                    assign_flair(r, message, text, flair.position.value)
                     r.send_message(message.author, 'Rowing flair success',
                                    'Your flair has been set')
                     log('Assigned existing flair: ' + file + ' with text: ' + text + ' to user: ' + message.author.name)

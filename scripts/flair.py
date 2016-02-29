@@ -99,7 +99,10 @@ while True:
             if blob_service.list_blobs('images', file + '.png'):
                 if len(table_service.query_entities('flair', "RowKey eq '" + file + "'").items) > 0:
                     flair = table_service.get_entity('flair', 'flair', file)
-                    assign_flair(r, message, text, flair.position.value)
+                    try:
+                        assign_flair(r, message, text, int(flair.position))
+                    except:
+                        assign_flair(r, message, text, flair.position.value)
                     r.send_message(message.author, 'Rowing flair success',
                                    'Your flair has been set')
                     log('Assigned existing flair: ' + file + ' with text: ' + text + ' to user: ' + message.author.name)

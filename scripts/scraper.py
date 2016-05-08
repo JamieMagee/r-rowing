@@ -1,6 +1,5 @@
 import datetime
 import os
-import re
 import time
 from configparser import ConfigParser
 from io import BytesIO
@@ -37,14 +36,16 @@ def download_images(url, level):
         return
 
     soup = BeautifulSoup(''.join(urlcontent), 'lxml')
-    img_tags = soup.findAll('img')
-    for img_tag in img_tags:
-        img_url = img_tag['src']
-        if img_url.lower().endswith('.png'):
-            try:
-                resize_image(BytesIO(request.urlopen(parse.urljoin(url, img_url)).read()), img_url.split('/')[-1])
-            except:
-                pass
+    rows = soup.findAll('td', {'class': 'list'})
+    for row in rows:
+        if row.find('b'):
+            name = row.find('b').text.strip()
+            img_url = row.find('img')['src']
+            if img_url.lower().endswith('.png'):
+                try:
+                    resize_image(BytesIO(request.urlopen(parse.urljoin(url, img_url)).read()), name)
+                except:
+                    pass
 
     if level > 0:
         link_tags = soup.findAll('a')
@@ -65,8 +66,9 @@ def resize_image(fp, name):
     im.thumbnail([100, 14], Image.LANCZOS)
     blob = BytesIO()
     im.save(blob, 'png')
-    blob_service.create_blob_from_bytes('images', name, blob.getvalue(), content_settings=ContentSettings(content_type='image/png'))
-    log('resized ' + name[:-4:])
+    blob_service.create_blob_from_bytes('images', name, blob.getvalue(),
+                                        content_settings=ContentSettings(content_type='image/png'))
+    log('resized ' + name)
 
 
 def replace_all(text, dic):
@@ -119,18 +121,16 @@ while True:
     download_images(rooturl, 2)
     log('finished scraping oarspotter')
 
-    replacements = {'_': ' ',
-                    '-': ' ',
-                    'Uni': 'University'}
+    replacements = {'\'': '\\\'',
+                    '(': '\(',
+                    ')': '\)'}
 
     log('Generating dictionary')
     flair, content = {}, 'Howto\n==\nClick the link for your club, edit the "YourTextHere" part to whatever you want, but leave everything else including the quotation marks. Submit the message form and wait for max. 5 minutes. If it doesn\'t work, message the mods.\n\n'
 
     for file in blob_service.list_blobs('images'):
-        value = replace_all(file.name[:-4:], replacements)
-        value = re.sub(r'((?<=[a-z])[A-Z]|(?<!\A)[A-Z](?=[a-z]))', r' \1', value)
-        content += '* [' + value + '](//reddit.com/message/compose/?to=RowingFlairBot&subject=f&message={"' + file.name[
-                                                                                                              :-4:] + '":"YourTextHere"})\n'
+        escaped_name = replace_all(file.name, replacements)
+        content += '* [' + file.name + '](//reddit.com/message/compose/?to=RowingFlairBot&subject=f&message={"' + escaped_name + '":"YourTextHere"})\n'
 
     r = praw.Reddit('RowingFlair by /u/Jammie1')
     r.login(username, password)

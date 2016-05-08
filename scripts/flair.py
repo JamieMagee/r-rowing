@@ -96,7 +96,7 @@ while True:
         log('received mesage from ' + message.author.name)
         try:
             file, text = get_flair_info(message)
-            if blob_service.list_blobs('images', file + '.png'):
+            if blob_service.list_blobs('images', file):
                 if len(table_service.query_entities('flair', "RowKey eq '" + file + "'").items) > 0:
                     flair = table_service.get_entity('flair', 'flair', file)
                     try:

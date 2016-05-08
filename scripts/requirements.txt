@@ -1,5 +1,6 @@
 azure
 beautifulsoup4
+lxml
 Pillow
 praw
 python-dateutil

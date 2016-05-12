@@ -106,6 +106,6 @@ blob_service = storage_account.create_block_blob_service()
 
 table_service.create_table('flair')
 
-# download_images(blob_service)
-# download_flair(flairsheet)
+download_images(blob_service)
+download_flair(flairsheet)
 compare_images(table_service)

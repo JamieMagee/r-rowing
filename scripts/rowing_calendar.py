@@ -1,23 +1,27 @@
-import os
 import re
 import time
 import urllib.request as request
-from configparser import ConfigParser
 from datetime import datetime
 
 import praw
+from prawoauth2 import PrawOAuth2Mini
 from lxml import html
+
+from settings import subreddit, app_secret, app_key, access_token, refresh_token, user_agent, scopes
 
 
 def parse_british_rowing(webpage):
     global dates, events, web, locations
     tree = html.fromstring(webpage)
     dates.append([datetime.strptime(date, '%d/%m/%Y') for date in
-                  tree.xpath('//*[@id="britishrowing-calendar"]/tbody/tr[*]/td[2]/span[*]/small/text()')])
-    events.append(tree.xpath('//*[@id="britishrowing-calendar"]/tbody/tr[*]/td[2]/span[*]/a/text()'))
+                  tree.xpath(
+                      '//*[@id="britishrowing-calendar"]/tbody/tr[*]/td[2]/span[*]/small/text()')])
+    events.append(
+        tree.xpath('//*[@id="britishrowing-calendar"]/tbody/tr[*]/td[2]/span[*]/a/text()'))
     web.append(['http://www.britishrowing.org' + site for site in
                 tree.xpath('//*[@id="britishrowing-calendar"]/tbody/tr[*]/td[2]/span[*]/a/@href')])
-    locations.append([''] * len(tree.xpath('//*[@id="britishrowing-calendar"]/tbody/tr[*]/td[2]/span[*]/a/text()')))
+    locations.append([''] * len(
+        tree.xpath('//*[@id="britishrowing-calendar"]/tbody/tr[*]/td[2]/span[*]/a/text()')))
 
 
 def parse_regatta_central(webpage):
@@ -50,25 +54,19 @@ def generate_table(dates, events, web, locations):
 def set_sidebar(out):
     r = praw.Reddit('/r/rowing sidebar updater')
 
-    if os.path.isfile('settings.cfg'):
-        config = ConfigParser()
-        config.read('settings.cfg')
-        username = config.get('reddit', 'username')
-        password = config.get('reddit', 'password')
-    else:
-        username = os.environ['REDDIT_USERNAME']
-        password = os.environ['REDDIT_PASSWORD']
-
-    print('[*] Logging in as %s...' % username)
-    r.login(username, password)
+    print('[*] Logging in...')
+    r = praw.Reddit(user_agent)
+    oauth_helper = PrawOAuth2Mini(r, app_key=app_key, app_secret=app_secret,
+                                  access_token=access_token, scopes=scopes,
+                                  refresh_token=refresh_token)
+    oauth_helper.refresh()
     print('[*] Login successful...')
 
-    sub = 'Rowing'
-    settings = r.get_settings(sub)
+    settings = r.get_settings(subreddit)
     desc = settings['description']
     table = re.compile('\|.*\|', re.DOTALL)
     desc = (re.sub(table, out, desc))
-    r.update_settings(r.get_subreddit(sub), description=desc)
+    r.update_settings(r.get_subreddit(subreddit), description=desc)
     print('[*] Logging out...')
     r.clear_authentication()
 

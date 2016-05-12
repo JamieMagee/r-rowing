@@ -1,7 +1,5 @@
 import datetime
-import os
 import time
-from configparser import ConfigParser
 from io import BytesIO
 from urllib import parse, request
 
@@ -10,11 +8,16 @@ from PIL import Image
 from azure.storage import CloudStorageAccount
 from azure.storage.blob.models import ContentSettings
 from bs4 import BeautifulSoup
+from prawoauth2 import PrawOAuth2Mini
+
+from settings import subreddit, app_secret, app_key, storage_account_name, storage_account_key, \
+    access_token, refresh_token, user_agent, scopes
 
 
 def log(message):
     table_service.insert_entity('logs',
-                                {'PartitionKey': 'scraper', 'RowKey': str(datetime.datetime.now()), 'text': message})
+                                {'PartitionKey': 'scraper', 'RowKey': str(datetime.datetime.now()),
+                                 'text': message})
     print('[*] ' + message)
 
 
@@ -85,24 +88,6 @@ def crop(im):
     return im.crop([357, 5, im.size[0] - 6, im.size[1] - 4])
 
 
-if os.path.isfile(os.path.join(os.path.dirname(__file__), 'settings.cfg')):
-    config = ConfigParser()
-    config.read(os.path.join(os.path.dirname(__file__), 'settings.cfg'))
-
-    subreddit = config.get('reddit', 'subreddit')
-    username = config.get('reddit', 'username')
-    password = config.get('reddit', 'password')
-
-    storage_account_name = config.get('azure', 'name')
-    storage_account_key = config.get('azure', 'key')
-else:
-    subreddit = os.getenv('SUBREDDIT')
-    username = os.getenv('USERNAME')
-    password = os.getenv('PASSWORD')
-
-    storage_account_name = os.getenv('STORAGE_ACCOUNT_NAME')
-    storage_account_key = os.getenv('STORAGE_ACCOUNT_KEY')
-
 storage_account = CloudStorageAccount(storage_account_name, storage_account_key)
 
 table_service = storage_account.create_table_service()
@@ -115,26 +100,29 @@ rooturl = 'http://www.oarspotter.com'
 netloc = parse.urlsplit(rooturl).netloc.split('.')
 website = netloc[-2] + netloc[-1]
 
+r = praw.Reddit(user_agent)
+oauth_helper = PrawOAuth2Mini(r, app_key=app_key, app_secret=app_secret,
+                              access_token=access_token, scopes=scopes,
+                              refresh_token=refresh_token)
+
+replacements = {'\'': '\\\'',
+                '(': '\(',
+                ')': '\)'}
+
 while True:
     url_list = []
     log('scraping oarspotter')
-    download_images(rooturl, 2)
+    # download_images(rooturl, 2)
     log('finished scraping oarspotter')
 
-    replacements = {'\'': '\\\'',
-                    '(': '\(',
-                    ')': '\)'}
-
-    log('Generating dictionary')
-    flair, content = {}, 'Howto\n==\nClick the link for your club, edit the "YourTextHere" part to whatever you want, but leave everything else including the quotation marks. Submit the message form and wait for max. 5 minutes. If it doesn\'t work, message the mods.\n\n'
+    log('Generating wiki page')
+    content = 'Howto\n==\nClick the link for your club, edit the "Text" part to whatever you want, but leave everything else including the quotation marks. Submit the message form and wait for max. 5 minutes. If it doesn\'t work, message the mods.\n\n'
 
     for file in blob_service.list_blobs('images'):
         escaped_name = replace_all(file.name, replacements)
-        content += '* [' + file.name + '](//reddit.com/message/compose/?to=RowingFlairBot&subject=f&message={"' + escaped_name + '":"YourTextHere"})\n'
+        content += '* [' + file.name + '](/message/compose/?to=RowingFlairBot&message="' + escaped_name + '":"Text")\n'
 
-    r = praw.Reddit('RowingFlair by /u/Jammie1')
-    r.login(username, password)
-
+    oauth_helper.refresh()
     r.edit_wiki_page(subreddit, 'flair', content, '')
     log('Done!')
     time.sleep(86400)

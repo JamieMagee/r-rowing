@@ -11,7 +11,7 @@ from bs4 import BeautifulSoup
 from prawoauth2 import PrawOAuth2Mini
 
 from settings import subreddit, app_secret, app_key, storage_account_name, storage_account_key, \
-    access_token, refresh_token, user_agent, scopes
+    access_token, refresh_token
 
 
 def log(message):
@@ -100,6 +100,9 @@ rooturl = 'http://www.oarspotter.com'
 netloc = parse.urlsplit(rooturl).netloc.split('.')
 website = netloc[-2] + netloc[-1]
 
+user_agent = 'RowingFlair by /u/Jammie1'
+scopes = ['identity', 'privatemessages', 'wikiedit', 'modflair', 'modconfig']
+
 r = praw.Reddit(user_agent)
 oauth_helper = PrawOAuth2Mini(r, app_key=app_key, app_secret=app_secret,
                               access_token=access_token, scopes=scopes,
@@ -112,7 +115,7 @@ replacements = {'\'': '\\\'',
 while True:
     url_list = []
     log('scraping oarspotter')
-    # download_images(rooturl, 2)
+    download_images(rooturl, 2)
     log('finished scraping oarspotter')
 
     log('Generating wiki page')

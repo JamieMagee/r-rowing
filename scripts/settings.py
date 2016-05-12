@@ -21,6 +21,3 @@ else:
 
     storage_account_name = os.getenv('STORAGE_ACCOUNT_NAME')
     storage_account_key = os.getenv('STORAGE_ACCOUNT_KEY')
-
-user_agent = 'RowingFlair by /u/Jammie1'
-scopes = ['identity', 'privatemessages', 'wikiedit', 'modflair', 'modconfig']

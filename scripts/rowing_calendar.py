@@ -7,7 +7,7 @@ import praw
 from prawoauth2 import PrawOAuth2Mini
 from lxml import html
 
-from settings import subreddit, app_secret, app_key, access_token, refresh_token, user_agent, scopes
+from settings import subreddit, app_secret, app_key, access_token, refresh_token
 
 
 def parse_british_rowing(webpage):
@@ -52,7 +52,8 @@ def generate_table(dates, events, web, locations):
 
 
 def set_sidebar(out):
-    r = praw.Reddit('/r/rowing sidebar updater')
+    user_agent = 'RowingFlair by /u/Jammie1'
+    scopes = ['identity', 'privatemessages', 'wikiedit', 'modflair', 'modconfig']
 
     print('[*] Logging in...')
     r = praw.Reddit(user_agent)

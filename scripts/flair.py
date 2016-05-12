@@ -10,7 +10,7 @@ from azure.storage import CloudStorageAccount
 from prawoauth2 import PrawOAuth2Mini
 
 from settings import subreddit, app_secret, app_key, storage_account_name, storage_account_key, \
-    access_token, refresh_token, user_agent, scopes
+    access_token, refresh_token
 
 
 def get_flair_info(message):
@@ -74,6 +74,9 @@ blob_service = storage_account.create_block_blob_service()
 blob_service.create_container('images', public_access='container')
 table_service.create_table('flair')
 table_service.create_table('logs')
+
+user_agent = 'RowingFlair by /u/Jammie1'
+scopes = ['identity', 'privatemessages', 'wikiedit', 'modflair', 'modconfig']
 
 r = praw.Reddit(user_agent)
 oauth_helper = PrawOAuth2Mini(r, app_key=app_key, app_secret=app_secret,

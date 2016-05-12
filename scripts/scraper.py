@@ -10,8 +10,9 @@ from azure.storage.blob.models import ContentSettings
 from bs4 import BeautifulSoup
 from prawoauth2 import PrawOAuth2Mini
 
-from settings import subreddit, app_secret, app_key, storage_account_name, storage_account_key, \
+from tokens import subreddit, app_secret, app_key, storage_account_name, storage_account_key, \
     access_token, refresh_token
+from settings import user_agent, scopes
 
 
 def log(message):
@@ -99,9 +100,6 @@ table_service.create_table('logs')
 rooturl = 'http://www.oarspotter.com'
 netloc = parse.urlsplit(rooturl).netloc.split('.')
 website = netloc[-2] + netloc[-1]
-
-user_agent = 'RowingFlair by /u/Jammie1'
-scopes = ['identity', 'privatemessages', 'wikiedit', 'modflair', 'modconfig']
 
 r = praw.Reddit(user_agent)
 oauth_helper = PrawOAuth2Mini(r, app_key=app_key, app_secret=app_secret,

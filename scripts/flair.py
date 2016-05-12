@@ -9,12 +9,12 @@ from PIL import Image
 from azure.storage import CloudStorageAccount
 from prawoauth2 import PrawOAuth2Mini
 
-from settings import subreddit, app_secret, app_key, storage_account_name, storage_account_key, \
+from tokens import subreddit, app_secret, app_key, storage_account_name, storage_account_key, \
     access_token, refresh_token
-
+from settings import user_agent, scopes
 
 def get_flair_info(message):
-    info = json.loads("{" + message.body + "}")
+    info = json.loads('{' + message.body + '}')
     return info.popitem()
 
 
@@ -75,9 +75,6 @@ blob_service.create_container('images', public_access='container')
 table_service.create_table('flair')
 table_service.create_table('logs')
 
-user_agent = 'RowingFlair by /u/Jammie1'
-scopes = ['identity', 'privatemessages', 'wikiedit', 'modflair', 'modconfig']
-
 r = praw.Reddit(user_agent)
 oauth_helper = PrawOAuth2Mini(r, app_key=app_key, app_secret=app_secret,
                               access_token=access_token, scopes=scopes,
@@ -86,11 +83,11 @@ r.config.decode_html_entities = True
 
 while True:
     oauth_helper.refresh()
-    for message in (m for m in r.get_unread(limit=None) if m.subject == 'newf'):
+    for message in (m for m in r.get_unread(limit=None)):
         log('received mesage from ' + message.author.name)
         try:
             file, text = get_flair_info(message)
-            if file in list(blob_service.list_blobs('images')):
+            if file in [blob.name for blob in list(blob_service.list_blobs('images'))]:
                 if len(table_service.query_entities('flair', "RowKey eq '" + parse.quote_plus(
                         file) + "'").items) > 0:
                     flair = table_service.get_entity('flair', 'flair', parse.quote_plus(file))

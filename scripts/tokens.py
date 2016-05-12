@@ -6,6 +6,9 @@ if os.path.isfile(os.path.join(os.path.dirname(__file__), 'settings.cfg')):
     config.read(os.path.join(os.path.dirname(__file__), 'settings.cfg'))
 
     subreddit = config.get('reddit', 'subreddit')
+    username = config.get('reddit', 'username')
+    password = config.get('reddit', 'password')
+
     app_secret = config.get('reddit', 'app_secret')
     access_token = config.get('reddit', 'access_token')
     refresh_token = config.get('reddit', 'refresh_token')
@@ -15,9 +18,13 @@ if os.path.isfile(os.path.join(os.path.dirname(__file__), 'settings.cfg')):
     storage_account_key = config.get('azure', 'key')
 else:
     subreddit = os.getenv('SUBREDDIT')
+    username = os.getenv('USERNAME')
+    password = os.getenv('PASSWORD')
+
     app_secret = os.getenv('APP_SECRET')
     access_token = os.getenv('ACCESS_TOKEN')
     refresh_token = os.getenv('REFRESH_TOKEN')
+    app_key = os.getenv('APP_KEY')
 
     storage_account_name = os.getenv('STORAGE_ACCOUNT_NAME')
     storage_account_key = os.getenv('STORAGE_ACCOUNT_KEY')

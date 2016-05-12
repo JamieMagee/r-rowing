@@ -7,11 +7,9 @@ from urllib import request, parse
 import praw
 from PIL import Image
 from azure.storage import CloudStorageAccount
-from prawoauth2 import PrawOAuth2Mini
+from settings import user_agent
+from tokens import subreddit, username, password, storage_account_name, storage_account_key
 
-from tokens import subreddit, app_secret, app_key, storage_account_name, storage_account_key, \
-    access_token, refresh_token
-from settings import user_agent, scopes
 
 def get_flair_info(message):
     info = json.loads('{' + message.body + '}')
@@ -39,7 +37,7 @@ def upload_image(r, image, subreddit):
 def make_new_flairsheet(flairsheet, new_flair):
     flairsheet = Image.open(BytesIO(request.urlopen(flairsheet).read()))
     new_flair = Image.open(
-        BytesIO(blob_service.get_blob_to_bytes('images', new_flair + '.png').content))
+        BytesIO(blob_service.get_blob_to_bytes('images', new_flair).content))
 
     new_flairsheet = Image.new("RGBA", [flairsheet.size[0], flairsheet.size[1] + new_flair.size[1]])
     new_flairsheet.paste(flairsheet, (0, 0))
@@ -76,13 +74,10 @@ table_service.create_table('flair')
 table_service.create_table('logs')
 
 r = praw.Reddit(user_agent)
-oauth_helper = PrawOAuth2Mini(r, app_key=app_key, app_secret=app_secret,
-                              access_token=access_token, scopes=scopes,
-                              refresh_token=refresh_token)
+r.login(username, password)
 r.config.decode_html_entities = True
 
 while True:
-    oauth_helper.refresh()
     for message in (m for m in r.get_unread(limit=None)):
         log('received mesage from ' + message.author.name)
         try:
@@ -110,7 +105,7 @@ while True:
                         upload_image(r, flairsheet, subreddit)
                         append_css(r, subreddit, css, position, height)
                         table_service.insert_entity('flair',
-                                                    {'PartitionKey': 'flair', 'RowKey': file,
+                                                    {'PartitionKey': 'flair', 'RowKey': parse.quote_plus(file),
                                                      'position': position})
 
                         assign_flair(r, message, text, position)
@@ -118,7 +113,7 @@ while True:
                                        'Your flair has been set')
                         log(
                             'Assigned flair: ' + file + ' with text: ' + text + ' to user: ' + message.author.name)
-                    except praw.errors.BadCSS:
+                    except praw.errors.BadCSS as e:
                         message.mark_as_read()
                         r.send_message(message.author, 'Rowing flair error',
                                        'Oops! Something went wrong.')
@@ -130,9 +125,6 @@ while True:
                                'Sorry, I couldn\'t find that flair. Please try selecting your '
                                'flair again https://www.reddit.com/r/rowing/wiki/flair')
                 log('Couldn\'t find flair with name:' + file)
-
-        except praw.errors.OAuthInvalidToken:
-            oauth_helper.refresh()
         except Exception as e:
             print(e)
             message.mark_as_read()

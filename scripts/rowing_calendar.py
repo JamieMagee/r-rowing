@@ -37,7 +37,7 @@ def parse_regatta_central(webpage):
     web.append(['https://www.regattacentral.com' + site for site in
                 tree.xpath('//*[@id="tableResults"]/tbody/tr[*]/td[4]/a/@href')])
     locations.append(tree.xpath(
-        '//*[@id="tableResults"]/tbody/tr[*]/td[10]/a/text()|//*[@id="tableResults"]/tbody/tr[*]/td[10]/text()'))
+        '//*[@id="tableResults"]/tbody/tr[*]/td[8]/a/text()|//*[@id="tableResults"]/tbody/tr[*]/td[8]/text()'))
 
 
 def generate_table(dates, events, web, locations):
@@ -74,7 +74,7 @@ def flatten_list(list_of_lists):
 
 
 rc, br = 'https://www.regattacentral.com/regattas/index.jsp?c=', 'http://www.britishrowing.org/competing/calendar'
-countries = ['AU', 'CA', 'DE', 'IT', 'US']
+countries = ['AU', 'CA', 'DE', 'IT', 'US', 'DK', 'HK', 'IE', 'NO']
 while True:
     dates, events, web, locations = [], [], [], []
 

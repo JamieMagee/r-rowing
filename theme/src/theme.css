@@ -3703,3 +3703,15 @@ div.titlebox span.number:after {
 .sidebox.submit.submit-text {
     display: block;
 }
+
+.res-nightmode body:not(.comments-page) .linkflair-spoiler a.title,
+body:not(.comments-page) .linkflair-spoiler a.title {
+  background: #000;
+  color: #000;
+}
+
+.res-nightmode body:not(.comments-page) .linkflair-spoiler a.title:hover,
+body:not(.comments-page) .linkflair-spoiler a.title:hover {
+  background: transparent;
+  color: #000;
+}

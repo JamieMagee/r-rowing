@@ -62,7 +62,7 @@ def set_sidebar(out):
 
     settings = r.get_settings(subreddit)
     desc = settings['description']
-    table = re.compile('\|.*\|', re.DOTALL)
+    table = re.compile('\*\*Upcoming Races\*\*.*', re.DOTALL)
     desc = (re.sub(table, out, desc))
     r.update_settings(r.get_subreddit(subreddit), description=desc)
     print('[*] Logging out...')
@@ -99,7 +99,7 @@ while True:
     dates_ = sorted(dates)
 
     print('[*] Generating table...')
-    out = generate_table(dates_, events_, web_, locations_)
+    out = '\n**Upcoming Races**\n\n' + generate_table(dates_, events_, web_, locations_)
     print('[*] Updating sidebar...')
     if len(out) <= 5120:
         set_sidebar(out)

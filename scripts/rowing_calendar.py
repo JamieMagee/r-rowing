@@ -1,14 +1,15 @@
+import json
 import re
 import time
 import urllib.request as request
 from datetime import datetime
 
 import praw
-from prawoauth2 import PrawOAuth2Mini
 from lxml import html
-
-from tokens import subreddit, app_secret, app_key, access_token, refresh_token
+from prawoauth2 import PrawOAuth2Mini
 from settings import user_agent, scopes
+from tokens import subreddit, app_secret, app_key, access_token, refresh_token
+
 
 def parse_british_rowing(webpage):
     global dates, events, web, locations
@@ -24,20 +25,14 @@ def parse_british_rowing(webpage):
         tree.xpath('//*[@id="britishrowing-calendar"]/tbody/tr[*]/td[2]/span[*]/a/text()')))
 
 
-def parse_regatta_central(webpage):
+def parse_regatta_central(page):
     global dates, events, web, locations
-    tree = html.fromstring(webpage)
-    try:
-        dates.append([datetime.strptime(date.replace(' \r\n      ', ''), '%A%m/%d/%y') for date in
-                      tree.xpath('//*[@id="tableResults"]/tbody/tr[*]/td[2]/text()')])
-    except:
-        dates.append([datetime.strptime(date.replace(' \n      ', ''), '%A%m/%d/%y') for date in
-                      tree.xpath('//*[@id="tableResults"]/tbody/tr[*]/td[2]/text()')])
-    events.append(tree.xpath('//*[@id="tableResults"]/tbody/tr[*]/td[4]/a/text()'))
-    web.append(['https://www.regattacentral.com' + site for site in
-                tree.xpath('//*[@id="tableResults"]/tbody/tr[*]/td[4]/a/@href')])
-    locations.append(tree.xpath(
-        '//*[@id="tableResults"]/tbody/tr[*]/td[8]/a/text()|//*[@id="tableResults"]/tbody/tr[*]/td[8]/text()'))
+    data = page['data']
+
+    dates.append([datetime.strptime(event['startDate'], '%Y-%m-%d') for event in data])
+    events.append([event['full_name'] for event in data])
+    web.append(['https://www.regattacentral.com/regatta/?job_id=' + str(event['job_id']) for event in data])
+    locations.append([event['location'] for event in data])
 
 
 def generate_table(dates, events, web, locations):
@@ -73,14 +68,14 @@ def flatten_list(list_of_lists):
     return [item for sublist in list_of_lists for item in sublist]
 
 
-rc, br = 'https://www.regattacentral.com/regattas/index.jsp?c=', 'http://www.britishrowing.org/competing/calendar'
+rc, br = 'https://www.regattacentral.com/v3/regattas/jobs?resultsOnly=false&country={}&state=all&year={}&type=all', 'http://www.britishrowing.org/competing/calendar'
 countries = ['AU', 'CA', 'DE', 'IT', 'US', 'DK', 'HK', 'IE', 'NO']
 while True:
     dates, events, web, locations = [], [], [], []
 
     for country in countries:
         print('[*] Fetching page...')
-        page = request.urlopen(rc + country).read().decode('utf-8')
+        page = json.loads(request.urlopen(rc.format(country, datetime.now().year)).read().decode('utf-8'))
         print('[*] Parsing calendar...')
         parse_regatta_central(page)
 

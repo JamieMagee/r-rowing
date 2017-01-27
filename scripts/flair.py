@@ -43,9 +43,10 @@ def make_new_flairsheet(flairsheet, new_flair):
     new_flairsheet.paste(flairsheet, (0, 0))
     new_flairsheet.paste(new_flair, (
         0, flairsheet.size[1], flairsheet.size[0], flairsheet.size[1] + new_flair.size[1]))
+    new_flairsheet = new_flairsheet.convert('P', palette=Image.ADAPTIVE)
 
     flairsheet = BytesIO()
-    new_flairsheet.save(flairsheet, 'png')
+    new_flairsheet.save(flairsheet, 'png', optimize=True)
     position = new_flairsheet.size[1] // new_flair.size[1] - 1
 
     return flairsheet, position, new_flair.size[1]

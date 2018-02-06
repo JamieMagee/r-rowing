@@ -1,6 +1,6 @@
 azure==2.0.0
 beautifulsoup4==4.5.3
-lxml==3.7.3
+lxml==4.1.1
 Pillow==4.1.0
 praw==3.6.1
 prawoauth2==0.3

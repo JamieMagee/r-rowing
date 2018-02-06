@@ -7,4 +7,4 @@ prawoauth2==0.3
 python-dateutil==2.6.0
 requests==2.18.4
 six==1.10.0
-update-checker==0.12
+update-checker==0.16

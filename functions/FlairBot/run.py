@@ -7,9 +7,6 @@ from urllib import request, parse
 import praw
 from PIL import Image
 from azure.storage import CloudStorageAccount
-from settings import user_agent
-from tokens import subreddit, username, password, storage_account_name, storage_account_key
-
 
 def get_flair_info(message):
     info = json.loads('{' + message.body + '}')

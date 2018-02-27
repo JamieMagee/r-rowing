@@ -1,25 +1,10 @@
-import datetime
-import time
 from io import BytesIO
-from urllib import parse, request
 
 import praw
 from PIL import Image
 from azure.storage import CloudStorageAccount
 from azure.storage.blob.models import ContentSettings
 from bs4 import BeautifulSoup
-from prawoauth2 import PrawOAuth2Mini
-
-from tokens import subreddit, app_secret, app_key, storage_account_name, storage_account_key, \
-    access_token, refresh_token
-from settings import user_agent, scopes
-
-
-def log(message):
-    table_service.insert_entity('logs',
-                                {'PartitionKey': 'scraper', 'RowKey': str(datetime.datetime.now()),
-                                 'text': message})
-    print('[*] ' + message)
 
 
 def download_images(url, level):
@@ -101,10 +86,6 @@ rooturl = 'http://www.oarspotter.com'
 netloc = parse.urlsplit(rooturl).netloc.split('.')
 website = netloc[-2] + netloc[-1]
 
-r = praw.Reddit(user_agent)
-oauth_helper = PrawOAuth2Mini(r, app_key=app_key, app_secret=app_secret,
-                              access_token=access_token, scopes=scopes,
-                              refresh_token=refresh_token)
 
 replacements = {'\'': '\\\'',
                 '(': '\(',
@@ -126,4 +107,3 @@ while True:
     oauth_helper.refresh()
     r.edit_wiki_page(subreddit, 'flair', content, '')
     log('Done!')
-    time.sleep(86400)

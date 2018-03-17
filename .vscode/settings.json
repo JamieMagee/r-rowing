@@ -1,7 +1,0 @@
-{
-  "azureFunctions.projectRuntime": "~1",
-  "azureFunctions.projectLanguage": "Python",
-  "azureFunctions.templateFilter": "All",
-  "python.pythonPath": "functions/venv/bin/python",
-  "editor.formatOnSave": true
-}

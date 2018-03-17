@@ -5,7 +5,7 @@
       "name": "inputMessage",
       "type": "queueTrigger",
       "direction": "in",
-      "queueName": "oarspotter-image",
+      "queueName": "oarspotter-page",
       "connection": "AzureWebJobsStorage"
     }
   ]

@@ -1,0 +1,9 @@
+{
+  "azureFunctions.projectRuntime": "~1",
+  "azureFunctions.projectLanguage": "Python",
+  "azureFunctions.templateFilter": "All",
+  "editor.formatOnSave": true,
+  "python.venvPath": "~/.local/share/virtualenvs",
+  "python.pythonPath":
+    "~/.local/share/virtualenvs/functions-tFQm8Knr/bin/python"
+}

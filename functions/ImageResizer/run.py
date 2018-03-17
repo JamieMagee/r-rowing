@@ -1,23 +1,34 @@
+from io import BytesIO
 import json
 from os import environ
 
 import requests
-from azure.storage.blob import BlockBlobService
+from azure.storage.blob import BlockBlobService, ContentSettings
+from PIL import Image
 
-queue_data = open(environ['inputDocument']).read()
-blade_json = json.loads(queue_data)
+from oarspotterimage import OarSpotterImage
+from flairblobservice import FlairStorageService
 
-name = blade_json['name']
-url = blade_json['url']
 
-img_bytes = requests.get(url, streaming=True).raw.data
-blob_name = f'original/{url.split("/blades/")[1]}'
-blob_service = BlockBlobService(account_name=environ['STORAGE_ACCOUNT_NAME'],
-                                 account_key=environ['STORAGE_ACCOUNT_KEY'])
-resp = blob_service.create_blob_from_bytes(
-    'blades',
-    blob_name,
-    img_bytes
+def dequeue_message():
+    queue_data = open(environ['inputMessage']).read()
+    blade_json = json.loads(queue_data)
 
-)
-print(resp)
+    name = blade_json['name']
+    src = blade_json['src']
+
+    return name, src
+
+
+name, src = dequeue_message()
+
+# Download original blade image
+img_bytes = BytesIO(requests.get(src).content)
+
+# Save original
+blob_service = FlairStorageService(name, src)
+blob_service.upload_original(img_bytes)
+
+# Make thumbnail
+thumbnail_bytes = OarSpotterImage(img_bytes).resize()
+blob_service.upload_flair(thumbnail_bytes)

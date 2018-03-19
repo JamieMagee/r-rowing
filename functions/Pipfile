@@ -18,8 +18,8 @@ pillow = "*"
 [dev-packages]
 
 pylint = "*"
-"autopep8" = "*"
 rope = "*"
+yapf = "*"
 
 
 [requires]

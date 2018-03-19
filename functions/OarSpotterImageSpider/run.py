@@ -6,8 +6,6 @@ from urllib.parse import urljoin
 from azure.storage.queue import QueueService, QueueMessageFormat
 from requests_html import HTMLSession
 
-logging.basicConfig(filename='oarspotterimagespider.log',
-                    filemode='w', level=logging.DEBUG)
 logger = logging.getLogger(__name__)
 
 queue_data = open(environ['inputMessage']).read()

@@ -8,7 +8,6 @@ import requests
 from event import Event
 from lxml import html
 
-logging.basicConfig(filename='calendar.log', filemode='w', level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 

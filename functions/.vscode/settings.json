@@ -3,7 +3,10 @@
   "azureFunctions.projectLanguage": "Python",
   "azureFunctions.templateFilter": "All",
   "editor.formatOnSave": true,
+  "editor.formatOnType": true,
   "python.venvPath": "~/.local/share/virtualenvs",
   "python.pythonPath":
-    "~/.local/share/virtualenvs/functions-tFQm8Knr/bin/python"
+    "~/.local/share/virtualenvs/functions-tFQm8Knr/bin/python",
+  "python.formatting.provider": "yapf",
+  "python.formatting.yapfArgs": ["--style", "chromium"]
 }

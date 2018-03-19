@@ -6,8 +6,6 @@ from grab.spider import Spider, Task
 from os import environ
 from urllib.parse import urljoin
 
-logging.basicConfig(filename='oarspotterpagespider.log',
-                    filemode='w', level=logging.DEBUG)
 logger = logging.getLogger(__name__)
 
 

@@ -7,13 +7,17 @@ from oarspotterimage import OarSpotterImage
 
 #OarSpotterSpider().run()
 
-directory = 'blades/original/'
+directory_original = 'blades/original/'
+directory_flair = 'blades/flair/'
 
-for file in glob.iglob(directory + '**', recursive=True):
+for file in glob.iglob(directory_original + '**', recursive=True):
   if os.path.isdir(file):
     continue
-  flair = OarSpotterImage(file).resize()
-  filename = 'blades/flair/' + file.split(directory)[1].replace('jpg', 'png')
+  try:
+    flair = OarSpotterImage(file).resize()
+  except ValueError:
+    continue
+  filename = directory_flair + file.split(directory_original)[1].replace('jpg', 'png')
   dirname = os.path.dirname(filename)
   if not os.path.exists(dirname):
     os.makedirs(dirname)

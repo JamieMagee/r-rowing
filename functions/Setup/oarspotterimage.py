@@ -8,7 +8,7 @@ class OarSpotterImage():
   def __init__(self, img):
     self.im = Image.open(img)
     if self.im.size != (436, 48):
-      print()
+      raise ValueError()
 
   def resize(self):
     self.im = OarSpotterImage.__crop__(OarSpotterImage.__trim__(self.im))

@@ -14,7 +14,7 @@ class OarSpotterImage():
     self.im = OarSpotterImage.__crop__(OarSpotterImage.__trim__(self.im))
     self.im.thumbnail([100, 14], Image.LANCZOS)
     blob = BytesIO()
-    self.im.save(blob, 'PNG')
+    self.im.convert('RGBA').save(blob, 'PNG')
     return blob
 
   @staticmethod

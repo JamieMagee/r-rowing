@@ -31,6 +31,8 @@ class OarSpotterSpider(Spider):
   def task_page_images(self, grab, task):
     for blade in grab.doc.select('//td[@class="list"]'):
       try:
+        name = blade.select('.//b').text()
+        location = blade.select('.//i').text()[2:]
         src = urljoin(task.url, blade.select('.//img/@src')[0].text())
         filename = 'blades/original/' + src.split('/blades/')[1]
       except IndexError:

@@ -12,9 +12,10 @@ class FlairStorageService():
   table_name = 'flair'
   png_content_type = ContentSettings(content_type='image/png')
 
-  def __init__(self, name, src):
-    self.path, _ = splitext(src.split("/blades/")[1])
+  def __init__(self, name, location, src):
+    self.path, _ = splitext(src.split('/blades/')[1])
     self.name = name
+    self.location = location
 
     self.blob_service = BlockBlobService(
         connection_string=environ['AzureWebJobsStorage'])
@@ -31,17 +32,13 @@ class FlairStorageService():
         blob.getvalue(),
         content_settings=self.png_content_type)
 
-  def upload_original(self, img):
-    blob_name = f'original/{self.path}'
-    self.__upload_image__(img, blob_name)
-
   def upload_flair(self, img):
     blob_name = f'flair/{self.path}'
     self.__upload_image__(img, blob_name)
 
   def create_table_row(self):
     entity = Entity()
-    entity.PartitionKey = 'blob'
-    entity.RowKey = self.name
+    entity.PartitionKey = self.name
+    entity.RowKey = self.location
     entity.path = self.path
-    self.table_service
+    self.table_service.insert_or_replace_entity(self.table_name, entity)

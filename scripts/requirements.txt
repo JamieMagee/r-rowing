@@ -1,5 +1,5 @@
 azure==3.0.0
-beautifulsoup4==4.6.1
+beautifulsoup4==4.6.3
 lxml==4.2.3
 Pillow==5.2.0
 praw==6.0.0

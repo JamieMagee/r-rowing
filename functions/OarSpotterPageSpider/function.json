@@ -1,11 +1,17 @@
 {
-  "disabled": true,
   "bindings": [
     {
-      "name": "myTimer",
       "type": "timerTrigger",
       "direction": "in",
+      "name": "timer",
       "schedule": "0 0 0 * * 0"
+    },
+    {
+      "type": "queue",
+      "direction": "out",
+      "name": "$return",
+      "queueName": "oarspotter-page",
+      "connection": "AzureWebJobsStorage"
     }
   ]
 }

@@ -1,5 +1,9 @@
 {
-  "queues": {
-    "batchSize": 1
+  "version": "2.0",
+  "extensions": {
+    "queues": {
+      "batchSize": 32,
+      "maxDequeueCount": 1
+    }
   }
 }

@@ -1,0 +1,26 @@
+{
+  "bindings": [
+    {
+      "authLevel": "function",
+      "name": "req",
+      "type": "httpTrigger",
+      "direction": "in"
+    },
+    {
+      "name": "oldFlair",
+      "type": "table",
+      "tableName": "flair",
+      "partitionKey": "flair",
+      "connection": "OldRemoteStorage",
+      "direction": "in"
+    },
+    {
+      "name": "newFlair",
+      "type": "table",
+      "tableName": "flair",
+      "partitionKey": "flair",
+      "connection": "NewRemoteStorage",
+      "direction": "out"
+    }
+  ]
+}

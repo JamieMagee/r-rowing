@@ -1,12 +1,25 @@
 {
-  "disabled": true,
   "bindings": [
     {
-      "name": "inputMessage",
+      "name": "msg",
       "type": "queueTrigger",
       "direction": "in",
       "queueName": "oarspotter-image",
       "connection": "AzureWebJobsStorage"
+    },
+    {
+      "name": "blob",
+      "type": "blob",
+      "path": "flair/{src}",
+      "direction": "out",
+      "connection": "AzureWebJobsStorage"
+    },
+    {
+      "tableName": "flair",
+      "connection": "AzureWebJobsStorage",
+      "name": "table",
+      "type": "table",
+      "direction": "out"
     }
   ]
 }

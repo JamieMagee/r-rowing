@@ -1,11 +1,17 @@
 {
-  "disabled": true,
   "bindings": [
     {
-      "name": "inputMessage",
+      "name": "msg",
       "type": "queueTrigger",
       "direction": "in",
       "queueName": "oarspotter-page",
+      "connection": "AzureWebJobsStorage"
+    },
+    {
+      "type": "queue",
+      "direction": "out",
+      "name": "$return",
+      "queueName": "oarspotter-image",
       "connection": "AzureWebJobsStorage"
     }
   ]

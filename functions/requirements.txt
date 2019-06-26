@@ -1,0 +1,5 @@
+azure-functions==1.0.0b4
+grab==0.6.41
+Pillow==6.0.0
+praw==6.2.0
+unidecode==1.0.23

@@ -5,5 +5,9 @@
       "batchSize": 32,
       "maxDequeueCount": 1
     }
+  },
+  "extensionBundle": {
+    "id": "Microsoft.Azure.Functions.ExtensionBundle",
+    "version": "[1.*, 2.0.0)"
   }
 }

@@ -1,4 +1,6 @@
 {
+  // See https://go.microsoft.com/fwlink/?LinkId=733558
+  // for the documentation about the tasks.json format
   "version": "2.0.0",
   "tasks": [
     {
@@ -6,31 +8,27 @@
       "command": "host start",
       "problemMatcher": "$func-watch",
       "isBackground": true,
-      "dependsOn": "yarn build"
+      "dependsOn": ["pipInstall"]
     },
     {
+      "label": "pipInstall",
       "type": "shell",
-      "label": "yarn build",
-      "command": "yarn run build",
-      "dependsOn": ["func: extensions install", "yarn install"],
-      "problemMatcher": "$tsc"
-    },
-    {
-      "type": "shell",
-      "label": "yarn install",
-      "command": "yarn install"
-    },
-    {
-      "type": "func",
-      "command": "extensions install",
-      "problemMatcher": "$func-watch"
-    },
-    {
-      "type": "shell",
-      "label": "yarn prune",
-      "command": "yarn prune --production",
-      "dependsOn": "yarn build",
+      "osx": {
+        "command": "${config:azureFunctions.pythonVenv}/bin/python -m pip install -r requirements.txt"
+      },
+      "windows": {
+        "command": "${config:azureFunctions.pythonVenv}\\Scripts\\python -m pip install -r requirements.txt"
+      },
+      "linux": {
+        "command": "${config:azureFunctions.pythonVenv}/bin/python -m pip install -r requirements.txt"
+      },
       "problemMatcher": []
+    },
+    {
+      "label": "localStorage",
+      "type": "process",
+      "command": "azurite",
+      "isBackground": true
     }
   ]
 }

@@ -1,4 +1,5 @@
 {
+  "scriptFile": "__init__.py",
   "bindings": [
     {
       "name": "msg",
@@ -15,11 +16,11 @@
       "connection": "AzureWebJobsStorage"
     },
     {
-      "tableName": "flair",
-      "connection": "AzureWebJobsStorage",
-      "name": "table",
-      "type": "table",
-      "direction": "out"
+      "type": "queue",
+      "direction": "out",
+      "name": "$return",
+      "queueName": "emoji",
+      "connection": "AzureWebJobsStorage"
     }
   ]
 }

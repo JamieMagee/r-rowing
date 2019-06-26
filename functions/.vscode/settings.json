@@ -1,11 +1,14 @@
 {
+  "azureFunctions.deploySubpath": "functions.zip",
+  "azureFunctions.preDeployTask": "func: pack",
+  "azureFunctions.projectLanguage": "Python",
   "azureFunctions.projectRuntime": "~2",
-  "azureFunctions.projectLanguage": "TypeScript",
-  "azureFunctions.deploySubpath": ".",
-  "azureFunctions.preDeployTask": "npm prune",
+  "azureFunctions.pythonVenv": ".env",
+  "debug.internalConsoleOptions": "neverOpen",
   "files.exclude": {
-    "obj": true,
-    "bin": true
+    "bin": true,
+    "obj": true
   },
-  "debug.internalConsoleOptions": "neverOpen"
+  "python.pythonPath": ".env/bin/python",
+  "python.formatting.provider": "black"
 }
